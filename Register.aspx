@@ -1,0 +1,253 @@
+﻿<%@ Page Title="Register" Language="C#" MasterPageFile="~/Site1.Master"
+    AutoEventWireup="true"
+    CodeBehind="Register.aspx.cs"
+    Inherits="Project.Register" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="Content/Register.css" rel="stylesheet" />
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <div class="register-page">
+
+        <!-- =========================================
+             MAIN REGISTER SECTION
+        ========================================= -->
+        <section class="register-main">
+            <div class="register-container">
+
+                <!-- LEFT SIDE -->
+                <div class="register-image-section">
+
+                    <!-- Farmer Image -->
+                    <div class="register-image-box">
+                        <asp:Image ID="RegisterImage" runat="server"
+                            ImageUrl="~/image/farmer.png"
+                            CssClass="register-farmer-image"
+                            AlternateText="Farmer" />
+                    </div>
+
+                    <!-- Join AgriConnect info box -->
+                    <div class="register-welcome">
+                        <div class="welcome-icon">
+                            <i class="fa-solid fa-seedling"></i>
+                        </div>
+                        <div class="welcome-text">
+                            <h3>Join AgriConnect</h3>
+                            <p class="welcome-heading">Create your account and grow with us</p>
+                            <p>Get personalized farming information, expert advice and agricultural resources.</p>
+                            <p>Stay connected with the AgriConnect community.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- RIGHT SIDE — white card form -->
+                <div class="register-form-section">
+
+                    <h1>Create Your Account</h1>
+                    <p class="register-description">Join AgriConnect and get access to smart farming resources</p>
+
+                    <!-- First Name + Last Name -->
+                    <div class="form-row">
+
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <div class="input-box">
+                                <i class="fa-regular fa-user"></i>
+                                <asp:TextBox ID="FirstName_txt" runat="server"
+                                    CssClass="register-input"
+                                    placeholder="Enter first name"></asp:TextBox>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <div class="input-box">
+                                <i class="fa-regular fa-user"></i>
+                                <asp:TextBox ID="LastName_txt" runat="server"
+                                    CssClass="register-input"
+                                    placeholder="Enter last name"></asp:TextBox>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Email Address -->
+                    <div class="form-group full-width">
+                        <label>Email Address</label>
+                        <div class="input-box">
+                            <i class="fa-regular fa-envelope"></i>
+                            <asp:TextBox ID="Email_txt" runat="server"
+                                CssClass="register-input"
+                                TextMode="Email"
+                                placeholder="Enter your email address"></asp:TextBox>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Number -->
+                    <div class="form-group full-width">
+                        <label>Mobile Number</label>
+                        <div class="input-box">
+                            <i class="fa-solid fa-phone"></i>
+                            <asp:TextBox ID="Mobile_txt" runat="server"
+                                CssClass="register-input"
+                                placeholder="Enter your mobile number"></asp:TextBox>
+                        </div>
+                    </div>
+
+                    <!-- Password + Confirm Password -->
+                    <div class="form-row">
+
+                        <div class="form-group">
+                            <label>Password</label>
+                            <div class="input-box">
+                                <i class="fa-solid fa-lock"></i>
+                                <asp:TextBox ID="Password_txt" runat="server"
+                                    TextMode="Password"
+                                    CssClass="register-input"
+                                    placeholder="Create password"></asp:TextBox>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Confirm Password</label>
+                            <div class="input-box">
+                                <i class="fa-solid fa-lock"></i>
+                                <asp:TextBox ID="ConfirmPassword_txt" runat="server"
+                                    TextMode="Password"
+                                    CssClass="register-input"
+                                    placeholder="Confirm password"></asp:TextBox>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Create Account Button -->
+                    <asp:Button ID="Register_btn" runat="server"
+                        Text="Create Account"
+                        CssClass="register-button" />
+
+                    <!-- OR Divider -->
+                    <div class="or-divider">
+                        <span></span>
+                        <label>OR</label>
+                        <span></span>
+                    </div>
+
+                    <!-- Already have account -->
+                    <div class="login-link">
+                        Already have an account?
+                        <a href="Login.aspx">Sign In</a>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- =========================================
+             BENEFITS SECTION  (white — feature icons)
+        ========================================= -->
+        <section class="benefits-section">
+            <div class="benefits-container">
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <div>
+                        <h4>Personalized</h4>
+                        <p>Farming information</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fa-regular fa-bell"></i>
+                    </div>
+                    <div>
+                        <h4>Real-time</h4>
+                        <p>Agricultural updates</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-chart-column"></i>
+                    </div>
+                    <div>
+                        <h4>Useful</h4>
+                        <p>Market insights</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <div>
+                        <h4>Community</h4>
+                        <p>Farmer support</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- =========================================
+             SECURITY SECTION  (green — trust badges)
+        ========================================= -->
+        <section class="security-section">
+            <div class="security-container">
+
+                <div class="security-item">
+                    <div class="security-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div>
+                        <h4>Secure &amp; Safe</h4>
+                        <p>Your information is protected</p>
+                    </div>
+                </div>
+
+                <div class="security-item">
+                    <div class="security-icon">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <div>
+                        <h4>Trusted Information</h4>
+                        <p>Get accurate information</p>
+                    </div>
+                </div>
+
+                <div class="security-item">
+                    <div class="security-icon">
+                        <i class="fa-solid fa-hand-holding-heart"></i>
+                    </div>
+                    <div>
+                        <h4>Better Decisions</h4>
+                        <p>Make smarter farming choices</p>
+                    </div>
+                </div>
+
+                <div class="security-item">
+                    <div class="security-icon">
+                        <i class="fa-solid fa-globe"></i>
+                    </div>
+                    <div>
+                        <h4>Accessible Anywhere</h4>
+                        <p>Access information anytime</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+</asp:Content>

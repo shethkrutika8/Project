@@ -1,0 +1,499 @@
+﻿/* =====================================================
+   AGRICONNECT LOGIN PAGE
+   ===================================================== */
+
+.agri-login-page {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #222;
+    background: #f4f8f1;
+}
+
+/* =====================================================
+   LOGIN MAIN SECTION  (green card background)
+   ===================================================== */
+
+.agri-login-main {
+    width: 100%;
+    padding: 30px 0 0;
+    background: #f4f8f1;
+}
+
+.agri-login-card {
+    width: 90%;
+    max-width: 1060px;
+    min-height: 320px;
+    margin: 0 auto;
+    padding: 36px 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 50px;
+    box-sizing: border-box;
+    background: linear-gradient(135deg, #e2f0de, #d4e8d0);
+    border-radius: 8px;
+}
+
+/* =====================================================
+   LEFT  IMAGE
+   ===================================================== */
+
+.agri-login-image {
+    flex: 0 0 42%;
+    width: 42%;
+}
+
+.agri-login-image img,
+.agri-login-image .forgot-farmer-image {
+    width: 100%;
+    height: 255px;
+    object-fit: cover;
+    display: block;
+    border-radius: 6px;
+}
+
+/* =====================================================
+   RIGHT  FORM  (white panel)
+   ===================================================== */
+
+.agri-login-form {
+    flex: 1;
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 28px 30px 24px;
+    box-shadow: 0 3px 18px rgba(0,0,0,0.10);
+    box-sizing: border-box;
+}
+
+.agri-login-form h1 {
+    margin: 0 0 6px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #181818;
+    line-height: 1.2;
+}
+
+.agri-login-subtitle {
+    margin: 0 0 18px;
+    font-size: 11px;
+    color: #666;
+}
+
+/* =====================================================
+   INPUT GROUPS
+   ===================================================== */
+
+.agri-input-group {
+    width: 100%;
+    margin-bottom: 14px;
+}
+
+.agri-input-group label {
+    display: block;
+    margin: 0 0 5px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #333;
+}
+
+.agri-input-wrapper {
+    position: relative;
+    width: 100%;
+    height: 36px;
+}
+
+.agri-input-wrapper > i:first-child {
+    position: absolute;
+    left: 11px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    font-size: 11px;
+    color: #888;
+    pointer-events: none;
+}
+
+.agri-input {
+    width: 100%;
+    height: 36px;
+    box-sizing: border-box;
+    padding: 0 34px;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    background: #ffffff;
+    color: #222;
+    font-size: 11px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.agri-input:focus {
+    border-color: #29ad3c;
+    box-shadow: 0 0 0 3px rgba(41, 173, 60, 0.10);
+}
+
+/* =====================================================
+   PASSWORD EYE TOGGLE
+   ===================================================== */
+
+.agri-input-wrapper .agri-eye {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    color: #888;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.agri-input-wrapper .agri-eye:hover {
+    color: #29ad3c;
+}
+
+/* =====================================================
+   REMEMBER ME / FORGOT PASSWORD
+   ===================================================== */
+
+.agri-login-options {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 6px 0 16px;
+    font-size: 11px;
+}
+
+.agri-remember {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    font-size: 11px;
+    color: #444;
+    cursor: pointer;
+}
+
+.agri-remember input[type="checkbox"] {
+    width: 13px;
+    height: 13px;
+    margin: 0;
+    accent-color: #29ad3c;
+    cursor: pointer;
+}
+
+.agri-login-options a {
+    color: #333;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.agri-login-options a:hover {
+    color: #29a83c;
+}
+
+/* =====================================================
+   LOGIN BUTTON
+   ===================================================== */
+
+.agri-login-button {
+    width: 100%;
+    height: 38px;
+    padding: 0;
+    border: none;
+    border-radius: 4px;
+    background: #29ad3c;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    letter-spacing: 0.3px;
+}
+
+.agri-login-button:hover {
+    background: #218f31;
+}
+
+/* =====================================================
+   OR  DIVIDER
+   ===================================================== */
+
+.agri-or {
+    position: relative;
+    width: 100%;
+    margin: 14px 0 10px;
+    text-align: center;
+}
+
+.agri-or::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 1px;
+    background: #d6d6d6;
+}
+
+.agri-or span {
+    position: relative;
+    padding: 0 10px;
+    background: #ffffff;
+    color: #888;
+    font-size: 11px;
+}
+
+/* =====================================================
+   CREATE ACCOUNT LINK
+   ===================================================== */
+
+.agri-register {
+    width: 100%;
+    text-align: center;
+    font-size: 11px;
+    color: #555;
+}
+
+.agri-register a {
+    color: #249d37;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.agri-register a:hover {
+    text-decoration: underline;
+}
+
+/* =====================================================
+   WELCOME BACK SECTION  (white)
+   ===================================================== */
+
+.agri-welcome {
+    width: 90%;
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 30px 40px;
+    box-sizing: border-box;
+    background: #ffffff;
+}
+
+.agri-welcome-inner {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+/* =====================================================
+   WELCOME TEXT (left)
+   ===================================================== */
+
+.agri-welcome-text {
+    flex: 0 0 38%;
+    width: 38%;
+}
+
+.agri-welcome-text h2 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.agri-welcome-text p {
+    margin: 0 0 6px;
+    font-size: 12px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.agri-welcome-text small {
+    font-size: 11px;
+    color: #777;
+}
+
+/* =====================================================
+   FEATURE ICONS (right of welcome)
+   ===================================================== */
+
+.agri-features {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+}
+
+.agri-feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 6px;
+}
+
+.agri-feature-icon {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #edf7eb;
+    color: #27aa3b;
+    font-size: 20px;
+}
+
+.agri-feature strong {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    color: #333;
+}
+
+.agri-feature span {
+    display: block;
+    font-size: 10px;
+    color: #666;
+    margin-top: -2px;
+}
+
+/* =====================================================
+   TRUST SECTION  (light green bar)
+   ===================================================== */
+
+.agri-trust {
+    width: 90%;
+    max-width: 1060px;
+    margin: 0 auto 30px;
+    padding: 26px 40px;
+    box-sizing: border-box;
+    background: #dcebd9;
+    border-radius: 0 0 8px 8px;
+}
+
+.agri-trust-inner {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.agri-trust-item {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+}
+
+.agri-trust-icon {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #28ab3c;
+    font-size: 16px;
+}
+
+.agri-trust-item strong {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 2px;
+}
+
+.agri-trust-item span {
+    display: block;
+    font-size: 10px;
+    color: #555;
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 900px) {
+
+    .agri-login-card {
+        flex-direction: column;
+        gap: 24px;
+        padding: 28px;
+    }
+
+    .agri-login-image,
+    .agri-login-form {
+        flex: 0 0 100%;
+        width: 100%;
+    }
+
+    .agri-login-image img,
+    .agri-login-image .forgot-farmer-image {
+        height: 220px;
+    }
+
+    .agri-welcome-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .agri-welcome-text {
+        flex: 0 0 100%;
+        width: 100%;
+    }
+
+    .agri-features {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .agri-trust-inner {
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .agri-trust-item {
+        flex: 0 0 45%;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .agri-login-card,
+    .agri-welcome,
+    .agri-trust {
+        width: 95%;
+        padding: 20px 18px;
+    }
+
+    .agri-features {
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .agri-feature {
+        flex: 0 0 45%;
+    }
+
+    .agri-trust-item {
+        flex: 0 0 100%;
+    }
+}

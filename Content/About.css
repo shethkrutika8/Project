@@ -1,0 +1,396 @@
+﻿/* =========================================================
+   AGRICULTURE - ABOUT US PAGE
+   ========================================================= */
+
+.about-page {
+    width: 100%;
+    background: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #233d35;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+.about-container,
+.features-container,
+.story-container {
+    width: 92%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   ABOUT HERO
+   ========================================================= */
+
+.about-hero {
+    width: 100%;
+    background: #dfeeda;
+    padding: 22px 0 25px;
+}
+
+
+.about-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+
+/* =========================================================
+   LEFT CONTENT
+   ========================================================= */
+
+.about-content {
+    padding-left: 10px;
+}
+
+
+    .about-content h1 {
+        margin: 0 0 9px;
+        font-size: 31px;
+        line-height: 1.2;
+        font-weight: 700;
+        color: #19382f;
+    }
+
+
+    .about-content h3 {
+        margin: 0 0 11px;
+        font-size: 13px;
+        font-weight: 700;
+        color: #2ca442;
+    }
+
+
+    .about-content p {
+        width: 90%;
+        margin: 0;
+        font-size: 10px;
+        line-height: 1.55;
+        color: #5c6d66;
+    }
+
+
+.learn-more-btn {
+    margin-top: 22px;
+    min-width: 87px;
+    height: 32px;
+    padding: 0 16px;
+    border: none !important;
+    border-radius: 3px !important;
+    background: #31aa3f !important;
+    color: #ffffff !important;
+    font-size: 9px !important;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: none !important;
+}
+
+
+    .learn-more-btn:hover {
+        background: #269334 !important;
+    }
+
+
+/* =========================================================
+   MAIN IMAGE
+   ========================================================= */
+
+.about-image-box {
+    width: 100%;
+    height: 223px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+
+.about-main-image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    display: block;
+}
+
+
+/* =========================================================
+   FEATURES SECTION
+   ========================================================= */
+
+.about-features {
+    width: 100%;
+    background: #ffffff;
+    padding: 22px 0 25px;
+}
+
+
+.features-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    align-items: start;
+}
+
+
+.feature-item {
+    text-align: center;
+    padding: 0 10px;
+}
+
+
+/* =========================================================
+   FEATURE ICON
+   ========================================================= */
+
+.feature-icon {
+    height: 38px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #28a83b;
+    font-size: 27px;
+}
+
+
+.feature-item h4 {
+    margin: 0 0 8px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #596761;
+}
+
+
+.feature-item p {
+    margin: 0 auto;
+    max-width: 180px;
+    font-size: 8px;
+    line-height: 1.5;
+    color: #78847f;
+}
+
+
+/* =========================================================
+   STORY SECTION
+   ========================================================= */
+
+.story-section {
+    width: 100%;
+    background: #dfeeda;
+    padding: 20px 0;
+}
+
+
+.story-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+
+/* =========================================================
+   STORY CONTENT
+   ========================================================= */
+
+.story-content {
+    padding-left: 10px;
+}
+
+
+    .story-content h3 {
+        margin: 0 0 35px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #2b9f3d;
+    }
+
+
+    .story-content p {
+        width: 90%;
+        margin: 0;
+        font-size: 9px;
+        line-height: 1.7;
+        color: #68766f;
+    }
+
+
+/* =========================================================
+   STORY IMAGE
+   ========================================================= */
+
+.story-image-box {
+    width: 100%;
+    height: 145px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+
+.story-image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    display: block;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media screen and (max-width: 900px) {
+
+    .about-container,
+    .story-container {
+        width: 92%;
+        gap: 30px;
+    }
+
+
+    .features-container {
+        width: 92%;
+        gap: 15px;
+    }
+
+
+    .about-image-box {
+        height: 210px;
+    }
+
+
+    .about-content p {
+        width: 100%;
+    }
+
+
+    .story-content p {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media screen and (max-width: 700px) {
+
+    .about-hero {
+        padding: 25px 0 30px;
+    }
+
+
+    .about-container {
+        width: 90%;
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+
+    .about-content {
+        padding-left: 0;
+    }
+
+
+        .about-content h1 {
+            font-size: 28px;
+        }
+
+
+        .about-content p {
+            width: 100%;
+            font-size: 10px;
+        }
+
+
+    .about-image-box {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+    }
+
+
+    .features-container {
+        width: 90%;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px 15px;
+    }
+
+
+    .feature-item {
+        padding: 0 5px;
+    }
+
+
+    .story-section {
+        padding: 30px 0;
+    }
+
+
+    .story-container {
+        width: 90%;
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+
+    .story-content {
+        padding-left: 0;
+    }
+
+
+        .story-content h3 {
+            margin-bottom: 15px;
+        }
+
+
+    .story-image-box {
+        height: auto;
+        aspect-ratio: 16 / 9;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media screen and (max-width: 450px) {
+
+    .about-container,
+    .features-container,
+    .story-container {
+        width: 92%;
+    }
+
+
+    .about-content h1 {
+        font-size: 25px;
+    }
+
+
+    .about-content h3 {
+        font-size: 12px;
+    }
+
+
+    .about-content p {
+        font-size: 9px;
+    }
+
+
+    .features-container {
+        grid-template-columns: 1fr;
+    }
+
+
+    .feature-item p {
+        max-width: 220px;
+    }
+}
