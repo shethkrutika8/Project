@@ -1,4 +1,4 @@
-﻿/* =========================================================
+/* =========================================================
    AGRICONNECT - REGISTER PAGE
    Styled to match Login page design
    ========================================================= */
@@ -196,6 +196,20 @@
 .register-input::placeholder {
     color: #999;
     font-size: 12px;
+}
+
+.gender-radio-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    height: 36px;
+    font-size: 13px;
+    color: #333;
+}
+
+.gender-radio-group input[type="radio"] {
+    accent-color: #29ad3c;
+    margin-right: 4px;
 }
 
 /* =========================================================

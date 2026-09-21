@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Login" Language="C#" MasterPageFile="~/Site1.Master"
+<%@ Page Title="Login" Language="C#" MasterPageFile="~/Site1.Master"
     AutoEventWireup="true"
     CodeBehind="Login.aspx.cs"
     Inherits="Project.Login" %>
@@ -36,9 +36,25 @@
                             <i class="fa-solid fa-envelope"></i>
                             <asp:TextBox ID="txtEmail" runat="server"
                                 CssClass="agri-input"
-                                placeholder="Enter your email address"
-                                TextMode="Email"></asp:TextBox>
+                                placeholder="Enter your email address"></asp:TextBox>
                         </div>
+                        <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator1"
+                            runat="server"
+                            ControlToValidate="txtEmail"
+                            ErrorMessage="** Enter Your Email **"
+                            ForeColor="#FF3300"
+                            Display="Dynamic">
+                        </asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator
+                            ID="RegularExpressionValidator1"
+                            runat="server"
+                            ControlToValidate="txtEmail"
+                            ErrorMessage="** Please Enter Valid Email **"
+                            ForeColor="#FF3300"
+                            ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+                            Display="Dynamic">
+                        </asp:RegularExpressionValidator>
                     </div>
 
                     <!-- Password -->
@@ -52,6 +68,14 @@
                                 placeholder="Enter your password"></asp:TextBox>
                             <i class="fa-solid fa-eye agri-eye" onclick="togglePassword()" title="Show/Hide Password"></i>
                         </div>
+                        <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator2"
+                            runat="server"
+                            ControlToValidate="txtPassword"
+                            ErrorMessage="** Enter Password **"
+                            ForeColor="#FF3300"
+                            Display="Dynamic">
+                        </asp:RequiredFieldValidator>
                     </div>
 
                     <!-- Remember Me / Forgot -->
@@ -66,7 +90,8 @@
                     <!-- Login Button -->
                     <asp:Button ID="btnLogin" runat="server"
                         Text="Login"
-                        CssClass="agri-login-button" />
+                        CssClass="agri-login-button"
+                        OnClick="btnLogin_Click" />
 
                     <!-- OR -->
                     <div class="agri-or"><span>OR</span></div>

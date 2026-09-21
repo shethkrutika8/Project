@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Register" Language="C#" MasterPageFile="~/Site1.Master"
+<%@ Page Title="Register" Language="C#" MasterPageFile="~/Site1.Master"
     AutoEventWireup="true"
     CodeBehind="Register.aspx.cs"
     Inherits="Project.Register" %>
@@ -61,6 +61,14 @@
                                     CssClass="register-input"
                                     placeholder="Enter first name"></asp:TextBox>
                             </div>
+                            <asp:RequiredFieldValidator
+                                ID="RequiredFieldValidator1"
+                                runat="server"
+                                ControlToValidate="FirstName_txt"
+                                ErrorMessage="** Enter First Name **"
+                                ForeColor="#FF3300"
+                                Display="Dynamic">
+                            </asp:RequiredFieldValidator>
                         </div>
 
                         <div class="form-group">
@@ -71,6 +79,14 @@
                                     CssClass="register-input"
                                     placeholder="Enter last name"></asp:TextBox>
                             </div>
+                            <asp:RequiredFieldValidator
+                                ID="RequiredFieldValidator2"
+                                runat="server"
+                                ControlToValidate="LastName_txt"
+                                ErrorMessage="** Enter Last Name **"
+                                ForeColor="#FF3300"
+                                Display="Dynamic">
+                            </asp:RequiredFieldValidator>
                         </div>
 
                     </div>
@@ -82,9 +98,25 @@
                             <i class="fa-regular fa-envelope"></i>
                             <asp:TextBox ID="Email_txt" runat="server"
                                 CssClass="register-input"
-                                TextMode="Email"
                                 placeholder="Enter your email address"></asp:TextBox>
                         </div>
+                        <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator3"
+                            runat="server"
+                            ControlToValidate="Email_txt"
+                            ErrorMessage="** Enter Your Email **"
+                            ForeColor="#FF3300"
+                            Display="Dynamic">
+                        </asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator
+                            ID="RegularExpressionValidator1"
+                            runat="server"
+                            ControlToValidate="Email_txt"
+                            ErrorMessage="** Please Enter Valid Email **"
+                            ForeColor="#FF3300"
+                            ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+                            Display="Dynamic">
+                        </asp:RegularExpressionValidator>
                     </div>
 
                     <!-- Mobile Number -->
@@ -96,6 +128,50 @@
                                 CssClass="register-input"
                                 placeholder="Enter your mobile number"></asp:TextBox>
                         </div>
+                        <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator4"
+                            runat="server"
+                            ControlToValidate="Mobile_txt"
+                            ErrorMessage="** Enter 10 Digit Contact Number **"
+                            ForeColor="#FF3300"
+                            Display="Dynamic">
+                        </asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator
+                            ID="RegularExpressionValidator2"
+                            runat="server"
+                            ControlToValidate="Mobile_txt"
+                            ErrorMessage="** Mobile Number is Invalid **"
+                            ForeColor="#FF3300"
+                            ValidationExpression="\d{10}"
+                            Display="Dynamic">
+                        </asp:RegularExpressionValidator>
+                    </div>
+
+                    <!-- Gender + City -->
+                    <div class="form-row">
+
+                        <div class="form-group">
+                            <label>Gender</label>
+                            <div class="gender-radio-group">
+                                <asp:RadioButton ID="Male_Btn" runat="server" GroupName="gender" Text="Male" Checked="true" OnCheckedChanged="Male_Btn_CheckedChanged" />
+                                &nbsp;&nbsp;&nbsp;
+                                <asp:RadioButton ID="Female_Btn" runat="server" GroupName="gender" Text="Female" OnCheckedChanged="Female_Btn_CheckedChanged" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>City</label>
+                            <div class="input-box">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <asp:DropDownList ID="CityDRPD" runat="server" CssClass="register-input">
+                                    <asp:ListItem>Ahmedabad</asp:ListItem>
+                                    <asp:ListItem>Rajkot</asp:ListItem>
+                                    <asp:ListItem>Surat</asp:ListItem>
+                                    <asp:ListItem>Bhavnagar</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+
                     </div>
 
                     <!-- Password + Confirm Password -->
@@ -110,6 +186,14 @@
                                     CssClass="register-input"
                                     placeholder="Create password"></asp:TextBox>
                             </div>
+                            <asp:RequiredFieldValidator
+                                ID="RequiredFieldValidator5"
+                                runat="server"
+                                ControlToValidate="Password_txt"
+                                ErrorMessage="** Enter Password **"
+                                ForeColor="#FF3300"
+                                Display="Dynamic">
+                            </asp:RequiredFieldValidator>
                         </div>
 
                         <div class="form-group">
@@ -121,6 +205,23 @@
                                     CssClass="register-input"
                                     placeholder="Confirm password"></asp:TextBox>
                             </div>
+                            <asp:RequiredFieldValidator
+                                ID="RequiredFieldValidator6"
+                                runat="server"
+                                ControlToValidate="ConfirmPassword_txt"
+                                ErrorMessage="** Enter Same Password **"
+                                ForeColor="#FF3300"
+                                Display="Dynamic">
+                            </asp:RequiredFieldValidator>
+                            <asp:CompareValidator
+                                ID="CompareValidator1"
+                                runat="server"
+                                ControlToCompare="Password_txt"
+                                ControlToValidate="ConfirmPassword_txt"
+                                ErrorMessage="** Please Enter same password as above **"
+                                ForeColor="#FF3300"
+                                Display="Dynamic">
+                            </asp:CompareValidator>
                         </div>
 
                     </div>
@@ -128,7 +229,8 @@
                     <!-- Create Account Button -->
                     <asp:Button ID="Register_btn" runat="server"
                         Text="Create Account"
-                        CssClass="register-button" />
+                        CssClass="register-button"
+                        OnClick="Register_btn_Click" />
 
                     <!-- OR Divider -->
                     <div class="or-divider">

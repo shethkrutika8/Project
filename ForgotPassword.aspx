@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Forgot Password" Language="C#" MasterPageFile="~/Site1.Master"
+<%@ Page Title="Forgot Password" Language="C#" MasterPageFile="~/Site1.Master"
     AutoEventWireup="true"
     CodeBehind="ForgotPassword.aspx.cs"
     Inherits="Project.ForgotPassword" %>
@@ -59,9 +59,25 @@
                         <i class="fa-regular fa-envelope"></i>
                         <asp:TextBox ID="Email_txt" runat="server"
                             CssClass="email-input"
-                            placeholder="Enter your email address"
-                            TextMode="Email"></asp:TextBox>
+                            placeholder="Enter your email address"></asp:TextBox>
                     </div>
+                    <asp:RequiredFieldValidator
+                        ID="RequiredFieldValidator1"
+                        runat="server"
+                        ControlToValidate="Email_txt"
+                        ErrorMessage="** Enter Your Email **"
+                        ForeColor="#FF3300"
+                        Display="Dynamic">
+                    </asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator
+                        ID="RegularExpressionValidator1"
+                        runat="server"
+                        ControlToValidate="Email_txt"
+                        ErrorMessage="** Please Enter Valid Email **"
+                        ForeColor="#FF3300"
+                        ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+                        Display="Dynamic">
+                    </asp:RegularExpressionValidator>
 
                     <!-- Info Message -->
                     <div class="email-info">
@@ -77,7 +93,8 @@
                     <!-- Send Reset Link Button -->
                     <asp:Button ID="Reset_btn" runat="server"
                         Text="Send Reset Link"
-                        CssClass="reset-button" />
+                        CssClass="reset-button"
+                        OnClick="Reset_btn_Click" />
 
                 </div>
 
