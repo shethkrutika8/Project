@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -167,6 +167,27 @@
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Products.aspx.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Products.aspx.designer.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pricing.aspx.cs">
+      <DependentUpon>Pricing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pricing.aspx.designer.cs">
+      <DependentUpon>Pricing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AIDiagnose.aspx.cs">
+      <DependentUpon>AIDiagnose.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AIDiagnose.aspx.designer.cs">
+      <DependentUpon>AIDiagnose.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -197,6 +218,8 @@
     <Content Include="Content\Dashboard.css" />
     <Content Include="Content\Features.css" />
     <Content Include="Content\Login.css" />
+    <Content Include="Content\Pricing.css" />
+    <Content Include="Content\Products.css" />
     <Content Include="Content\Register.css" />
     <Content Include="Dashboard.aspx" />
     <Content Include="favicon.ico" />
@@ -208,7 +231,22 @@
     <Content Include="image\about-plants.PNG" />
     <Content Include="image\about-story.PNG" />
     <Content Include="image\farmer.png" />
+    <Content Include="image\flower.jfif" />
+    <Content Include="image\images.jfif" />
+    <Content Include="image\money_well.jfif" />
+    <Content Include="image\perivinkle.jfif" />
+    <Content Include="image\sunflower.jfif" />
+    <Content Include="image\tulsi.jfif" />
+    <Content Include="image\products-hero-plants.png" />
+    <Content Include="image\product-snake-plant.png" />
+    <Content Include="image\product-succulent.png" />
+    <Content Include="image\product-potting-mix.png" />
+    <Content Include="image\product-watering-can.png" />
+    <Content Include="image\product-pruning-shears.png" />
+    <Content Include="image\help-icon.png" />
     <Content Include="Login.aspx" />
+    <Content Include="Pricing.aspx" />
+    <Content Include="Products.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
