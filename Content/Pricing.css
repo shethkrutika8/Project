@@ -1,0 +1,353 @@
+/* =========================================================
+   AGRICULTURE - PRICING PAGE STYLESHEET
+   ========================================================= */
+
+.pricing-page {
+    width: 100%;
+    background: #f3f8f1;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #243328;
+    padding-bottom: 24px;
+}
+
+/* =========================================================
+   1. HERO SECTION
+   ========================================================= */
+
+.pricing-hero-section {
+    width: 100%;
+    padding: 20px 0 10px;
+}
+
+.pricing-hero-wrapper {
+    width: 92%;
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+.pricing-hero-card {
+    background: #dfeeda;
+    border-radius: 14px;
+    padding: 28px 36px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+}
+
+.pricing-hero-content {
+    flex: 1 1 50%;
+}
+
+.pricing-hero-title {
+    margin: 0 0 10px;
+    font-size: 32px;
+    font-weight: 800;
+    color: #1a3923;
+    line-height: 1.2;
+}
+
+.pricing-hero-desc {
+    margin: 0 0 20px;
+    font-size: 13px;
+    color: #4d6653;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+.btn-start-free {
+    display: inline-block;
+    background: #34a843;
+    color: #ffffff !important;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 22px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(52, 168, 67, 0.25);
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.btn-start-free:hover {
+    background: #278f35;
+    transform: translateY(-1px);
+    color: #ffffff !important;
+}
+
+.pricing-hero-image-wrap {
+    flex: 0 0 46%;
+    max-width: 440px;
+    height: 180px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.pricing-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 12px;
+}
+
+/* =========================================================
+   2. PRICING CARD SECTION (FOCUSED SINGLE CARD)
+   ========================================================= */
+
+.pricing-card-section {
+    width: 100%;
+    padding: 28px 0 36px;
+}
+
+.pricing-card-wrapper {
+    width: 92%;
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.single-plan-card {
+    width: 100%;
+    max-width: 460px;
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid #e2ece0;
+    box-shadow: 0 4px 20px rgba(35, 75, 45, 0.07);
+    padding: 34px 36px 30px;
+    text-align: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.single-plan-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 28px rgba(35, 75, 45, 0.12);
+    border-color: #cce5cb;
+}
+
+.plan-header {
+    margin-bottom: 12px;
+}
+
+.plan-tag {
+    display: inline-block;
+    background: #edf7eb;
+    color: #2fa13a;
+    border: 1px solid #d2ebd0;
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 16px;
+    margin-bottom: 12px;
+    letter-spacing: 0.3px;
+}
+
+.plan-name {
+    margin: 0 0 4px;
+    font-size: 26px;
+    font-weight: 800;
+    color: #1a3923;
+}
+
+.plan-target {
+    margin: 0;
+    font-size: 12.5px;
+    color: #6e7d72;
+    font-weight: 400;
+}
+
+.plan-price-wrap {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2px;
+    margin-top: 14px;
+    line-height: 1;
+}
+
+.plan-currency {
+    font-size: 26px;
+    font-weight: 700;
+    color: #2fa13a;
+    margin-top: 4px;
+}
+
+.plan-amount {
+    font-size: 46px;
+    font-weight: 800;
+    color: #2fa13a;
+}
+
+.plan-period {
+    margin: 8px 0 20px;
+    font-size: 12px;
+    color: #748378;
+    font-weight: 500;
+}
+
+.plan-divider {
+    width: 100%;
+    height: 1px;
+    background: #eef2ec;
+    margin: 0 0 22px;
+}
+
+.plan-features {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    text-align: left;
+    margin-bottom: 26px;
+    padding: 0 12px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.feature-check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.feature-text {
+    font-size: 13px;
+    color: #334337;
+    font-weight: 500;
+}
+
+.btn-get-started-plan {
+    display: block;
+    width: 100%;
+    background: #34a843;
+    color: #ffffff !important;
+    text-decoration: none;
+    padding: 12px 0;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(52, 168, 67, 0.22);
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.btn-get-started-plan:hover {
+    background: #278f35;
+    transform: translateY(-1px);
+    color: #ffffff !important;
+}
+
+/* =========================================================
+   3. TRUST & GUARANTEES SECTION
+   ========================================================= */
+
+.pricing-trust-section {
+    width: 100%;
+    padding: 6px 0 24px;
+}
+
+.pricing-trust-wrapper {
+    width: 92%;
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+.pricing-trust-card {
+    background: #dfeeda;
+    border-radius: 12px;
+    padding: 22px 28px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    align-items: center;
+}
+
+.trust-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.trust-icon-box {
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+    background: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.trust-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.trust-title {
+    margin: 0 0 3px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #1a3923;
+}
+
+.trust-desc {
+    margin: 0;
+    font-size: 10.5px;
+    color: #4e6554;
+    line-height: 1.45;
+}
+
+/* =========================================================
+   4. RESPONSIVE BREAKPOINTS
+   ========================================================= */
+
+@media (max-width: 991px) {
+    .pricing-trust-card {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .pricing-hero-card {
+        flex-direction: column;
+        padding: 24px;
+        text-align: center;
+    }
+
+    .pricing-hero-content {
+        flex: 1 1 100%;
+    }
+
+    .pricing-hero-title {
+        font-size: 26px;
+    }
+
+    .pricing-hero-image-wrap {
+        width: 100%;
+        max-width: 100%;
+        height: 190px;
+    }
+
+    .single-plan-card {
+        padding: 26px 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .pricing-trust-card {
+        grid-template-columns: 1fr;
+        padding: 18px;
+        gap: 14px;
+    }
+}

@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="Project.Site1" %>
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="Project.Site1" %>
 
 <!DOCTYPE html>
 
@@ -26,30 +26,43 @@
             <div class="container-fluid px-4">
                 <!--Logo-->
                 <a class="navbar-brand agri-logo" href="Dashboard.aspx">
-                    AgriConnect
+                    AgriCulture
                 </a>
-               
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
                 <!--Navigation-->
                 <div class="collapse navbar-collapse" id="mainNavbar">
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link" href="Dashboard.aspx">
-                                Features
+                                Dashboard
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="About.aspx">
-                                About us
+                                About Us
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Products.aspx">
+                            <a class="nav-link" href="Features.aspx">
+                                Features
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link <%= Request.FilePath.EndsWith("Products.aspx", StringComparison.OrdinalIgnoreCase) ? "active" : "" %>" href="Products.aspx">
                                 Products
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="CropDiagnosis.aspx">
+                            <a class="nav-link <%= Request.FilePath.EndsWith("Pricing.aspx", StringComparison.OrdinalIgnoreCase) ? "active" : "" %>" href="Pricing.aspx">
+                                Pricing
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link <%= Request.FilePath.EndsWith("AIDiagnose.aspx", StringComparison.OrdinalIgnoreCase) ? "active" : "" %>" href="AIDiagnose.aspx">
                                 AI Diagnose
                             </a>
                         </li>
@@ -60,14 +73,9 @@
                         </li>
                     </ul>
 
-                    <asp:Button ID="btnSignIn" runat="server" Text="SignIn" CssClass="btn-signin" PostBackUrl="Login.aspx" />
-
-                 
-                        <asp:Button ID="btnGetStarted"
-                            runat="server"
-                            Text="Get Started"
-                            CssClass="btn-getstarted"
-                            PostBackUrl="~/Registe.aspx" />
+                    <div class="nav-buttons">
+                        <asp:Button ID="btnSignIn" runat="server" Text="Sign In" CssClass="btn-signin" PostBackUrl="Login.aspx" />
+                        <asp:Button ID="btnGetStarted" runat="server" Text="Get Started" CssClass="btn-getstarted" PostBackUrl="Register.aspx" />
                     </div>
                 </div>
             </div>
