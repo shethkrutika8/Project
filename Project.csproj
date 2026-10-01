@@ -209,6 +209,13 @@
     <Compile Include="OrderPlaced.aspx.designer.cs">
       <DependentUpon>OrderPlaced.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PaymentCheckout.aspx.cs">
+      <DependentUpon>PaymentCheckout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentCheckout.aspx.designer.cs">
+      <DependentUpon>PaymentCheckout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Settings.aspx.cs">
       <DependentUpon>Settings.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -312,7 +319,6 @@
     <Content Include="Reports.aspx" />
     <Content Include="Cart.aspx" />
     <Content Include="Wishlist.aspx" />
-    <Content Include="OrderPlaced.aspx" />
     <Content Include="Settings.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Pricing.aspx" />
@@ -351,6 +357,10 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Site1.Master" />
+    <Content Include="PaymentCheckout.aspx" />
+    <Content Include="Content\PaymentCheckout.css" />
+    <Content Include="OrderPlaced.aspx" />
+    <Content Include="Content\OrderPlaced.css" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
