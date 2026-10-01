@@ -36,46 +36,193 @@
                 <!--Navigation-->
                 <div class="collapse navbar-collapse" id="mainNavbar">
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                        <% if (Session["Role"] != null && Session["Role"].ToString().Equals("Admin", StringComparison.OrdinalIgnoreCase)) { %>
+                        <!-- ADMIN NAVIGATION -->
                         <li class="nav-item">
-                            <a class="nav-link" href="Dashboard.aspx">
-                                Dashboard
+                            <a class="nav-link <%= Request.FilePath.EndsWith("AdminDashboard.aspx", StringComparison.OrdinalIgnoreCase) ? "active" : "" %>" href="AdminDashboard.aspx">
+                                <i class="fa-solid fa-gauge-high me-1 text-success"></i> Admin Dashboard
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="About.aspx">
-                                About Us
+                            <a class="nav-link <%= Request.FilePath.EndsWith("AdminProducts.aspx", StringComparison.OrdinalIgnoreCase) ? "active" : "" %>" href="AdminProducts.aspx">
+                                <i class="fa-solid fa-seedling me-1"></i> Products DB
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Features.aspx">
-                                Features
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link <%= Request.FilePath.EndsWith("Products.aspx", StringComparison.OrdinalIgnoreCase) ? "active" : "" %>" href="Products.aspx">
-                                Products
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link <%= Request.FilePath.EndsWith("Pricing.aspx", StringComparison.OrdinalIgnoreCase) ? "active" : "" %>" href="Pricing.aspx">
-                                Pricing
+                            <a class="nav-link <%= Request.FilePath.EndsWith("AdminManagement.aspx", StringComparison.OrdinalIgnoreCase) ? "active" : "" %>" href="AdminManagement.aspx">
+                                <i class="fa-solid fa-user-shield me-1"></i> Admins &amp; Users
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link <%= Request.FilePath.EndsWith("AIDiagnose.aspx", StringComparison.OrdinalIgnoreCase) ? "active" : "" %>" href="AIDiagnose.aspx">
-                                AI Diagnose
+                                <i class="fa-solid fa-virus me-1"></i> Disease DB
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Blog.aspx">
-                                Blog
+                            <a class="nav-link <%= Request.FilePath.EndsWith("Reports.aspx", StringComparison.OrdinalIgnoreCase) ? "active" : "" %>" href="Reports.aspx">
+                                <i class="fa-solid fa-chart-line me-1"></i> Reports
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link <%= Request.FilePath.EndsWith("Dashboard.aspx", StringComparison.OrdinalIgnoreCase) ? "active" : "" %>" href="Dashboard.aspx" title="Preview Store">
+                                <i class="fa-solid fa-store me-1"></i> View Store
+                            </a>
+                        </li>
+                        <% } else { %>
+                      
+
+<!-- ================= USER / GUEST NAVIGATION ================= -->
+
+<li class="nav-item">
+    <a class="nav-link <%= Request.FilePath.EndsWith("Features.aspx", StringComparison.OrdinalIgnoreCase) ? "active" : "" %>"
+       href="Features.aspx">
+        Features
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link <%= Request.FilePath.EndsWith("About.aspx", StringComparison.OrdinalIgnoreCase) ? "active" : "" %>"
+       href="About.aspx">
+        About Us
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link <%= Request.FilePath.EndsWith("Products.aspx", StringComparison.OrdinalIgnoreCase) ? "active" : "" %>"
+       href="Products.aspx">
+        Products
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link <%= Request.FilePath.EndsWith("Pricing.aspx", StringComparison.OrdinalIgnoreCase) ? "active" : "" %>"
+       href="Pricing.aspx">
+        Pricing
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link <%= Request.FilePath.EndsWith("AIDiagnose.aspx", StringComparison.OrdinalIgnoreCase) ? "active" : "" %>"
+       href="AIDiagnose.aspx">
+        AI Diagnose
+    </a>
+</li>
+
+
+<!-- ================= WISHLIST ================= -->
+
+<li class="nav-item">
+    <a class="nav-link header-icon-link <%= Request.FilePath.EndsWith("Wishlist.aspx", StringComparison.OrdinalIgnoreCase) ? "active" : "" %>"
+       href="Wishlist.aspx"
+       title="Wishlist">
+
+        <span class="header-icon">
+            <i class="fa-solid fa-heart"></i>
+
+            <span class="header-badge wishlist-badge">
+                <asp:Literal ID="litWishlistCount"
+                    runat="server"
+                    Text="0">
+                </asp:Literal>
+            </span>
+
+        </span>
+
+        <span class="header-icon-text">
+            Wishlist
+        </span>
+
+    </a>
+</li>
+
+
+<!-- ================= CART ================= -->
+
+<li class="nav-item">
+    <a class="nav-link header-icon-link <%= Request.FilePath.EndsWith("Cart.aspx", StringComparison.OrdinalIgnoreCase) ? "active" : "" %>"
+       href="Cart.aspx"
+       title="Shopping Cart">
+
+        <span class="header-icon">
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+            <span class="header-badge cart-badge">
+                <asp:Literal ID="litCartCount"
+                    runat="server"
+                    Text="0">
+                </asp:Literal>
+            </span>
+
+        </span>
+
+        <span class="header-icon-text">
+            Cart
+        </span>
+
+    </a>
+</li>
+
+
+<!-- ================= ORDERS ================= -->
+
+<li class="nav-item">
+    <a class="nav-link header-icon-link <%= Request.FilePath.EndsWith("OrderPlaced.aspx", StringComparison.OrdinalIgnoreCase) ? "active" : "" %>"
+       href="OrderPlaced.aspx"
+       title="My Orders">
+
+        <span class="header-icon">
+
+            <i class="fa-solid fa-box-open"></i>
+
+        </span>
+
+        <span class="header-icon-text">
+            Orders
+        </span>
+
+    </a>
+</li>
+
+
+<!-- ================= SETTINGS ================= -->
+
+<li class="nav-item">
+    <a class="nav-link header-icon-link <%= Request.FilePath.EndsWith("Settings.aspx", StringComparison.OrdinalIgnoreCase) ? "active" : "" %>"
+       href="Settings.aspx"
+       title="Settings">
+
+        <span class="header-icon">
+
+            <i class="fa-solid fa-gear"></i>
+
+        </span>
+
+        <span class="header-icon-text">
+            Settings
+        </span>
+
+    </a>
+</li>
+
+
+<% } %>
                     </ul>
 
                     <div class="nav-buttons">
-                        <asp:Button ID="btnSignIn" runat="server" Text="Sign In" CssClass="btn-signin" PostBackUrl="Login.aspx" />
-                        <asp:Button ID="btnGetStarted" runat="server" Text="Get Started" CssClass="btn-getstarted" PostBackUrl="Register.aspx" />
+                        <asp:Panel ID="pnlGuest" runat="server" CssClass="d-inline-flex align-items-center gap-2">
+                            <asp:Button ID="btnSignIn" runat="server" Text="Sign In" CssClass="btn-signin" PostBackUrl="Login.aspx" />
+                            <asp:Button ID="btnGetStarted" runat="server" Text="Get Started" CssClass="btn-getstarted" PostBackUrl="Register.aspx" />
+                        </asp:Panel>
+                        <asp:Panel ID="pnlUser" runat="server" Visible="false" CssClass="d-inline-flex align-items-center gap-2">
+                            <span class="user-greeting">
+                                <i class="fa-solid fa-user-circle me-1"></i>
+                                <asp:Literal ID="litUserEmail" runat="server"></asp:Literal>
+                            </span>
+                            <asp:LinkButton ID="btnSignOut" runat="server" CssClass="btn-signin text-danger" OnClick="btnSignOut_Click">
+                                <i class="fa-solid fa-arrow-right-from-bracket me-1"></i>Sign Out
+                            </asp:LinkButton>
+                        </asp:Panel>
                     </div>
                 </div>
             </div>
@@ -87,7 +234,7 @@
         <footer class="agri-footer">
             <div class="container">
                 <p>
-                    @2026 AgriConnect. All rights reserved.
+                    &copy; 2024 AgriConnect. All rights reserved.
                 </p>
             </div>
         </footer>

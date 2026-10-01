@@ -5,6 +5,59 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="Content/Products.css" rel="stylesheet" />
+    <style>
+        .prod-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: auto;
+        }
+        .btn-add-cart {
+            flex: 1;
+            background: #2e8b38;
+            color: #ffffff !important;
+            text-decoration: none;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 6px;
+            font-size: 11.5px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease, transform 0.1s ease;
+        }
+        .btn-add-cart:hover {
+            background: #24702d;
+            color: #ffffff !important;
+        }
+        .btn-add-wishlist {
+            background: #fdf2f2;
+            color: #dc3545 !important;
+            text-decoration: none;
+            border: 1px solid #f8d7da;
+            border-radius: 6px;
+            padding: 8px 10px;
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        .btn-add-wishlist:hover {
+            background: #dc3545;
+            color: #ffffff !important;
+            border-color: #dc3545;
+        }
+        .cat-tab {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -19,8 +72,8 @@
             <div class="prod-hero-card">
                 <div class="prod-hero-content">
                     <h1 class="prod-hero-title">Our Products</h1>
-                    <p class="prod-hero-desc">Everything you need to nurture your plants<br />and grow a beautiful garden.</p>
-                    <button type="button" class="btn-shop-all" onclick="scrollToProducts()">Shop All Products</button>
+                    <p class="prod-hero-desc">Everything you need to nurture your plants<br />and grow a healthy, thriving garden.</p>
+                    <a href="#productsGridSection" class="btn-shop-all">Explore All Products</a>
                 </div>
                 <div class="prod-hero-image-wrap">
                     <img src="image/products-hero-plants.png" alt="Our Products Banner" class="prod-hero-img" />
@@ -30,14 +83,14 @@
     </section>
 
     <!-- =========================================
-         CATEGORY TABS
+         CATEGORY TABS (Server-side LinkButtons)
     ========================================= -->
     <section class="prod-categories-section">
         <div class="prod-categories-wrapper">
             <div class="prod-categories-list">
 
                 <!-- 1. All Products -->
-                <div class="cat-tab active" onclick="filterProducts('all', this)">
+                <asp:LinkButton ID="btnCatAll" runat="server" CommandArgument="all" OnClick="FilterCategory_Click" CssClass="cat-tab active">
                     <div class="cat-icon-box">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2fa13a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M11 20A7 7 0 0 1 4 13C4 7 11 3 20 3c0 9-4 16-11 17Z"></path>
@@ -46,10 +99,10 @@
                     </div>
                     <span class="cat-label">All Products</span>
                     <div class="cat-underline"></div>
-                </div>
+                </asp:LinkButton>
 
                 <!-- 2. Plants -->
-                <div class="cat-tab" onclick="filterProducts('plants', this)">
+                <asp:LinkButton ID="btnCatPlants" runat="server" CommandArgument="plants" OnClick="FilterCategory_Click" CssClass="cat-tab">
                     <div class="cat-icon-box">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2fa13a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M7 11h10l-1.5 10h-7L7 11Z"></path>
@@ -60,10 +113,10 @@
                     </div>
                     <span class="cat-label">Plants</span>
                     <div class="cat-underline"></div>
-                </div>
+                </asp:LinkButton>
 
                 <!-- 3. Seeds -->
-                <div class="cat-tab" onclick="filterProducts('seeds', this)">
+                <asp:LinkButton ID="btnCatSeeds" runat="server" CommandArgument="seeds" OnClick="FilterCategory_Click" CssClass="cat-tab">
                     <div class="cat-icon-box">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2fa13a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M6 7l2.5-4h7L18 7v13a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V7Z"></path>
@@ -75,10 +128,10 @@
                     </div>
                     <span class="cat-label">Seeds</span>
                     <div class="cat-underline"></div>
-                </div>
+                </asp:LinkButton>
 
                 <!-- 4. Fertilizers -->
-                <div class="cat-tab" onclick="filterProducts('fertilizers', this)">
+                <asp:LinkButton ID="btnCatFertilizers" runat="server" CommandArgument="fertilizers" OnClick="FilterCategory_Click" CssClass="cat-tab">
                     <div class="cat-icon-box">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2fa13a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M7 6a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2l1.2 14a2 2 0 0 1-2 2H7.8a2 2 0 0 1-2-2L7 6Z"></path>
@@ -90,10 +143,10 @@
                     </div>
                     <span class="cat-label">Fertilizers</span>
                     <div class="cat-underline"></div>
-                </div>
+                </asp:LinkButton>
 
                 <!-- 5. Pots & Planters -->
-                <div class="cat-tab" onclick="filterProducts('pots', this)">
+                <asp:LinkButton ID="btnCatPots" runat="server" CommandArgument="pots" OnClick="FilterCategory_Click" CssClass="cat-tab">
                     <div class="cat-icon-box">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2fa13a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M4 6h16v3H4z"></path>
@@ -102,10 +155,10 @@
                     </div>
                     <span class="cat-label">Pots &amp; Planters</span>
                     <div class="cat-underline"></div>
-                </div>
+                </asp:LinkButton>
 
                 <!-- 6. Tools -->
-                <div class="cat-tab" onclick="filterProducts('tools', this)">
+                <asp:LinkButton ID="btnCatTools" runat="server" CommandArgument="tools" OnClick="FilterCategory_Click" CssClass="cat-tab">
                     <div class="cat-icon-box">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2fa13a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M14.5 4.5l5 5"></path>
@@ -116,10 +169,10 @@
                     </div>
                     <span class="cat-label">Tools</span>
                     <div class="cat-underline"></div>
-                </div>
+                </asp:LinkButton>
 
                 <!-- 7. Plant Care -->
-                <div class="cat-tab" onclick="filterProducts('care', this)">
+                <asp:LinkButton ID="btnCatCare" runat="server" CommandArgument="care" OnClick="FilterCategory_Click" CssClass="cat-tab">
                     <div class="cat-icon-box">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2fa13a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M9 7h6"></path>
@@ -131,10 +184,10 @@
                     </div>
                     <span class="cat-label">Plant Care</span>
                     <div class="cat-underline"></div>
-                </div>
+                </asp:LinkButton>
 
                 <!-- 8. Gift Sets -->
-                <div class="cat-tab" onclick="filterProducts('gifts', this)">
+                <asp:LinkButton ID="btnCatGifts" runat="server" CommandArgument="gifts" OnClick="FilterCategory_Click" CssClass="cat-tab">
                     <div class="cat-icon-box">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2fa13a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="3" y="8" width="18" height="13" rx="2"></rect>
@@ -146,136 +199,58 @@
                     </div>
                     <span class="cat-label">Gift Sets</span>
                     <div class="cat-underline"></div>
-                </div>
+                </asp:LinkButton>
 
             </div>
         </div>
     </section>
 
     <!-- =========================================
-         PRODUCTS GRID
+         FEEDBACK ALERT BANNER (Server-side)
+    ========================================= -->
+    <div class="container" style="max-width: 1080px; margin: 0 auto; padding: 0 15px;">
+        <asp:Panel ID="pnlAlert" runat="server" Visible="false" CssClass="alert alert-success d-flex align-items-center justify-content-between p-3 mb-3 rounded-3 shadow-sm">
+            <div class="d-flex align-items-center gap-2">
+                <i class="fa-solid fa-circle-check fs-5"></i>
+                <span><asp:Literal ID="litAlertMsg" runat="server"></asp:Literal></span>
+            </div>
+            <div class="d-flex gap-2">
+                <a href="Cart.aspx" class="btn btn-sm btn-success"><i class="fa-solid fa-cart-shopping me-1"></i>View Cart</a>
+                <a href="Wishlist.aspx" class="btn btn-sm btn-outline-success"><i class="fa-solid fa-heart me-1"></i>View Wishlist</a>
+            </div>
+        </asp:Panel>
+    </div>
+
+    <!-- =========================================
+         PRODUCTS GRID (Pure ASP.NET Repeater)
     ========================================= -->
     <section class="prod-grid-section" id="productsGridSection">
         <div class="prod-grid-wrapper">
             <div class="prod-grid">
 
-                <!-- 1. Snake Plant -->
-                <div class="prod-card" data-category="plants" data-show-on-all="true">
-                    <div class="prod-card-img-wrap">
-                        <img src="image/product-snake-plant.png" alt="Snake Plant" class="prod-card-img" />
-                    </div>
-                    <div class="prod-card-body">
-                        <h3 class="prod-title">Snake Plant</h3>
-                        <p class="prod-desc">Air purifying indoor plant</p>
-                        <div class="prod-price">&#8377;499</div>
-                        <button type="button" class="btn-add-cart" onclick="addToCart('Snake Plant', 499, this)">Add to Cart</button>
-                    </div>
-                </div>
-
-                <!-- 2. Succulent Plant -->
-                <div class="prod-card" data-category="plants" data-show-on-all="true">
-                    <div class="prod-card-img-wrap">
-                        <img src="image/product-succulent.png" alt="Succulent Plant" class="prod-card-img" />
-                    </div>
-                    <div class="prod-card-body">
-                        <h3 class="prod-title">Succulent Plant</h3>
-                        <p class="prod-desc">Low maintenance beauty</p>
-                        <div class="prod-price">&#8377;349</div>
-                        <button type="button" class="btn-add-cart" onclick="addToCart('Succulent Plant', 349, this)">Add to Cart</button>
-                    </div>
-                </div>
-
-                <!-- 3. Organic PottingMix -->
-                <div class="prod-card" data-category="fertilizers" data-show-on-all="true">
-                    <div class="prod-card-img-wrap">
-                        <img src="image/product-potting-mix.png" alt="Organic PottingMix" class="prod-card-img" />
-                    </div>
-                    <div class="prod-card-body">
-                        <h3 class="prod-title">Organic PottingMix</h3>
-                        <p class="prod-desc">Nutrient rich soil for plants</p>
-                        <div class="prod-price">&#8377;299</div>
-                        <button type="button" class="btn-add-cart" onclick="addToCart('Organic PottingMix', 299, this)">Add to Cart</button>
-                    </div>
-                </div>
-
-                <!-- 4. Watering Can -->
-                <div class="prod-card" data-category="tools" data-show-on-all="true">
-                    <div class="prod-card-img-wrap">
-                        <img src="image/product-watering-can.png" alt="Watering Can" class="prod-card-img" />
-                    </div>
-                    <div class="prod-card-body">
-                        <h3 class="prod-title">Watering Can</h3>
-                        <p class="prod-desc">1.5L capacity, easy to use</p>
-                        <div class="prod-price">&#8377;399</div>
-                        <button type="button" class="btn-add-cart" onclick="addToCart('Watering Can', 399, this)">Add to Cart</button>
-                    </div>
-                </div>
-
-                <!-- 5. Pruning Shears -->
-                <div class="prod-card" data-category="tools" data-show-on-all="true">
-                    <div class="prod-card-img-wrap">
-                        <img src="image/product-pruning-shears.png" alt="Pruning Shears" class="prod-card-img" />
-                    </div>
-                    <div class="prod-card-body">
-                        <h3 class="prod-title">Pruning Shears</h3>
-                        <p class="prod-desc">Sharp &amp; durable for clean cuts</p>
-                        <div class="prod-price">&#8377;349</div>
-                        <button type="button" class="btn-add-cart" onclick="addToCart('Pruning Shears', 349, this)">Add to Cart</button>
-                    </div>
-                </div>
-
-                <!-- Supplemental Category Products (Visible when respective tabs clicked) -->
-                <!-- Seeds -->
-                <div class="prod-card supplemental" data-category="seeds" data-show-on-all="false" style="display: none;">
-                    <div class="prod-card-img-wrap">
-                        <img src="image/sunflower.jfif" alt="Sunflower Seeds" class="prod-card-img" />
-                    </div>
-                    <div class="prod-card-body">
-                        <h3 class="prod-title">Sunflower Seeds</h3>
-                        <p class="prod-desc">Bright &amp; cheerful garden blooms</p>
-                        <div class="prod-price">&#8377;149</div>
-                        <button type="button" class="btn-add-cart" onclick="addToCart('Sunflower Seeds', 149, this)">Add to Cart</button>
-                    </div>
-                </div>
-
-                <!-- Pots & Planters -->
-                <div class="prod-card supplemental" data-category="pots" data-show-on-all="false" style="display: none;">
-                    <div class="prod-card-img-wrap">
-                        <img src="image/about-plants.PNG" alt="Ceramic Planter Pot" class="prod-card-img" />
-                    </div>
-                    <div class="prod-card-body">
-                        <h3 class="prod-title">Ceramic Planter Pot</h3>
-                        <p class="prod-desc">Modern ribbed matte finish 6"</p>
-                        <div class="prod-price">&#8377;279</div>
-                        <button type="button" class="btn-add-cart" onclick="addToCart('Ceramic Planter Pot', 279, this)">Add to Cart</button>
-                    </div>
-                </div>
-
-                <!-- Plant Care -->
-                <div class="prod-card supplemental" data-category="care" data-show-on-all="false" style="display: none;">
-                    <div class="prod-card-img-wrap">
-                        <img src="image/tulsi.jfif" alt="Neem Spray Plant Care" class="prod-card-img" />
-                    </div>
-                    <div class="prod-card-body">
-                        <h3 class="prod-title">Neem Spray Care</h3>
-                        <p class="prod-desc">Organic pest protection spray</p>
-                        <div class="prod-price">&#8377;199</div>
-                        <button type="button" class="btn-add-cart" onclick="addToCart('Neem Spray Care', 199, this)">Add to Cart</button>
-                    </div>
-                </div>
-
-                <!-- Gift Sets -->
-                <div class="prod-card supplemental" data-category="gifts" data-show-on-all="false" style="display: none;">
-                    <div class="prod-card-img-wrap">
-                        <img src="image/about-story.PNG" alt="Plant Lovers Gift Set" class="prod-card-img" />
-                    </div>
-                    <div class="prod-card-body">
-                        <h3 class="prod-title">Plant Lovers Gift Set</h3>
-                        <p class="prod-desc">Curated gardening starter kit</p>
-                        <div class="prod-price">&#8377;699</div>
-                        <button type="button" class="btn-add-cart" onclick="addToCart('Plant Lovers Gift Set', 699, this)">Add to Cart</button>
-                    </div>
-                </div>
+                <asp:Repeater ID="rptProducts" runat="server" OnItemCommand="rptProducts_ItemCommand">
+                    <ItemTemplate>
+                        <div class="prod-card">
+                            <div class="prod-card-img-wrap">
+                                <img src='<%# Eval("ImageUrl") %>' alt='<%# Eval("Name") %>' class="prod-card-img" />
+                            </div>
+                            <div class="prod-card-body">
+                                <h3 class="prod-title"><%# Eval("Name") %></h3>
+                                <p class="prod-desc"><%# Eval("Description") %></p>
+                                <div class="prod-price">&#8377;<%# Eval("Price", "{0:N0}") %></div>
+                                
+                                <div class="prod-actions">
+                                    <asp:LinkButton ID="btnAddToCart" runat="server" CommandName="AddToCart" CommandArgument='<%# Eval("Id") %>' CssClass="btn-add-cart">
+                                        <i class="fa-solid fa-cart-plus me-1"></i> Add to Cart
+                                    </asp:LinkButton>
+                                    <asp:LinkButton ID="btnAddToWishlist" runat="server" CommandName="AddToWishlist" CommandArgument='<%# Eval("Id") %>' CssClass="btn-add-wishlist" ToolTip="Save to Wishlist">
+                                        <i class="fa-solid fa-heart"></i>
+                                    </asp:LinkButton>
+                                </div>
+                            </div>
+                        </div>
+                    </ItemTemplate>
+                </asp:Repeater>
 
             </div>
         </div>
@@ -302,87 +277,14 @@
                     </div>
                 </div>
                 <div class="prod-help-right">
-                    <button type="button" class="btn-expert" onclick="openExpertHelp()">Talk to an Expert</button>
+                    <a href="AIDiagnose.aspx" class="btn-expert text-decoration-none">
+                        <i class="fa-solid fa-seedling me-1"></i> Try AI Plant Doctor
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
 </div>
-
-<!-- Cart Toast Notification -->
-<div id="cartToast" class="cart-toast">
-    <div class="cart-toast-content">
-        <span class="cart-toast-icon">&#10003;</span>
-        <span id="cartToastMsg">Added to Cart!</span>
-    </div>
-</div>
-
-<!-- Category Filtering & Interaction Script -->
-<script type="text/javascript">
-    function filterProducts(cat, el) {
-        // Update active tab styling
-        var tabs = document.querySelectorAll('.cat-tab');
-        tabs.forEach(function (tab) {
-            tab.classList.remove('active');
-        });
-        el.classList.add('active');
-
-        // Filter cards
-        var cards = document.querySelectorAll('.prod-card');
-        cards.forEach(function (card) {
-            var cardCat = card.getAttribute('data-category');
-            var showOnAll = card.getAttribute('data-show-on-all') === 'true';
-
-            if (cat === 'all') {
-                if (showOnAll) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            } else {
-                if (cardCat === cat) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            }
-        });
-    }
-
-    function scrollToProducts() {
-        var el = document.getElementById('productsGridSection');
-        if (el) {
-            el.scrollIntoView({ behavior: 'smooth' });
-        }
-    }
-
-    function addToCart(productName, price, btn) {
-        // Button feedback
-        var origText = btn.innerText;
-        btn.innerText = 'Added \u2713';
-        btn.style.background = '#258d34';
-
-        setTimeout(function () {
-            btn.innerText = origText;
-            btn.style.background = '';
-        }, 1200);
-
-        // Toast feedback
-        var toast = document.getElementById('cartToast');
-        var msg = document.getElementById('cartToastMsg');
-        if (toast && msg) {
-            msg.innerText = productName + ' (\u20B9' + price + ') added to Cart!';
-            toast.classList.add('show');
-            setTimeout(function () {
-                toast.classList.remove('show');
-            }, 2500);
-        }
-    }
-
-    function openExpertHelp() {
-        alert('Thank you for reaching out! An AgriCulture plant expert will be happy to assist you.\n\nHelpline: +91 1800-AGRI-CARE\nEmail: support@agriculture.com');
-    }
-</script>
 
 </asp:Content>

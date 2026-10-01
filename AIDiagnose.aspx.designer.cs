@@ -9,9 +9,53 @@
 
 namespace Project
 {
-
-
     public partial class AIDiagnose
     {
+        protected global::System.Web.UI.WebControls.Panel pnlAlert;
+        protected global::System.Web.UI.WebControls.Literal litAlertMsg;
+        protected global::System.Web.UI.WebControls.Label lblError;
+
+        protected global::System.Web.UI.WebControls.DropDownList ddlPlant;
+        protected global::System.Web.UI.WebControls.FileUpload fileUploadPlant;
+        protected global::System.Web.UI.WebControls.Button btnDiagnose;
+
+        protected global::System.Web.UI.WebControls.Panel pnlResultCard;
+        protected global::System.Web.UI.WebControls.Button btnCloseResult;
+        protected global::System.Web.UI.WebControls.Image imgDiagnosed;
+        protected global::System.Web.UI.WebControls.Label lblPlantTitle;
+        protected global::System.Web.UI.WebControls.Label lblDiseaseTitle;
+        protected global::System.Web.UI.WebControls.Literal litSymptoms;
+        protected global::System.Web.UI.WebControls.Literal litTreatmentText;
+        protected global::System.Web.UI.WebControls.Image imgMedicine;
+        protected global::System.Web.UI.WebControls.Literal litMedicineName;
+        protected global::System.Web.UI.WebControls.Literal litMedicinePrice;
+        protected global::System.Web.UI.WebControls.HiddenField hfDiagnosedMedicineName;
+        protected global::System.Web.UI.WebControls.HiddenField hfDiagnosedMedicinePrice;
+        protected global::System.Web.UI.WebControls.HiddenField hfDiagnosedMedicineImage;
+        protected global::System.Web.UI.WebControls.Button btnAddToCart;
+        protected global::System.Web.UI.WebControls.Button btnAddToWishlist;
+
+        protected global::System.Web.UI.WebControls.Panel pnlAdminDatabaseManagement;
+        protected global::System.Web.UI.WebControls.Literal litRecordCount;
+        protected global::System.Web.UI.WebControls.Button btnToggleManual;
+        protected global::System.Web.UI.WebControls.Panel pnlManualEntry;
+        protected global::System.Web.UI.WebControls.ValidationSummary vsManualEntry;
+        protected global::System.Web.UI.WebControls.TextBox txtNewPlantName;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNewPlant;
+        protected global::System.Web.UI.WebControls.TextBox txtNewDiseaseName;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNewDisease;
+        protected global::System.Web.UI.WebControls.TextBox txtNewSymptoms;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNewSymptoms;
+        protected global::System.Web.UI.WebControls.TextBox txtNewTreatment;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNewTreatment;
+        protected global::System.Web.UI.WebControls.TextBox txtNewMedicineName;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNewMedicine;
+        protected global::System.Web.UI.WebControls.TextBox txtNewPrice;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNewPrice;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revNewPrice;
+        protected global::System.Web.UI.WebControls.DropDownList ddlNewImage;
+        protected global::System.Web.UI.WebControls.Button btnSaveManual;
+        protected global::System.Web.UI.WebControls.Button btnCancelManual;
+        protected global::System.Web.UI.WebControls.Repeater rptDiseaseCatalog;
     }
 }

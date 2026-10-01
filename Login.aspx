@@ -44,6 +44,7 @@
                             ControlToValidate="txtEmail"
                             ErrorMessage="** Enter Your Email **"
                             ForeColor="#FF3300"
+                            EnableClientScript="false"
                             Display="Dynamic">
                         </asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator
@@ -52,6 +53,7 @@
                             ControlToValidate="txtEmail"
                             ErrorMessage="** Please Enter Valid Email **"
                             ForeColor="#FF3300"
+                            EnableClientScript="false"
                             ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
                             Display="Dynamic">
                         </asp:RegularExpressionValidator>
@@ -74,6 +76,7 @@
                             ControlToValidate="txtPassword"
                             ErrorMessage="** Enter Password **"
                             ForeColor="#FF3300"
+                            EnableClientScript="false"
                             Display="Dynamic">
                         </asp:RequiredFieldValidator>
                     </div>
@@ -86,6 +89,22 @@
                         </label>
                         <a href="ForgotPassword.aspx">Forgot Password ?</a>
                     </div>
+
+                    <!-- ASP.NET Validation Summary (server-side, no JS) -->
+                    <asp:ValidationSummary ID="ValidationSummary1" runat="server"
+                        CssClass="validation-summary-errors alert alert-danger py-2 mb-2"
+                        HeaderText="Please correct the following errors:"
+                        DisplayMode="BulletList"
+                        EnableClientScript="false"
+                        ShowMessageBox="false"
+                        ShowSummary="true" />
+
+                    <!-- Server-side Error Panel (no JavaScript) -->
+                    <asp:Panel ID="pnlLoginError" runat="server" Visible="false"
+                        CssClass="alert alert-danger d-flex align-items-center gap-2 mb-3">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <asp:Literal ID="litLoginError" runat="server"></asp:Literal>
+                    </asp:Panel>
 
                     <!-- Login Button -->
                     <asp:Button ID="btnLogin" runat="server"

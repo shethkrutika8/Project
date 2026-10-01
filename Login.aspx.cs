@@ -1,10 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Data.SqlClient;
+using Project.Models;
 
 namespace Project
 {
@@ -12,30 +10,76 @@ namespace Project
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                DbHelper.EnsureDatabaseTablesExist();
+                if (Request.QueryString["logout"] == "1")
+                {
+                    Session.Clear();
+                    Session.Abandon();
+                }
+            }
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Krutika_24SOECE11036_.NET\\Project\\App_Data\\Database1.mdf;Integrated Security=True";
+            // ASP.NET server-side validation must pass first — NO JavaScript
+            if (!Page.IsValid)
+                return;
 
-            SqlConnection con = new SqlConnection(connectionString);
-            string query = "select count(*) from Register where email='" + txtEmail.Text.Trim() + "' and password='" + txtPassword.Text + "'";
-            SqlCommand cmd = new SqlCommand(query, con);
-            con.Open();
+            string email = txtEmail.Text.Trim();
+            string password = txtPassword.Text;
 
-            int count = Convert.ToInt32(cmd.ExecuteScalar());
-            if (count > 0)
+            try
             {
-                Session["UserEmail"] = txtEmail.Text.Trim();
-                Response.Write("<Script> alert('Login Successful'); window.location='Dashboard.aspx';</script>");
-            }
-            else
-            {
-                Response.Write("<Script> alert('Invalid Email or Password');</script>");
-            }
+                using (var con = DbHelper.GetConnection())
+                {
+                    con.Open();
+                    string query = "SELECT role FROM Register WHERE email = @Email AND password = @Password";
+                    using (var cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@Email", email);
+                        cmd.Parameters.AddWithValue("@Password", password);
 
-            con.Close();
+                        object roleObj = cmd.ExecuteScalar();
+                        if (roleObj != null)
+                        {
+                            string role = roleObj.ToString().Trim();
+
+                            // Migrate guest cart/wishlist to the authenticated user account
+                            string guestEmail = "guest_" + Session.SessionID.Substring(0, Math.Min(8, Session.SessionID.Length)) + "@agriculture.com";
+                            DbHelper.MigrateGuestItems(guestEmail, email);
+
+                            Session["UserEmail"] = email;
+
+                            // When Admin logs in, redirect to Admin pages; When User logs in, redirect to User pages
+                            if (string.Equals(role, "Admin", StringComparison.OrdinalIgnoreCase) || email.ToLower().Contains("admin"))
+                            {
+                                Session["Role"] = "Admin";
+                                Response.Redirect("AdminDashboard.aspx", false);
+                            }
+                            else
+                            {
+                                Session["Role"] = "User";
+                                Response.Redirect("Dashboard.aspx", false);
+                            }
+                            Context.ApplicationInstance.CompleteRequest();
+                        }
+                        else
+                        {
+                            // ASP.NET Panel-based server-side error — no JavaScript
+                            pnlLoginError.Visible = true;
+                            litLoginError.Text = "Invalid email address or password. Please check your credentials and try again.";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                pnlLoginError.Visible = true;
+                litLoginError.Text = "A database error occurred. Please try again later.";
+                System.Diagnostics.Debug.WriteLine("Login error: " + ex.Message);
+            }
         }
     }
 }

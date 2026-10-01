@@ -1,10 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Data.SqlClient;
+using Project.Models;
 
 namespace Project
 {
@@ -12,29 +10,49 @@ namespace Project
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void Reset_btn_Click(object sender, EventArgs e)
         {
-            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Krutika_24SOECE11036_.NET\\Project\\App_Data\\Database1.mdf;Integrated Security=True";
+            // ASP.NET server-side validation must pass first — NO JavaScript
+            if (!Page.IsValid)
+                return;
 
-            SqlConnection con = new SqlConnection(connectionString);
-            string query = "select count(*) from Register where email='" + Email_txt.Text.Trim() + "'";
-            SqlCommand cmd = new SqlCommand(query, con);
-            con.Open();
+            string email = Email_txt.Text.Trim();
+            pnlForgotAlert.Visible = false;
 
-            int count = Convert.ToInt32(cmd.ExecuteScalar());
-            if (count > 0)
+            try
             {
-                Response.Write("<Script> alert('Password reset link sent to your email.');</script>");
+                using (var con = DbHelper.GetConnection())
+                {
+                    con.Open();
+                    string query = "SELECT COUNT(*) FROM Register WHERE email = @Email";
+                    using (var cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@Email", email);
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        if (count > 0)
+                        {
+                            pnlForgotAlert.Visible = true;
+                            pnlForgotAlert.CssClass = "alert alert-success py-2 my-2";
+                            litForgotAlert.Text = "<strong>Success!</strong> Password reset link has been sent to your registered email address.";
+                        }
+                        else
+                        {
+                            pnlForgotAlert.Visible = true;
+                            pnlForgotAlert.CssClass = "alert alert-danger py-2 my-2";
+                            litForgotAlert.Text = "<strong>Error:</strong> Email address not found in our records.";
+                        }
+                    }
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Response.Write("<Script> alert('Email address not found in our records.');</script>");
+                pnlForgotAlert.Visible = true;
+                pnlForgotAlert.CssClass = "alert alert-danger py-2 my-2";
+                litForgotAlert.Text = "A database error occurred. Please try again later.";
+                System.Diagnostics.Debug.WriteLine("ForgotPassword error: " + ex.Message);
             }
-
-            con.Close();
         }
     }
 }

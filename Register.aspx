@@ -67,6 +67,7 @@
                                 ControlToValidate="FirstName_txt"
                                 ErrorMessage="** Enter First Name **"
                                 ForeColor="#FF3300"
+                                EnableClientScript="false"
                                 Display="Dynamic">
                             </asp:RequiredFieldValidator>
                         </div>
@@ -85,6 +86,7 @@
                                 ControlToValidate="LastName_txt"
                                 ErrorMessage="** Enter Last Name **"
                                 ForeColor="#FF3300"
+                                EnableClientScript="false"
                                 Display="Dynamic">
                             </asp:RequiredFieldValidator>
                         </div>
@@ -106,6 +108,7 @@
                             ControlToValidate="Email_txt"
                             ErrorMessage="** Enter Your Email **"
                             ForeColor="#FF3300"
+                            EnableClientScript="false"
                             Display="Dynamic">
                         </asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator
@@ -114,6 +117,7 @@
                             ControlToValidate="Email_txt"
                             ErrorMessage="** Please Enter Valid Email **"
                             ForeColor="#FF3300"
+                            EnableClientScript="false"
                             ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
                             Display="Dynamic">
                         </asp:RegularExpressionValidator>
@@ -134,6 +138,7 @@
                             ControlToValidate="Mobile_txt"
                             ErrorMessage="** Enter 10 Digit Contact Number **"
                             ForeColor="#FF3300"
+                            EnableClientScript="false"
                             Display="Dynamic">
                         </asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator
@@ -142,6 +147,7 @@
                             ControlToValidate="Mobile_txt"
                             ErrorMessage="** Mobile Number is Invalid **"
                             ForeColor="#FF3300"
+                            EnableClientScript="false"
                             ValidationExpression="\d{10}"
                             Display="Dynamic">
                         </asp:RegularExpressionValidator>
@@ -192,6 +198,7 @@
                                 ControlToValidate="Password_txt"
                                 ErrorMessage="** Enter Password **"
                                 ForeColor="#FF3300"
+                                EnableClientScript="false"
                                 Display="Dynamic">
                             </asp:RequiredFieldValidator>
                         </div>
@@ -211,6 +218,7 @@
                                 ControlToValidate="ConfirmPassword_txt"
                                 ErrorMessage="** Enter Same Password **"
                                 ForeColor="#FF3300"
+                                EnableClientScript="false"
                                 Display="Dynamic">
                             </asp:RequiredFieldValidator>
                             <asp:CompareValidator
@@ -220,17 +228,42 @@
                                 ControlToValidate="ConfirmPassword_txt"
                                 ErrorMessage="** Please Enter same password as above **"
                                 ForeColor="#FF3300"
+                                EnableClientScript="false"
                                 Display="Dynamic">
                             </asp:CompareValidator>
                         </div>
 
                     </div>
 
+                    <!-- ASP.NET Validation Summary (server-side, no JavaScript) -->
+                    <asp:ValidationSummary ID="ValidationSummary1" runat="server"
+                        CssClass="alert alert-danger py-2 mb-2"
+                        HeaderText="Please fix the following errors:"
+                        DisplayMode="BulletList"
+                        EnableClientScript="false"
+                        ShowMessageBox="false"
+                        ShowSummary="true" />
+
+                    <!-- Server-side Error Panel (no JavaScript) -->
+                    <asp:Panel ID="pnlRegisterError" runat="server" Visible="false"
+                        CssClass="alert alert-danger d-flex align-items-center gap-2 mb-3">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <asp:Literal ID="litRegisterError" runat="server"></asp:Literal>
+                    </asp:Panel>
+
+                    <!-- Server-side Success Panel -->
+                    <asp:Panel ID="pnlRegisterSuccess" runat="server" Visible="false"
+                        CssClass="alert alert-success d-flex align-items-center gap-2 mb-3">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <asp:Literal ID="litRegisterSuccess" runat="server"></asp:Literal>
+                    </asp:Panel>
+
                     <!-- Create Account Button -->
                     <asp:Button ID="Register_btn" runat="server"
                         Text="Create Account"
                         CssClass="register-button"
                         OnClick="Register_btn_Click" />
+
 
                     <!-- OR Divider -->
                     <div class="or-divider">

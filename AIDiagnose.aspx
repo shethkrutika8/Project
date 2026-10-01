@@ -4,390 +4,468 @@
     Inherits="Project.AIDiagnose" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <!-- Page Specific CSS matching Figma design pixel-perfectly -->
     <link href="Content/AIDiagnose.css" rel="stylesheet" />
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
 <div class="diagnose-page">
+<div class="diagnose-container">
 
-    <!-- =========================================
-         HERO SECTION / AI PLANT DOCTOR
-    ========================================= -->
+    <!-- =========================================================
+         ALERT / NOTIFICATION PANEL (Server-side feedback)
+         ========================================================= -->
+    <asp:Panel ID="pnlAlert" runat="server" Visible="false" CssClass="diag-alert-box">
+        <div class="d-flex align-items-center gap-2">
+            <i class="fa-solid fa-circle-check text-success fs-5"></i>
+            <span><asp:Literal ID="litAlertMsg" runat="server"></asp:Literal></span>
+        </div>
+        <div class="d-flex gap-2">
+            <a href="Cart.aspx" class="btn btn-sm btn-success"><i class="fa-solid fa-cart-shopping me-1"></i>Cart</a>
+            <a href="Wishlist.aspx" class="btn btn-sm btn-outline-success"><i class="fa-solid fa-heart me-1"></i>Wishlist</a>
+        </div>
+    </asp:Panel>
+
+    <asp:Label ID="lblError" runat="server" Visible="false" CssClass="alert alert-danger d-block mt-3 mb-2 py-2 px-3 rounded-2 text-danger fw-semibold"></asp:Label>
+
+    <!-- =========================================================
+         1. HERO SECTION (AI PLANT DOCTOR) - Exact Figma Layout
+         ========================================================= -->
     <section class="doc-hero-section">
-        <div class="doc-hero-wrapper">
-            <div class="doc-hero-card">
+        <div class="doc-hero-card">
 
-                <!-- Left Column: Title & Key Features -->
-                <div class="doc-hero-left">
-                    <div class="doc-title-row">
-                        <h1 class="doc-title">AI Plant Doctor</h1>
-                        <span class="badge-beta">Beta</span>
+            <!-- LEFT COLUMN: Title, Description & Feature Points -->
+            <div class="doc-hero-left">
+                <div class="doc-title-row">
+                    <h1 class="doc-title">AI Plant Doctor</h1>
+                    <span class="badge-beta">Beta</span>
+                </div>
+                <p class="doc-desc">
+                    Upload a photo of your plant and our AI will analyze the issue and recommend the best pesticide and care solutions.
+                </p>
+
+                <div class="doc-features-list">
+                    <div class="doc-feature-row">
+                        <div class="doc-feat-icon">
+                            <i class="fa-solid fa-camera"></i>
+                        </div>
+                        <span class="doc-feat-text">Instant AI Analysis</span>
                     </div>
-                    <p class="doc-desc">
-                        Upload a photo of your plant and our AI will analyze the issue and recommend the best pesticide and care solutions.
-                    </p>
-
-                    <div class="doc-features-list">
-                        <div class="doc-feature-row">
-                            <div class="doc-feat-icon">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2fa13a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-                                    <circle cx="12" cy="13" r="4"></circle>
-                                </svg>
-                            </div>
-                            <span class="doc-feat-text">Instant AI Analysis</span>
+                    <div class="doc-feature-row">
+                        <div class="doc-feat-icon">
+                            <i class="fa-solid fa-shield-halved"></i>
                         </div>
-
-                        <div class="doc-feature-row">
-                            <div class="doc-feat-icon">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2fa13a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path>
-                                    <path d="m9 12 2 2 4-4"></path>
-                                </svg>
-                            </div>
-                            <span class="doc-feat-text">Pesticide Recommendations</span>
+                        <span class="doc-feat-text">Pesticide Recommendations</span>
+                    </div>
+                    <div class="doc-feature-row">
+                        <div class="doc-feat-icon">
+                            <i class="fa-solid fa-seedling"></i>
                         </div>
-
-                        <div class="doc-feature-row">
-                            <div class="doc-feat-icon">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2fa13a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 22V8"></path>
-                                    <path d="M12 12c-2.5-2.5-5-2-6 0 .5 2.5 3.5 3 6 1"></path>
-                                    <path d="M12 10c2.5-2.5 5-2 6 0-.5 2.5-3.5 3-6 1"></path>
-                                    <circle cx="12" cy="5" r="2.5"></circle>
-                                </svg>
-                            </div>
-                            <span class="doc-feat-text">Expert Care Tips</span>
-                        </div>
+                        <span class="doc-feat-text">Expert Care Tips</span>
                     </div>
                 </div>
-
-                <!-- Center Column: Upload Card -->
-                <div class="doc-hero-center">
-                    <div class="upload-card" id="dropArea" onclick="triggerFileInput()">
-                        <div class="upload-icon-circle">
-                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2fa13a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                <polyline points="17 8 12 3 7 8"></polyline>
-                                <line x1="12" y1="3" x2="12" y2="15"></line>
-                            </svg>
-                        </div>
-                        <h3 class="upload-title">Upload Plant Image</h3>
-                        <p class="upload-subtitle">Drag and drop an image here, or click to browse</p>
-                        <span class="upload-hint">JPG, PNG, WEBP up to 10MB</span>
-
-                        <input type="file" id="plantFileInput" accept="image/*" style="display:none;" onchange="handleFileSelected(event)" />
-
-                        <button type="button" class="btn-choose-img" onclick="event.stopPropagation(); triggerFileInput();">
-                            Choose Image
-                        </button>
-                    </div>
-
-                    <!-- Security Note -->
-                    <div class="doc-security-note">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2fa13a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path>
-                            <path d="m9 12 2 2 4-4"></path>
-                        </svg>
-                        <span>Your images are secure and only used for analysis</span>
-                    </div>
-
-                    <!-- Scan Analysis State / Results Card (Hidden initially) -->
-                    <div id="analysisBox" class="analysis-result-box" style="display:none;">
-                        <div id="scanningState" class="scanning-state">
-                            <div class="scan-spinner"></div>
-                            <h4 id="scanStatusText">Scanning plant leaves...</h4>
-                            <div class="scan-bar"><div class="scan-progress" id="scanProgress"></div></div>
-                        </div>
-
-                        <div id="resultsState" class="results-state" style="display:none;">
-                            <div class="result-header">
-                                <span class="result-badge-safe" id="healthBadge">&#10003; Analyzed</span>
-                                <h4 id="diseaseTitle" class="disease-name">Early Blight (Alternaria solani)</h4>
-                                <span id="confidenceText" class="conf-score">96% Confidence</span>
-                            </div>
-                            <p id="treatmentText" class="treatment-text">
-                                Recommended Action: Apply copper-based fungicide or organic neem spray weekly. Prune lower infected foliage to enhance airflow.
-                            </p>
-                            <button type="button" class="btn-scan-again" onclick="resetScanner()">Scan Another Plant</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Column: Potted Plant Photo -->
-                <div class="doc-hero-right">
-                    <img src="image/ai-plant-doctor.png" alt="AI Plant Doctor Plant" class="doc-plant-img" />
-                </div>
-
             </div>
+
+            <!-- CENTER COLUMN: Upload Plant Image Card -->
+            <div class="doc-hero-center">
+                <div class="upload-card">
+                    <div class="upload-icon-circle">
+                        <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                    </div>
+                    <h3 class="upload-title">Upload Plant Image</h3>
+                    <p class="upload-subtitle">Drag and drop an image here, or click to browse</p>
+                    <p class="upload-formats">JPG, PNG, WEBP up to 10MB</p>
+
+                    <!-- Plant selection from Database -->
+                    <div class="upload-select-wrapper">
+                        <asp:DropDownList ID="ddlPlant" runat="server" CssClass="form-select diagnosis-select" aria-label="Select Plant">
+                        </asp:DropDownList>
+                    </div>
+
+                    <!-- File Upload Control -->
+                    <div class="upload-input-wrapper">
+                        <asp:FileUpload ID="fileUploadPlant" runat="server" CssClass="form-control diagnosis-file-input" />
+                    </div>
+
+                    <!-- Diagnose Action Button -->
+                    <asp:Button ID="btnDiagnose" runat="server" Text="Choose Image"
+                        OnClick="btnDiagnose_Click" CssClass="btn-choose-image" />
+                </div>
+
+                <div class="doc-security-note">
+                    <i class="fa-solid fa-circle-check text-success"></i>
+                    <span>Your images are secure and only used for analysis</span>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: Plant Image -->
+            <div class="doc-hero-right">
+                <img src="image/ai-plant-doctor.png" alt="Healthy Potted Houseplant" class="doc-plant-img" />
+            </div>
+
         </div>
     </section>
 
-    <!-- =========================================
-         HOW IT WORKS SECTION
-    ========================================= -->
+    <!-- =========================================================
+         DIAGNOSIS RESULT CARD (Populated dynamically via ADO.NET)
+         ========================================================= -->
+    <asp:Panel ID="pnlResultCard" runat="server" Visible="false" CssClass="result-card-wrap">
+        <div class="result-box">
+            <div class="result-header-bar">
+                <span class="result-badge">
+                    <i class="fa-solid fa-circle-check"></i> Diagnosis Result &amp; Treatment Plan
+                </span>
+                <asp:Button ID="btnCloseResult" runat="server" Text="&times; Close Result"
+                    OnClick="btnCloseResult_Click"
+                    CssClass="btn btn-sm btn-outline-secondary" CausesValidation="false" />
+            </div>
+
+            <div class="row g-3 align-items-start">
+                <!-- Left: Diagnosed Plant Photo -->
+                <div class="col-md-4">
+                    <div class="result-img-box">
+                        <asp:Image ID="imgDiagnosed" runat="server" AlternateText="Diagnosed Plant Leaf" />
+                    </div>
+                </div>
+
+                <!-- Right: Disease Information & Treatment -->
+                <div class="col-md-8">
+                    <div class="result-label">Plant Name</div>
+                    <div class="result-plant-name">
+                        <asp:Label ID="lblPlantTitle" runat="server"></asp:Label>
+                    </div>
+
+                    <div class="result-label">Detected Disease / Condition</div>
+                    <div class="result-disease-name">
+                        <i class="fa-solid fa-virus"></i>
+                        <asp:Label ID="lblDiseaseTitle" runat="server"></asp:Label>
+                    </div>
+
+                    <div class="result-label">Observed Symptoms</div>
+                    <div class="result-symptoms">
+                        <asp:Literal ID="litSymptoms" runat="server"></asp:Literal>
+                    </div>
+
+                    <!-- Recommended Treatment Steps -->
+                    <div class="treatment-box">
+                        <strong><i class="fa-solid fa-notes-medical me-1"></i> Step-by-Step Treatment &amp; Action Plan:</strong><br />
+                        <asp:Literal ID="litTreatmentText" runat="server"></asp:Literal>
+                    </div>
+
+                    <!-- Recommended Medicine Product Card -->
+                    <div class="medicine-card">
+                        <div class="d-flex align-items-center gap-3">
+                            <asp:Image ID="imgMedicine" runat="server" CssClass="medicine-thumb"
+                                AlternateText="Prescribed Treatment Product" />
+                            <div>
+                                <div class="med-label">Recommended Treatment Product:</div>
+                                <div class="med-name"><asp:Literal ID="litMedicineName" runat="server"></asp:Literal></div>
+                                <div class="med-price">&#8377;<asp:Literal ID="litMedicinePrice" runat="server"></asp:Literal></div>
+                            </div>
+                        </div>
+
+                        <!-- Hidden state for Cart / Wishlist actions -->
+                        <asp:HiddenField ID="hfDiagnosedMedicineName" runat="server" />
+                        <asp:HiddenField ID="hfDiagnosedMedicinePrice" runat="server" />
+                        <asp:HiddenField ID="hfDiagnosedMedicineImage" runat="server" />
+
+                        <div class="d-flex gap-2">
+                            <asp:Button ID="btnAddToCart" runat="server" Text="🛒 Add to Cart"
+                                OnClick="btnAddToCart_Click" CssClass="btn-cart-sm" CausesValidation="false" />
+                            <asp:Button ID="btnAddToWishlist" runat="server" Text="♥ Wishlist"
+                                OnClick="btnAddToWishlist_Click" CssClass="btn-wish-sm" CausesValidation="false" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </asp:Panel>
+
+    <!-- =========================================================
+         2. HOW IT WORKS SECTION - 4 Steps Matching Figma
+         ========================================================= -->
     <section class="how-section">
-        <div class="how-wrapper">
-            <h2 class="how-title">How It Works</h2>
+        <h2 class="how-title">How It Works</h2>
 
-            <div class="how-grid">
-
-                <!-- Step 1 -->
-                <div class="how-card">
-                    <div class="how-icon-box">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2fa13a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                            <polyline points="17 8 12 3 7 8"></polyline>
-                            <line x1="12" y1="3" x2="12" y2="15"></line>
-                        </svg>
-                    </div>
-                    <div class="how-step-header">
-                        <span class="step-number">1</span>
-                        <h3 class="step-title">Upload Image</h3>
-                    </div>
-                    <p class="step-desc">Upload a clear photo of the affected plant.</p>
+        <div class="how-grid">
+            <!-- Step 1 -->
+            <div class="how-card">
+                <div class="how-icon-box">
+                    <i class="fa-solid fa-arrow-up-from-bracket"></i>
                 </div>
-
-                <!-- Arrow 1 -->
-                <div class="how-arrow">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2fa13a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                        <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
+                <div class="how-step-header">
+                    <span class="step-number">1</span>
+                    <h4 class="step-title">Upload Image</h4>
                 </div>
+                <p class="step-desc">
+                    Upload a clear photo of the affected plant.
+                </p>
+            </div>
 
-                <!-- Step 2 -->
-                <div class="how-card">
-                    <div class="how-icon-box">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2fa13a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"></path>
-                        </svg>
-                    </div>
-                    <div class="how-step-header">
-                        <span class="step-number">2</span>
-                        <h3 class="step-title">AI Analysis</h3>
-                    </div>
-                    <p class="step-desc">Our AI analyzes the plant and detects the problem.</p>
+            <div class="how-arrow">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="how-card">
+                <div class="how-icon-box">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
                 </div>
-
-                <!-- Arrow 2 -->
-                <div class="how-arrow">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2fa13a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                        <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
+                <div class="how-step-header">
+                    <span class="step-number">2</span>
+                    <h4 class="step-title">AI Analysis</h4>
                 </div>
+                <p class="step-desc">
+                    Our AI analyzes the plant and detects the problem.
+                </p>
+            </div>
 
-                <!-- Step 3 -->
-                <div class="how-card">
-                    <div class="how-icon-box">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2fa13a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M10 2v7.31L4.2 19.46A2 2 0 0 0 5.8 22h12.4a2 2 0 0 0 1.6-2.54L14 9.31V2"></path>
-                            <line x1="8.5" y1="2" x2="15.5" y2="2"></line>
-                            <line x1="6" y1="17" x2="18" y2="17"></line>
-                        </svg>
-                    </div>
-                    <div class="how-step-header">
-                        <span class="step-number">3</span>
-                        <h3 class="step-title">Get Recommendations</h3>
-                    </div>
-                    <p class="step-desc">Receive best pesticide and treatment options.</p>
+            <div class="how-arrow">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="how-card">
+                <div class="how-icon-box">
+                    <i class="fa-solid fa-flask"></i>
                 </div>
-
-                <!-- Arrow 3 -->
-                <div class="how-arrow">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2fa13a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                        <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
+                <div class="how-step-header">
+                    <span class="step-number">3</span>
+                    <h4 class="step-title">Get Recommendations</h4>
                 </div>
+                <p class="step-desc">
+                    Receive best pesticide and treatment options.
+                </p>
+            </div>
 
-                <!-- Step 4 -->
-                <div class="how-card">
-                    <div class="how-icon-box">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2fa13a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 22V8"></path>
-                            <path d="M12 12c-2.5-2.5-5-2-6 0 .5 2.5 3.5 3 6 1"></path>
-                            <path d="M12 10c2.5-2.5 5-2 6 0-.5 2.5-3.5 3-6 1"></path>
-                        </svg>
-                    </div>
-                    <div class="how-step-header">
-                        <span class="step-number">4</span>
-                        <h3 class="step-title">Care &amp; Protect</h3>
-                    </div>
-                    <p class="step-desc">Follow the suggestions to protect your plant.</p>
+            <div class="how-arrow">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="how-card">
+                <div class="how-icon-box">
+                    <i class="fa-solid fa-seedling"></i>
                 </div>
-
+                <div class="how-step-header">
+                    <span class="step-number">4</span>
+                    <h4 class="step-title">Care &amp; Protect</h4>
+                </div>
+                <p class="step-desc">
+                    Follow the suggestions to protect your plant.
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- =========================================
-         TIPS FOR BETTER RESULTS BANNER
-    ========================================= -->
+    <!-- =========================================================
+         3. TIPS FOR BETTER RESULTS BAR - Exact Figma Match
+         ========================================================= -->
     <section class="tips-section">
-        <div class="tips-wrapper">
-            <div class="tips-card">
-
-                <!-- Title on Left -->
-                <div class="tips-title-box">
-                    <div class="tips-bulb-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2fa13a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M9 18h6"></path>
-                            <path d="M10 22h4"></path>
-                            <path d="M12 2a7 7 0 0 0-7 7c0 2.5 1.5 4.5 3 6h8c1.5-1.5 3-3.5 3-6a7 7 0 0 0-7-7z"></path>
-                        </svg>
-                    </div>
-                    <h4 class="tips-heading">Tips for Better Results</h4>
+        <div class="tips-card">
+            <div class="tips-title-box">
+                <div class="tips-bulb-icon">
+                    <i class="fa-regular fa-lightbulb"></i>
                 </div>
+                <h4 class="tips-heading">Tips for Better Results</h4>
+            </div>
 
-                <div class="tips-divider"></div>
+            <div class="tips-divider"></div>
 
-                <!-- 4 Tips -->
-                <div class="tips-items-row">
-                    <!-- Tip 1 -->
-                    <div class="tip-item">
-                        <div class="tip-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2fa13a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="5"></circle>
-                                <line x1="12" y1="1" x2="12" y2="3"></line>
-                                <line x1="12" y1="21" x2="12" y2="23"></line>
-                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                                <line x1="1" y1="12" x2="3" y2="12"></line>
-                                <line x1="21" y1="12" x2="23" y2="12"></line>
-                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                            </svg>
-                        </div>
-                        <span class="tip-text">Use good lighting</span>
-                    </div>
-
-                    <!-- Tip 2 -->
-                    <div class="tip-item">
-                        <div class="tip-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2fa13a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M11 20A7 7 0 0 1 4 13C4 7 11 3 20 3c0 9-4 16-11 17Z"></path>
-                                <path d="M4 21c2-3 5-5 9-7"></path>
-                            </svg>
-                        </div>
-                        <span class="tip-text">Show affected leaves clearly</span>
-                    </div>
-
-                    <!-- Tip 3 -->
-                    <div class="tip-item">
-                        <div class="tip-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2fa13a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 22v-9"></path>
-                                <path d="M9 13a4 4 0 0 1 3-3.87"></path>
-                                <path d="M15 13a4 4 0 0 0-3-3.87"></path>
-                                <path d="M8 9a4 4 0 0 1 4-4 4 4 0 0 1 4 4"></path>
-                            </svg>
-                        </div>
-                        <span class="tip-text">Capture from close range</span>
-                    </div>
-
-                    <!-- Tip 4 -->
-                    <div class="tip-item">
-                        <div class="tip-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2fa13a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                                <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                                <polyline points="21 15 16 10 5 21"></polyline>
-                            </svg>
-                        </div>
-                        <span class="tip-text">Avoid blurry images</span>
-                    </div>
+            <div class="tips-items-row">
+                <div class="tip-item">
+                    <i class="fa-regular fa-sun text-success"></i>
+                    <span class="tip-text">Use good lighting</span>
                 </div>
-
+                <div class="tip-item">
+                    <i class="fa-solid fa-leaf text-success"></i>
+                    <span class="tip-text">Show affected leaves clearly</span>
+                </div>
+                <div class="tip-item">
+                    <i class="fa-solid fa-seedling text-success"></i>
+                    <span class="tip-text">Capture from close range</span>
+                </div>
+                <div class="tip-item">
+                    <i class="fa-regular fa-image text-success"></i>
+                    <span class="tip-text">Avoid blurry images</span>
+                </div>
             </div>
         </div>
     </section>
+
+    <!-- =========================================================
+         4. ADMIN DATABASE MANAGEMENT SECTION
+         (Preserved strictly for Admin role; hidden from regular users)
+         ========================================================= -->
+    <asp:Panel ID="pnlAdminDatabaseManagement" runat="server" Visible="false" CssClass="admin-mgmt-section mt-4">
+        <div class="diag-card">
+            <div class="card-header-title">
+                <span>
+                    <i class="fa-solid fa-database text-success me-2"></i>Plant Disease Database Management
+                    <span class="badge-info-pill ms-2">
+                        <asp:Literal ID="litRecordCount" runat="server">0</asp:Literal> Records
+                    </span>
+                </span>
+                <asp:Button ID="btnToggleManual" runat="server" Text="➕ Add New Disease to Database"
+                    OnClick="btnToggleManual_Click" CssClass="btn-outline-green" CausesValidation="false" />
+            </div>
+
+            <!-- Collapsible Manual Entry Form with pure server-side .NET validation -->
+            <asp:Panel ID="pnlManualEntry" runat="server" Visible="false" CssClass="mb-4 p-3 bg-light rounded-3 border border-success">
+                <h6 class="fw-bold text-success mb-3">
+                    <i class="fa-solid fa-plus-circle me-1"></i> Add Plant Disease into SQL Server Database
+                </h6>
+
+                <!-- ASP.NET Server-Side Validation Summary -->
+                <asp:ValidationSummary ID="vsManualEntry" runat="server"
+                    ValidationGroup="vgManualDisease"
+                    CssClass="alert alert-danger py-2 mb-3"
+                    HeaderText="Please fix the following validation errors:"
+                    EnableClientScript="false"
+                    ShowMessageBox="false" ShowSummary="true" />
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label-custom">Plant Name *</label>
+                        <asp:TextBox ID="txtNewPlantName" runat="server" CssClass="form-control form-control-custom"
+                            placeholder="e.g. Tulsi, Tomato, Cotton, Mango"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvNewPlant" runat="server"
+                            ControlToValidate="txtNewPlantName" ValidationGroup="vgManualDisease"
+                            ErrorMessage="Plant name is required." CssClass="text-danger small"
+                            EnableClientScript="false" Display="Dynamic" />
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label-custom">Disease / Condition Name *</label>
+                        <asp:TextBox ID="txtNewDiseaseName" runat="server" CssClass="form-control form-control-custom"
+                            placeholder="e.g. Powdery Mildew, Leaf Blight"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvNewDisease" runat="server"
+                            ControlToValidate="txtNewDiseaseName" ValidationGroup="vgManualDisease"
+                            ErrorMessage="Disease name is required." CssClass="text-danger small"
+                            EnableClientScript="false" Display="Dynamic" />
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label-custom">Symptoms Description *</label>
+                        <asp:TextBox ID="txtNewSymptoms" runat="server" CssClass="form-control form-control-custom"
+                            placeholder="e.g. White powder coating on leaves, curling, black spots"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvNewSymptoms" runat="server"
+                            ControlToValidate="txtNewSymptoms" ValidationGroup="vgManualDisease"
+                            ErrorMessage="Symptoms description is required." CssClass="text-danger small"
+                            EnableClientScript="false" Display="Dynamic" />
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label-custom">Recommended Treatment &amp; Action Plan *</label>
+                        <asp:TextBox ID="txtNewTreatment" runat="server" TextMode="MultiLine" Rows="3"
+                            CssClass="form-control form-control-custom"
+                            placeholder="Step-by-step treatment or care instructions"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvNewTreatment" runat="server"
+                            ControlToValidate="txtNewTreatment" ValidationGroup="vgManualDisease"
+                            ErrorMessage="Treatment instructions are required." CssClass="text-danger small"
+                            EnableClientScript="false" Display="Dynamic" />
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label-custom">Prescribed Medicine / Care Product *</label>
+                        <asp:TextBox ID="txtNewMedicineName" runat="server" CssClass="form-control form-control-custom"
+                            placeholder="e.g. Neem Spray Care"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvNewMedicine" runat="server"
+                            ControlToValidate="txtNewMedicineName" ValidationGroup="vgManualDisease"
+                            ErrorMessage="Prescribed product is required." CssClass="text-danger small"
+                            EnableClientScript="false" Display="Dynamic" />
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label-custom">Medicine Price (&#8377;) *</label>
+                        <asp:TextBox ID="txtNewPrice" runat="server" TextMode="Number"
+                            CssClass="form-control form-control-custom" Text="199"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvNewPrice" runat="server"
+                            ControlToValidate="txtNewPrice" ValidationGroup="vgManualDisease"
+                            ErrorMessage="Medicine price is required." CssClass="text-danger small"
+                            EnableClientScript="false" Display="Dynamic" />
+                        <asp:RegularExpressionValidator ID="revNewPrice" runat="server"
+                            ControlToValidate="txtNewPrice" ValidationGroup="vgManualDisease"
+                            ErrorMessage="Price must be a valid positive number." CssClass="text-danger small"
+                            EnableClientScript="false" ValidationExpression="^\d+(\.\d{1,2})?$" Display="Dynamic" />
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label-custom">Product Image</label>
+                        <asp:DropDownList ID="ddlNewImage" runat="server" CssClass="form-select form-select-custom">
+                            <asp:ListItem Text="Tulsi / Herb" Value="image/tulsi.jfif"></asp:ListItem>
+                            <asp:ListItem Text="Sunflower" Value="image/sunflower.jfif"></asp:ListItem>
+                            <asp:ListItem Text="Snake Plant" Value="image/product-snake-plant.png"></asp:ListItem>
+                            <asp:ListItem Text="Succulent" Value="image/product-succulent.png"></asp:ListItem>
+                            <asp:ListItem Text="Garden Plants" Value="image/about-plants.PNG"></asp:ListItem>
+                            <asp:ListItem Text="Flower" Value="image/flower.jfif"></asp:ListItem>
+                            <asp:ListItem Text="Periwinkle" Value="image/perivinkle.jfif"></asp:ListItem>
+                            <asp:ListItem Text="Money Plant" Value="image/money_well.jfif"></asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+
+                    <div class="col-12 d-flex gap-2 mt-3">
+                        <asp:Button ID="btnSaveManual" runat="server" Text="💾 Save Record to Database"
+                            OnClick="btnSaveManual_Click" ValidationGroup="vgManualDisease"
+                            CssClass="btn btn-sm btn-success fw-bold px-3" />
+                        <asp:Button ID="btnCancelManual" runat="server" Text="Cancel"
+                            OnClick="btnCancelManual_Click" CausesValidation="false"
+                            CssClass="btn btn-sm btn-outline-secondary px-3" />
+                    </div>
+                </div>
+            </asp:Panel>
+
+            <!-- Records Table -->
+            <div class="table-responsive">
+                <asp:Repeater ID="rptDiseaseCatalog" runat="server" OnItemCommand="rptDiseaseCatalog_ItemCommand">
+                    <HeaderTemplate>
+                        <table class="table records-table align-middle">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Plant Name</th>
+                                    <th>Condition / Disease</th>
+                                    <th>Symptoms</th>
+                                    <th>Prescribed Product</th>
+                                    <th>Price</th>
+                                    <th class="text-end">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <tr>
+                            <td><span class="badge-id">#<%# Eval("DiseaseId") %></span></td>
+                            <td><strong><%# Eval("PlantName") %></strong></td>
+                            <td><span class="badge-disease"><%# Eval("DiseaseName") %></span></td>
+                            <td><small class="text-muted"><%# Eval("Symptoms") %></small></td>
+                            <td><span class="badge-med"><%# Eval("MedicineName") %></span></td>
+                            <td><strong>&#8377;<%# Convert.ToDecimal(Eval("MedicinePrice")).ToString("N0") %></strong></td>
+                            <td class="text-end">
+                                <asp:LinkButton ID="lnkDiagnoseRow" runat="server"
+                                    CommandName="DiagnoseRow" CommandArgument='<%# Eval("DiseaseId") %>'
+                                    CssClass="btn-view-pill me-1" title="View Diagnosis">
+                                    <i class="fa-solid fa-eye me-1"></i>View
+                                </asp:LinkButton>
+                                <asp:LinkButton ID="lnkDeleteRow" runat="server"
+                                    CommandName="DeleteRow" CommandArgument='<%# Eval("DiseaseId") %>'
+                                    CssClass="btn-del-pill"
+                                    OnClientClick="return confirm('Delete this plant disease record from database?');"
+                                    title="Delete from Database">
+                                    <i class="fa-solid fa-trash"></i>
+                                </asp:LinkButton>
+                            </td>
+                        </tr>
+                    </ItemTemplate>
+                    <FooterTemplate>
+                            </tbody>
+                        </table>
+                    </FooterTemplate>
+                </asp:Repeater>
+            </div>
+        </div>
+    </asp:Panel>
 
 </div>
-
-<!-- Interactive Client-side Script -->
-<script type="text/javascript">
-    function triggerFileInput() {
-        var input = document.getElementById('plantFileInput');
-        if (input) {
-            input.click();
-        }
-    }
-
-    function handleFileSelected(event) {
-        var files = event.target.files;
-        if (files && files.length > 0) {
-            simulateAIDiagnosis(files[0].name);
-        }
-    }
-
-    // Drag and Drop
-    var dropArea = document.getElementById('dropArea');
-    if (dropArea) {
-        ['dragenter', 'dragover'].forEach(eventName => {
-            dropArea.addEventListener(eventName, (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                dropArea.classList.add('drag-active');
-            }, false);
-        });
-
-        ['dragleave', 'drop'].forEach(eventName => {
-            dropArea.addEventListener(eventName, (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                dropArea.classList.remove('drag-active');
-            }, false);
-        });
-
-        dropArea.addEventListener('drop', (e) => {
-            var dt = e.dataTransfer;
-            var files = dt.files;
-            if (files && files.length > 0) {
-                simulateAIDiagnosis(files[0].name);
-            }
-        });
-    }
-
-    function simulateAIDiagnosis(filename) {
-        var box = document.getElementById('analysisBox');
-        var scanning = document.getElementById('scanningState');
-        var results = document.getElementById('resultsState');
-        var progress = document.getElementById('scanProgress');
-        var statusText = document.getElementById('scanStatusText');
-
-        box.style.display = 'block';
-        scanning.style.display = 'block';
-        results.style.display = 'none';
-        progress.style.width = '10%';
-
-        statusText.innerText = 'Scanning ' + filename + '...';
-
-        setTimeout(() => {
-            progress.style.width = '45%';
-            statusText.innerText = 'Detecting leaf discoloration & pattern symptoms...';
-        }, 800);
-
-        setTimeout(() => {
-            progress.style.width = '85%';
-            statusText.innerText = 'Generating pesticide & treatment recommendations...';
-        }, 1600);
-
-        setTimeout(() => {
-            progress.style.width = '100%';
-            scanning.style.display = 'none';
-            results.style.display = 'block';
-        }, 2400);
-    }
-
-    function resetScanner() {
-        var box = document.getElementById('analysisBox');
-        box.style.display = 'none';
-        var input = document.getElementById('plantFileInput');
-        if (input) input.value = '';
-    }
-</script>
-
+</div>
 </asp:Content>

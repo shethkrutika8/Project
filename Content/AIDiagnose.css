@@ -1,86 +1,105 @@
 /* =========================================================
    AGRICULTURE - AI DIAGNOSE (AI PLANT DOCTOR) STYLESHEET
+   Matches Figma Design Pixel-Perfect With Green Aesthetic
    ========================================================= */
 
 .diagnose-page {
     width: 100%;
-    background: #f3f8f1;
+    background: #f4f8f1;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     color: #243328;
-    padding-bottom: 24px;
+    padding-bottom: 50px;
+}
+
+/* Page Container - Exactly aligned with Master Page */
+.diagnose-container {
+    width: 92%;
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Alert / Notification box */
+.diag-alert-box {
+    background: #edf7eb;
+    border: 1px solid #bce2b7;
+    color: #1e6b26;
+    padding: 12px 18px;
+    border-radius: 8px;
+    margin-top: 16px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12.5px;
 }
 
 /* =========================================================
-   1. HERO SECTION (AI PLANT DOCTOR)
+   1. HERO SECTION (AI PLANT DOCTOR) - Exact Figma Layout
    ========================================================= */
 
 .doc-hero-section {
     width: 100%;
-    padding: 20px 0 10px;
-}
-
-.doc-hero-wrapper {
-    width: 92%;
-    max-width: 1100px;
-    margin: 0 auto;
+    padding: 24px 0 16px;
 }
 
 .doc-hero-card {
-    background: #dfeeda;
+    background: linear-gradient(135deg, #dcf0d9 0%, #cee7cb 100%);
     border-radius: 14px;
-    padding: 32px 32px 24px;
+    border: 1px solid #bedfbd;
+    padding: 34px 38px 30px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     gap: 28px;
-    position: relative;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 4px 16px rgba(45, 80, 45, 0.06);
 }
 
-/* Left Column */
+/* Left Column: Title, Description & Feature Points */
 .doc-hero-left {
-    flex: 0 0 30%;
-    max-width: 310px;
+    flex: 0 0 32%;
+    max-width: 320px;
 }
 
 .doc-title-row {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .doc-title {
     margin: 0;
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 800;
-    color: #1a3923;
+    color: #15331e;
     line-height: 1.2;
+    letter-spacing: -0.3px;
 }
 
 .badge-beta {
-    background: #34a843;
+    background: #36a941;
     color: #ffffff;
     font-size: 11px;
     font-weight: 700;
     padding: 3px 9px;
     border-radius: 6px;
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
+    display: inline-block;
+    line-height: 1.2;
 }
 
 .doc-desc {
     margin: 0 0 22px;
     font-size: 12.5px;
-    color: #4d6653;
+    color: #425946;
     line-height: 1.6;
 }
 
 .doc-features-list {
     display: flex;
     flex-direction: column;
-    gap: 13px;
+    gap: 12px;
 }
 
 .doc-feature-row {
@@ -90,27 +109,29 @@
 }
 
 .doc-feat-icon {
-    width: 36px;
-    height: 36px;
-    min-width: 36px;
-    border-radius: 8px;
-    background: #e4eee1;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #2fa13a;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+    font-size: 13px;
+    box-shadow: 0 2px 6px rgba(45, 80, 45, 0.08);
 }
 
 .doc-feat-text {
-    font-size: 12px;
+    font-size: 12.5px;
     font-weight: 600;
-    color: #334437;
+    color: #203825;
 }
 
-/* Center Column: Upload Card */
+/* Center Column: Upload Plant Image Card */
 .doc-hero-center {
-    flex: 1 1 42%;
-    max-width: 420px;
+    flex: 1 1 38%;
+    max-width: 410px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -120,266 +141,191 @@
     width: 100%;
     background: #ffffff;
     border-radius: 14px;
-    border: 1.5px dashed #bfdcbc;
-    padding: 28px 24px 22px;
+    border: 1.5px dashed #b6dab2;
+    padding: 24px 24px 20px;
     text-align: center;
-    cursor: pointer;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
     transition: all 0.25s ease;
 }
 
-.upload-card:hover,
-.upload-card.drag-active {
-    border-color: #34a843;
-    background: #fbfefb;
-    box-shadow: 0 8px 24px rgba(47, 161, 58, 0.12);
-    transform: translateY(-2px);
+.upload-card:hover {
+    border-color: #36a941;
+    box-shadow: 0 8px 24px rgba(54, 169, 65, 0.12);
 }
 
 .upload-icon-circle {
-    width: 56px;
-    height: 56px;
-    margin: 0 auto 12px;
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 10px;
     border-radius: 50%;
-    background: #edf7eb;
+    background: #eaf5e6;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2fa13a;
+    font-size: 20px;
+}
+
+.upload-title {
+    margin: 0 0 5px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #15331e;
+}
+
+.upload-subtitle {
+    margin: 0 0 3px;
+    font-size: 11.5px;
+    color: #637667;
+    line-height: 1.4;
+}
+
+.upload-formats {
+    margin: 0 0 14px;
+    font-size: 10.5px;
+    color: #8c9d90;
+    font-weight: 500;
+}
+
+.upload-select-wrapper {
+    margin-bottom: 8px;
+}
+
+.diagnosis-select {
+    width: 100%;
+    font-size: 11.5px;
+    border: 1px solid #c7dbc3;
+    border-radius: 6px;
+    padding: 7px 10px;
+    background: #fbfdfb;
+    color: #253525;
+}
+
+.diagnosis-select:focus {
+    border-color: #36a941;
+    box-shadow: 0 0 0 3px rgba(54, 169, 65, 0.12);
+    outline: none;
+}
+
+.upload-input-wrapper {
+    margin-bottom: 12px;
+}
+
+.diagnosis-file-input {
+    width: 100%;
+    font-size: 11px;
+    border: 1px solid #d4e5d1;
+    border-radius: 6px;
+    padding: 6px;
+    background: #f7faf5;
+}
+
+.btn-choose-image {
+    background: #36a941;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 24px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(54, 169, 65, 0.25);
+    transition: background 0.2s ease, transform 0.1s ease;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
 }
 
-.upload-title {
-    margin: 0 0 6px;
-    font-size: 16px;
-    font-weight: 700;
-    color: #1a3923;
-}
-
-.upload-subtitle {
-    margin: 0 0 6px;
-    font-size: 11px;
-    color: #6a796e;
-    line-height: 1.4;
-}
-
-.upload-hint {
-    display: block;
-    font-size: 10px;
-    color: #8d9c90;
-    margin-bottom: 18px;
-}
-
-.btn-choose-img {
-    background: #34a843;
+.btn-choose-image:hover {
+    background: #288f32;
     color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    padding: 10px 24px;
-    font-size: 12px;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(52, 168, 67, 0.25);
-    transition: background 0.2s ease, transform 0.1s ease;
-}
-
-.btn-choose-img:hover {
-    background: #278f35;
 }
 
 .doc-security-note {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    margin-top: 12px;
+    gap: 7px;
+    margin-top: 10px;
     font-size: 11px;
-    color: #4e6554;
+    color: #4f6852;
     font-weight: 500;
 }
 
-/* Simulated Analysis Result Box */
-.analysis-result-box {
-    width: 100%;
-    background: #ffffff;
-    border-radius: 12px;
-    border: 1px solid #d4ebd0;
-    padding: 16px 20px;
-    margin-top: 14px;
-    box-shadow: 0 4px 12px rgba(35, 75, 45, 0.08);
-}
-
-.scan-spinner {
-    width: 28px;
-    height: 28px;
-    border: 3px solid #edf7eb;
-    border-top: 3px solid #34a843;
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-    margin: 6px auto 10px;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.scanning-state h4 {
-    margin: 0 0 10px;
-    font-size: 12.5px;
-    font-weight: 700;
-    color: #1a3923;
-    text-align: center;
-}
-
-.scan-bar {
-    width: 100%;
-    height: 6px;
-    background: #eef5ed;
-    border-radius: 3px;
-    overflow: hidden;
-}
-
-.scan-progress {
-    width: 10%;
-    height: 100%;
-    background: #34a843;
-    border-radius: 3px;
-    transition: width 0.4s ease;
-}
-
-.result-header {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-    margin-bottom: 8px;
-}
-
-.result-badge-safe {
-    background: #edf7eb;
-    color: #2fa13a;
-    font-size: 10px;
-    font-weight: 700;
-    padding: 2px 8px;
-    border-radius: 12px;
-}
-
-.disease-name {
-    margin: 2px 0 0;
-    font-size: 14px;
-    font-weight: 700;
-    color: #1a3923;
-}
-
-.conf-score {
-    font-size: 11px;
-    color: #34a843;
-    font-weight: 600;
-}
-
-.treatment-text {
-    margin: 0 0 12px;
-    font-size: 11px;
-    color: #4f6454;
-    line-height: 1.5;
-}
-
-.btn-scan-again {
-    background: #edf7eb;
-    color: #2fa13a;
-    border: 1px solid #c8e6c5;
-    border-radius: 4px;
-    padding: 6px 14px;
-    font-size: 11px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.btn-scan-again:hover {
-    background: #34a843;
-    color: #ffffff;
-}
-
-/* Right Column */
+/* Right Column: Hero Plant Image */
 .doc-hero-right {
-    flex: 0 0 28%;
+    flex: 0 0 26%;
     max-width: 260px;
-    height: 315px;
+    height: 250px;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
 }
 
 .doc-plant-img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: bottom;
-    border-radius: 12px;
-    display: block;
+    max-height: 245px;
+    object-fit: contain;
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.08));
 }
 
 /* =========================================================
-   2. HOW IT WORKS SECTION
+   2. HOW IT WORKS SECTION - Exact Figma Layout
    ========================================================= */
 
 .how-section {
     width: 100%;
-    padding: 30px 0 22px;
-}
-
-.how-wrapper {
-    width: 92%;
-    max-width: 1100px;
-    margin: 0 auto;
-    text-align: center;
+    padding: 30px 0 16px;
 }
 
 .how-title {
-    margin: 0 0 24px;
-    font-size: 22px;
-    font-weight: 800;
-    color: #1a3923;
+    margin: 0 0 22px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #15331e;
+    text-align: center;
 }
 
 .how-grid {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: stretch;
     justify-content: space-between;
-    gap: 12px;
+    gap: 14px;
 }
 
 .how-card {
     flex: 1;
     background: #ffffff;
     border-radius: 10px;
-    border: 1px solid #e2ece0;
-    padding: 22px 16px 20px;
+    border: 1px solid #e1eee0;
+    padding: 20px 14px 18px;
     text-align: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    min-height: 175px;
+    box-shadow: 0 2px 8px rgba(45, 80, 45, 0.04);
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .how-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(35, 75, 45, 0.1);
-    border-color: #cee5cb;
+    box-shadow: 0 6px 16px rgba(45, 80, 45, 0.08);
+    border-color: #cde4cb;
 }
 
 .how-icon-box {
     width: 46px;
     height: 46px;
-    border-radius: 10px;
-    background: #edf7eb;
+    border-radius: 8px;
+    background: #eaf5e6;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 12px;
+    color: #2fa13a;
+    font-size: 18px;
 }
 
 .how-step-header {
@@ -387,16 +333,16 @@
     align-items: center;
     justify-content: center;
     gap: 7px;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 .step-number {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
-    background: #34a843;
+    background: #36a941;
     color: #ffffff;
-    font-size: 11px;
+    font-size: 10.5px;
     font-weight: 700;
     display: inline-flex;
     align-items: center;
@@ -406,15 +352,15 @@
 
 .step-title {
     margin: 0;
-    font-size: 12.5px;
+    font-size: 12px;
     font-weight: 700;
-    color: #1a3923;
+    color: #15331e;
 }
 
 .step-desc {
     margin: 0;
     font-size: 10.5px;
-    color: #6d7c71;
+    color: #637367;
     line-height: 1.5;
 }
 
@@ -423,11 +369,12 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    color: #34a843;
+    color: #8bbd8c;
+    font-size: 14px;
 }
 
 /* =========================================================
-   3. TIPS FOR BETTER RESULTS BANNER
+   3. TIPS FOR BETTER RESULTS BAR - Exact Figma Match
    ========================================================= */
 
 .tips-section {
@@ -435,60 +382,57 @@
     padding: 8px 0 24px;
 }
 
-.tips-wrapper {
-    width: 92%;
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
 .tips-card {
     background: #dfeeda;
-    border-radius: 10px;
-    padding: 14px 26px;
+    border: 1px solid #c9dec6;
+    border-radius: 8px;
+    padding: 13px 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 18px;
+    gap: 16px;
 }
 
 .tips-title-box {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     flex-shrink: 0;
 }
 
 .tips-bulb-icon {
-    width: 42px;
-    height: 42px;
-    min-width: 42px;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
     border-radius: 50%;
     background: #ffffff;
+    color: #2fa13a;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    font-size: 14px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
 }
 
 .tips-heading {
     margin: 0;
-    font-size: 13px;
+    font-size: 12.5px;
     font-weight: 700;
-    color: #1a3923;
+    color: #15331e;
     white-space: nowrap;
 }
 
 .tips-divider {
     width: 1px;
-    height: 32px;
-    background: #c8dec5;
+    height: 28px;
+    background: #bdd2ba;
     flex-shrink: 0;
 }
 
 .tips-items-row {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     flex: 1;
     gap: 12px;
 }
@@ -496,25 +440,326 @@
 .tip-item {
     display: flex;
     align-items: center;
-    gap: 9px;
-}
-
-.tip-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
+    gap: 8px;
 }
 
 .tip-text {
-    font-size: 11px;
-    color: #3d5443;
+    font-size: 11.5px;
+    color: #324a35;
     font-weight: 600;
     white-space: nowrap;
 }
 
 /* =========================================================
-   4. RESPONSIVE BREAKPOINTS
+   DIAGNOSIS RESULT CARD - Clean Card View
+   ========================================================= */
+
+.result-card-wrap {
+    margin: 16px 0 24px;
+}
+
+.result-box {
+    background: #ffffff;
+    border: 1px solid #cce5ca;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 16px rgba(45, 80, 45, 0.06);
+}
+
+.result-header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #edf4ec;
+    margin-bottom: 18px;
+}
+
+.result-badge {
+    background: #edf7eb;
+    color: #218c2b;
+    border: 1px solid #c2e2be;
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.result-img-box {
+    width: 100%;
+    height: 220px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f1f7f0;
+    border: 1px solid #d4e7d1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.result-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.result-plant-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1e3a1f;
+    margin-bottom: 2px;
+}
+
+.result-disease-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #c0392b;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.result-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #7a8c7e;
+    letter-spacing: 0.5px;
+    margin-top: 8px;
+    margin-bottom: 2px;
+}
+
+.result-symptoms {
+    font-size: 12px;
+    color: #495e4e;
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.treatment-box {
+    background: #f5faf3;
+    border-left: 3px solid #36a941;
+    border-radius: 0 6px 6px 0;
+    padding: 12px 14px;
+    font-size: 12px;
+    color: #2b4530;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.medicine-card {
+    background: #ffffff;
+    border: 1px solid #d8eada;
+    border-radius: 8px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.medicine-thumb {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #c9dec6;
+}
+
+.med-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: #728575;
+    text-transform: uppercase;
+}
+
+.med-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1a3923;
+}
+
+.med-price {
+    font-size: 13px;
+    font-weight: 700;
+    color: #288f32;
+}
+
+.btn-cart-sm {
+    background: #36a941;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 6px 14px;
+    font-size: 11.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-cart-sm:hover {
+    background: #288f32;
+}
+
+.btn-wish-sm {
+    background: #fff;
+    color: #e04a4a;
+    border: 1px solid #f1c5c5;
+    border-radius: 5px;
+    padding: 6px 12px;
+    font-size: 11.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-wish-sm:hover {
+    background: #fdf2f2;
+}
+
+/* =========================================================
+   ADMIN DATABASE MANAGEMENT (Preserved for Admin)
+   ========================================================= */
+
+.admin-mgmt-section {
+    border-top: 2px dashed #cde2ca;
+    padding-top: 24px;
+}
+
+.diag-card {
+    background: #ffffff;
+    border: 1px solid #d8eada;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.card-header-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: #1a3923;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eef5ed;
+}
+
+.badge-info-pill {
+    background: #edf7eb;
+    color: #2fa13a;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 12px;
+    border: 1px solid #cce5ca;
+}
+
+.btn-outline-green {
+    background: transparent;
+    border: 1px solid #36a941;
+    color: #2fa13a;
+    font-size: 11.5px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-outline-green:hover {
+    background: #36a941;
+    color: white;
+}
+
+.form-label-custom {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #2b4530;
+    margin-bottom: 4px;
+}
+
+.form-control-custom,
+.form-select-custom {
+    font-size: 11.5px;
+    border: 1px solid #c7dbc3;
+    border-radius: 5px;
+    padding: 6px 10px;
+}
+
+.records-table {
+    font-size: 11.5px;
+    margin-bottom: 0;
+}
+
+.records-table th {
+    background: #f5faf3;
+    color: #2b4530;
+    font-weight: 600;
+    border-bottom: 1px solid #d8eada;
+    padding: 10px;
+}
+
+.records-table td {
+    padding: 9px 10px;
+    border-bottom: 1px solid #eef5ed;
+}
+
+.badge-id {
+    background: #edf1ed;
+    color: #556b54;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+}
+
+.badge-disease {
+    background: #fdf3f3;
+    color: #c0392b;
+    border: 1px solid #fadbd8;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.badge-med {
+    background: #edf7eb;
+    color: #218c2b;
+    border: 1px solid #cbe6c7;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.btn-view-pill {
+    background: #eef7ed;
+    color: #2fa13a;
+    border: 1px solid #cbe6c7;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 10.5px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.btn-del-pill {
+    background: #fdf2f2;
+    color: #c0392b;
+    border: 1px solid #fadbd8;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 10.5px;
+    text-decoration: none;
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN (Desktop First -> Tablet / Mobile)
    ========================================================= */
 
 @media (max-width: 991px) {
@@ -522,11 +767,13 @@
         flex-direction: column;
         text-align: center;
         padding: 26px 20px;
-        gap: 22px;
     }
 
-    .doc-hero-left {
+    .doc-hero-left,
+    .doc-hero-center,
+    .doc-hero-right {
         max-width: 100%;
+        width: 100%;
         flex: 1 1 100%;
     }
 
@@ -538,23 +785,20 @@
         align-items: center;
     }
 
-    .doc-hero-center {
-        max-width: 100%;
-        width: 100%;
+    .doc-hero-right {
+        height: auto;
     }
 
-    .doc-hero-right {
-        max-width: 220px;
-        height: 240px;
+    .doc-plant-img {
+        max-height: 200px;
     }
 
     .how-grid {
         flex-wrap: wrap;
-        gap: 16px;
     }
 
     .how-card {
-        flex: 0 0 47%;
+        flex: 1 1 45%;
     }
 
     .how-arrow {
@@ -563,8 +807,8 @@
 
     .tips-card {
         flex-direction: column;
-        padding: 18px;
-        gap: 14px;
+        align-items: flex-start;
+        gap: 12px;
     }
 
     .tips-divider {
@@ -573,19 +817,19 @@
 
     .tips-items-row {
         flex-wrap: wrap;
-        justify-content: center;
-        gap: 16px;
+        width: 100%;
+        justify-content: flex-start;
+        gap: 14px;
     }
 }
 
 @media (max-width: 576px) {
     .how-card {
-        flex: 0 0 100%;
+        flex: 1 1 100%;
     }
 
     .tips-items-row {
         flex-direction: column;
         align-items: flex-start;
-        gap: 12px;
     }
 }

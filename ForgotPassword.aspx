@@ -67,6 +67,7 @@
                         ControlToValidate="Email_txt"
                         ErrorMessage="** Enter Your Email **"
                         ForeColor="#FF3300"
+                        EnableClientScript="false"
                         Display="Dynamic">
                     </asp:RequiredFieldValidator>
                     <asp:RegularExpressionValidator
@@ -75,9 +76,25 @@
                         ControlToValidate="Email_txt"
                         ErrorMessage="** Please Enter Valid Email **"
                         ForeColor="#FF3300"
+                        EnableClientScript="false"
                         ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
                         Display="Dynamic">
                     </asp:RegularExpressionValidator>
+
+                    <!-- ASP.NET Server-Side Validation Summary (no JS) -->
+                    <asp:ValidationSummary ID="ValidationSummary1" runat="server"
+                        CssClass="alert alert-danger py-2 my-2"
+                        HeaderText="Please correct the following errors:"
+                        DisplayMode="BulletList"
+                        EnableClientScript="false"
+                        ShowMessageBox="false"
+                        ShowSummary="true" />
+
+                    <!-- Server-Side Message Panel (no JS alerts) -->
+                    <asp:Panel ID="pnlForgotAlert" runat="server" Visible="false"
+                        CssClass="alert alert-info py-2 my-2">
+                        <asp:Literal ID="litForgotAlert" runat="server"></asp:Literal>
+                    </asp:Panel>
 
                     <!-- Info Message -->
                     <div class="email-info">
