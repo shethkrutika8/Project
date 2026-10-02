@@ -64,6 +64,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link <%= Request.FilePath.EndsWith("AdminOrders.aspx", StringComparison.OrdinalIgnoreCase) ? "active" : "" %>" href="AdminOrders.aspx">
+                                <i class="fa-solid fa-box-open me-1"></i> Orders Manage
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link <%= Request.FilePath.EndsWith("Dashboard.aspx", StringComparison.OrdinalIgnoreCase) ? "active" : "" %>" href="Dashboard.aspx" title="Preview Store">
                                 <i class="fa-solid fa-store me-1"></i> View Store
                             </a>
@@ -72,6 +77,13 @@
                       
 
 <!-- ================= USER / GUEST NAVIGATION ================= -->
+
+<li class="nav-item">
+    <a class="nav-link <%= (Request.FilePath.EndsWith("Dashboard.aspx", StringComparison.OrdinalIgnoreCase) || Request.FilePath.EndsWith("Default.aspx", StringComparison.OrdinalIgnoreCase)) ? "active" : "" %>"
+       href="Dashboard.aspx">
+        Dashboard
+    </a>
+</li>
 
 <li class="nav-item">
     <a class="nav-link <%= Request.FilePath.EndsWith("Features.aspx", StringComparison.OrdinalIgnoreCase) ? "active" : "" %>"

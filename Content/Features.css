@@ -1,137 +1,275 @@
-﻿
-.feature-card {
+/* =========================================================
+   AGRICULTURE - OUR FEATURES STYLESHEET
+   Matches Figma Design Pixel-Perfect With Green Aesthetic
+   ========================================================= */
+
+.features-page {
     width: 100%;
-    height: 165px;
-    min-height: 165px;
-    padding: 20px 18px 17px 18px !important;
-    border: 1px solid #e1e8e2;
-    border-radius: 9px;
+    background: #f4f8f1;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #243328;
+    padding-bottom: 40px;
+}
+
+/* Page Container - Consistent 92% width max 1160px */
+.features-wrapper {
+    width: 92%;
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* =========================================================
+   1. HERO SECTION (Our Features) - Exact Figma Layout
+   ========================================================= */
+
+.features-hero {
+    width: 100%;
+    padding: 24px 0 16px;
+}
+
+.features-hero-card {
+    background: linear-gradient(135deg, #dcf0d9 0%, #cee7cb 100%);
+    border-radius: 14px;
+    border: 1px solid #bedfbd;
+    padding: 34px 40px 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    box-shadow: 0 4px 16px rgba(45, 80, 45, 0.06);
+}
+
+.features-hero-content {
+    flex: 1 1 50%;
+    max-width: 440px;
+}
+
+.features-title {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 800;
+    color: #15331e;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+}
+
+.features-desc {
+    margin: 12px 0 22px;
+    font-size: 13px;
+    color: #405845;
+    line-height: 1.6;
+}
+
+.explore-btn {
+    background: #36a941;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 24px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(54, 169, 65, 0.25);
+    transition: background 0.2s ease, transform 0.1s ease;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.explore-btn:hover {
+    background: #288f32;
+    color: #ffffff;
+}
+
+.features-hero-image {
+    flex: 1 1 50%;
+    max-width: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.feature-main-image {
+    width: 100%;
+    max-height: 230px;
+    border-radius: 12px;
+    object-fit: cover;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08));
+}
+
+/* =========================================================
+   2. FEATURE CARDS GRID (8 Cards - 4x2 Layout)
+   ========================================================= */
+
+.feature-cards-section {
+    width: 100%;
+    padding: 10px 0 24px;
+}
+
+.feature-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: 16px 0 24px;
+}
+
+.feature-card {
     background: #ffffff;
+    border: 1px solid #e1eee0;
+    border-radius: 10px;
+    padding: 22px 16px 20px;
     text-align: center;
-    box-sizing: border-box;
+    box-shadow: 0 2px 8px rgba(45, 80, 45, 0.04);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    box-shadow: 0 2px 8px rgba(30, 80, 40, 0.04);
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-
-    /* =========================================================
-   CARD HOVER
-   ========================================================= */
-
-    .feature-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 6px 16px rgba(40, 100, 50, 0.10);
-        border-color: #cfe2ce;
-    }
-
-
-/* =========================================================
-   CARD ICON
-   ========================================================= */
+.feature-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(45, 80, 45, 0.08);
+    border-color: #cde4cb;
+}
 
 .feature-card-icon {
-    width: 38px;
-    height: 38px;
-    margin: 0 auto 10px auto;
+    width: 46px;
+    height: 46px;
     border-radius: 8px;
-    background: #e1eee0;
-    color: #29a43a;
+    background: #eaf5e6;
+    color: #2fa13a;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
-    flex-shrink: 0;
+    font-size: 20px;
+    margin-bottom: 12px;
 }
-
-
-/* =========================================================
-   CARD TITLE
-   ========================================================= */
 
 .feature-card h3 {
     margin: 0 0 8px 0;
-    font-size: 9px;
-    line-height: 1.3;
+    font-size: 12.5px;
     font-weight: 700;
-    color: #4f625a;
+    color: #15331e;
 }
-
-
-/* =========================================================
-   CARD DESCRIPTION
-   ========================================================= */
 
 .feature-card p {
     margin: 0 auto;
-    max-width: 200px;
-    font-size: 8px;
+    font-size: 10.5px;
+    color: #637367;
     line-height: 1.55;
-    color: #7a8580;
+    max-width: 210px;
 }
 
-
 /* =========================================================
-   BOTTOM CTA
+   3. BOTTOM CTA BANNER - Exact Figma Layout
    ========================================================= */
 
-.feature-cta {
-    width: 100%;
-    max-width: 100%;
-    min-height: 62px;
-    margin: 12px auto 0 auto;
-    padding: 8px 20px;
-    background: #dcebd9;
-    border-radius: 6px;
+.feature-cta-banner {
+    background: #dfeeda;
+    border: 1px solid #c9dec6;
+    border-radius: 8px;
+    padding: 14px 24px;
     display: flex;
     align-items: center;
-    gap: 16px;
-    box-sizing: border-box;
+    justify-content: space-between;
+    gap: 18px;
+    margin-top: 10px;
 }
 
-/* =========================================================
-   CTA ICON
-   ========================================================= */
+.cta-left-box {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
 
-.cta-icon {
+.cta-sprout-icon {
     width: 44px;
     height: 44px;
     min-width: 44px;
     border-radius: 50%;
     background: #ffffff;
-    color: #2da53b;
+    color: #2fa13a;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 19px;
+    font-size: 20px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
 }
 
+.cta-heading {
+    margin: 0 0 3px 0;
+    font-size: 13px;
+    font-weight: 700;
+    color: #15331e;
+}
+
+.cta-subheading {
+    margin: 0;
+    font-size: 11.5px;
+    color: #4a634e;
+    line-height: 1.4;
+}
+
+.btn-getstarted-free {
+    background: #36a941;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 9px 22px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(54, 169, 65, 0.2);
+    transition: background 0.2s ease;
+    white-space: nowrap;
+}
+
+.btn-getstarted-free:hover {
+    background: #288f32;
+    color: #ffffff;
+}
 
 /* =========================================================
-   CTA CONTENT
+   RESPONSIVE DESIGN (Desktop First -> Tablet / Mobile)
    ========================================================= */
 
-.cta-content {
-    flex: 1;
-    min-width: 0;
+@media (max-width: 991px) {
+    .features-hero-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 26px 20px;
+    }
+
+    .features-hero-content,
+    .features-hero-image {
+        max-width: 100%;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .feature-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .feature-cta-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .btn-getstarted-free {
+        align-self: flex-start;
+    }
 }
 
-    .cta-content h3 {
-        margin: 0 0 4px 0;
-        font-size: 9px;
-        font-weight: 700;
-        color: #334c43;
+@media (max-width: 576px) {
+    .feature-cards-grid {
+        grid-template-columns: 1fr;
     }
 
-    .cta-content p {
-        margin: 0;
-        font-size: 7px;
-        line-height: 1.5;
-        color: #6b7972;
+    .cta-left-box {
+        flex-direction: column;
+        align-items: flex-start;
     }
-
-
-
+}

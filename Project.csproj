@@ -245,6 +245,13 @@
     <Compile Include="AdminManagement.aspx.designer.cs">
       <DependentUpon>AdminManagement.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdminOrders.aspx.cs">
+      <DependentUpon>AdminOrders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminOrders.aspx.designer.cs">
+      <DependentUpon>AdminOrders.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reports.aspx.cs">
       <DependentUpon>Reports.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -314,6 +321,7 @@
     <Content Include="image\help-icon.png" />
     <Content Include="AIDiagnose.aspx" />
     <Content Include="AdminDashboard.aspx" />
+    <Content Include="AdminOrders.aspx" />
     <Content Include="AdminProducts.aspx" />
     <Content Include="AdminManagement.aspx" />
     <Content Include="Reports.aspx" />

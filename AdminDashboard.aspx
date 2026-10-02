@@ -220,6 +220,10 @@
 
         <!-- Quick Navigation -->
         <div class="admin-nav-cards">
+            <a href="AdminOrders.aspx" class="admin-nav-card">
+                <i class="fa-solid fa-boxes-packing" style="color: #1976d2;"></i>
+                <span>Manage Orders</span>
+            </a>
             <a href="AdminManagement.aspx" class="admin-nav-card">
                 <i class="fa-solid fa-users"></i>
                 <span>Manage Users</span>
@@ -244,8 +248,13 @@
 
         <!-- Recent Orders -->
         <div class="admin-section-card">
-            <div class="admin-section-header">
-                <i class="fa-solid fa-receipt text-success"></i> Recent Orders (from SQL Server)
+            <div class="admin-section-header d-flex justify-content-between align-items-center">
+                <div>
+                    <i class="fa-solid fa-receipt text-success me-2"></i> Recent Orders (from SQL Server)
+                </div>
+                <a href="AdminOrders.aspx" class="btn btn-sm btn-success text-white px-3 fw-bold" style="font-size: 12px;">
+                    <i class="fa-solid fa-boxes-packing me-1"></i> Open Order Manager &rarr;
+                </a>
             </div>
             <div class="table-responsive">
                 <asp:GridView ID="gvRecentOrders" runat="server"
