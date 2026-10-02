@@ -238,7 +238,6 @@ namespace Project
                                 litMedicineName.Text = medName;
                                 litMedicinePrice.Text = medPrice.ToString("N0");
 
-                                // Set medicine thumbnail
                                 imgMedicine.ImageUrl = ResolveMedicineImage(medName);
 
                                 // Set diagnosed plant image
