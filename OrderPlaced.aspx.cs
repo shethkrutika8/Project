@@ -284,6 +284,7 @@ namespace Project
                     litSuccessAmount.Text = grandTotal.ToString("N2");
 
                     (Master as Site1)?.RefreshCartAndWishlistCounts();
+                    Response.Write("<script>alert('Order Placed Successfully! Order Number: " + orderNumber + "');</script>");
                 }
             }
             catch (Exception ex)

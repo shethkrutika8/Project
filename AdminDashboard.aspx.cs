@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web;
@@ -9,6 +10,8 @@ namespace Project
 {
     public partial class AdminDashboard : System.Web.UI.Page
     {
+        string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Krutika_24SOECE11036_.NET\\Project\\App_Data\\Database1.mdf;Integrated Security=True";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             // Restrict admin page to authenticated Admins only
@@ -52,21 +55,18 @@ namespace Project
         {
             try
             {
-                using (var con = DbHelper.GetConnection())
-                {
-                    con.Open();
-                    string sql = "SELECT TOP 10 OrderNumber, UserEmail, CustomerName, TotalAmount, PaymentMethod, OrderStatus, OrderDate FROM Orders ORDER BY OrderId DESC";
-                    using (var cmd = new SqlCommand(sql, con))
-                    {
-                        DataTable dt = new DataTable();
-                        using (var da = new SqlDataAdapter(cmd))
-                        {
-                            da.Fill(dt);
-                        }
-                        gvRecentOrders.DataSource = dt;
-                        gvRecentOrders.DataBind();
-                    }
-                }
+                SqlConnection con = new SqlConnection(connectionString);
+                string sql = "SELECT TOP 10 OrderNumber, UserEmail, CustomerName, TotalAmount, PaymentMethod, OrderStatus, OrderDate FROM Orders ORDER BY OrderId DESC";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                con.Open();
+
+                DataTable dt = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                con.Close();
+
+                gvRecentOrders.DataSource = dt;
+                gvRecentOrders.DataBind();
             }
             catch (Exception ex)
             {
@@ -78,21 +78,18 @@ namespace Project
         {
             try
             {
-                using (var con = DbHelper.GetConnection())
-                {
-                    con.Open();
-                    string sql = "SELECT TOP 10 Id, name, email, gender, contact, city FROM Register ORDER BY Id DESC";
-                    using (var cmd = new SqlCommand(sql, con))
-                    {
-                        DataTable dt = new DataTable();
-                        using (var da = new SqlDataAdapter(cmd))
-                        {
-                            da.Fill(dt);
-                        }
-                        gvRecentUsers.DataSource = dt;
-                        gvRecentUsers.DataBind();
-                    }
-                }
+                SqlConnection con = new SqlConnection(connectionString);
+                string sql = "SELECT TOP 10 Id, name, email, gender, contact, city FROM Register ORDER BY Id DESC";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                con.Open();
+
+                DataTable dt = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                con.Close();
+
+                gvRecentUsers.DataSource = dt;
+                gvRecentUsers.DataBind();
             }
             catch (Exception ex)
             {

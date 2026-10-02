@@ -44,9 +44,11 @@ namespace Project
             }
         }
 
+        string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Krutika_24SOECE11036_.NET\\Project\\App_Data\\Database1.mdf;Integrated Security=True";
+
         private string GetConnectionString()
         {
-            return DbHelper.GetConnectionString();
+            return connectionString;
         }
 
         /// <summary>

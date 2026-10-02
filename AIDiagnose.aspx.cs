@@ -12,10 +12,11 @@ namespace Project
 {
     public partial class AIDiagnose : System.Web.UI.Page
     {
-        // Connection string fetched directly from Web.config (AgriDbConn)
+        string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Krutika_24SOECE11036_.NET\\Project\\App_Data\\Database1.mdf;Integrated Security=True";
+
         private string GetConnectionString()
         {
-            return DbHelper.GetConnectionString();
+            return connectionString;
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -567,6 +568,7 @@ namespace Project
 
                 litAlertMsg.Text = "New plant disease condition added to SQL Server database successfully!";
                 pnlAlert.Visible = true;
+                Response.Write("<script>alert('Plant disease record saved successfully!');</script>");
 
                 LoadDiseaseCatalog();
                 PopulatePlantDropdown();
@@ -605,6 +607,7 @@ namespace Project
 
                     litAlertMsg.Text = "Plant disease record #" + diseaseId + " removed from database.";
                     pnlAlert.Visible = true;
+                    Response.Write("<script>alert('Plant disease record deleted successfully!');</script>");
 
                     LoadDiseaseCatalog();
                     PopulatePlantDropdown();

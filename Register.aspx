@@ -159,9 +159,9 @@
                         <div class="form-group">
                             <label>Gender</label>
                             <div class="gender-radio-group">
-                                <asp:RadioButton ID="Male_Btn" runat="server" GroupName="gender" Text="Male" Checked="true" OnCheckedChanged="Male_Btn_CheckedChanged" />
+                                <asp:RadioButton ID="Male_Btn" runat="server" GroupName="gender" Text="Male" Checked="true" OnCheckedChanged="Male_Btn_CheckedChanged" AutoPostBack="true" />
                                 &nbsp;&nbsp;&nbsp;
-                                <asp:RadioButton ID="Female_Btn" runat="server" GroupName="gender" Text="Female" OnCheckedChanged="Female_Btn_CheckedChanged" />
+                                <asp:RadioButton ID="Female_Btn" runat="server" GroupName="gender" Text="Female" OnCheckedChanged="Female_Btn_CheckedChanged" AutoPostBack="true" />
                             </div>
                         </div>
 

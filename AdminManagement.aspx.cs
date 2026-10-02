@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Project.Models;
@@ -8,6 +10,8 @@ namespace Project
 {
     public partial class AdminManagement : Page
     {
+        string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Krutika_24SOECE11036_.NET\\Project\\App_Data\\Database1.mdf;Integrated Security=True";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             // Protect admin page: only Admin role allowed
@@ -32,7 +36,16 @@ namespace Project
         {
             try
             {
-                DataTable dt = DbHelper.GetAllUsersDataTable();
+                SqlConnection con = new SqlConnection(connectionString);
+                string query = "select Id, name, email, gender, contact, city, role from Register order by Id desc";
+                SqlCommand cmd = new SqlCommand(query, con);
+                con.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                con.Close();
+
                 gvUsers.DataSource = dt;
                 gvUsers.DataBind();
                 litUserCount.Text = dt.Rows.Count.ToString();
@@ -58,21 +71,32 @@ namespace Project
             string role     = ddlAdminRole.SelectedValue;
             string password = txtAdminPassword.Text;
 
-            bool success = DbHelper.AddAdminUser(name, email, password, contact, city, role);
-            if (success)
+            SqlConnection con = new SqlConnection(connectionString);
+            string chkQuery = "select count(*) from Register where email = '" + email + "'";
+            SqlCommand chkCmd = new SqlCommand(chkQuery, con);
+            con.Open();
+
+            int count = Convert.ToInt32(chkCmd.ExecuteScalar());
+            if (count > 0)
             {
-                ShowAlert("Account for <strong>" + name + "</strong> (" + role + ") was created successfully in the database!", "success");
-                txtAdminName.Text = "";
-                txtAdminEmail.Text = "";
-                txtAdminContact.Text = "";
-                txtAdminPassword.Text = "";
-                txtAdminConfirm.Text = "";
-                LoadUsersGrid();
+                con.Close();
+                Response.Write("<script>alert('Account with this email already exists!');</script>");
+                return;
             }
-            else
-            {
-                ShowAlert("Failed to create account. An account with email <strong>" + email + "</strong> may already exist.", "danger");
-            }
+
+            string query = "insert into Register (name, email, password, gender, contact, city, role) values ('" + name + "','" + email + "','" + password + "','Other','" + contact + "','" + city + "','" + role + "')";
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+
+            Response.Write("<script>alert('User Account Created Successfully');</script>");
+
+            txtAdminName.Text = "";
+            txtAdminEmail.Text = "";
+            txtAdminContact.Text = "";
+            txtAdminPassword.Text = "";
+            txtAdminConfirm.Text = "";
+            LoadUsersGrid();
         }
 
         protected void gvUsers_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -85,31 +109,30 @@ namespace Project
                     string currentRole = parts[1];
                     string newRole = currentRole.ToLower() == "admin" ? "User" : "Admin";
 
-                    bool updated = DbHelper.UpdateUserRole(userId, newRole);
-                    if (updated)
-                    {
-                        ShowAlert("User #" + userId + " role updated to <strong>" + newRole + "</strong>.", "info");
-                        LoadUsersGrid();
-                    }
-                    else
-                    {
-                        ShowAlert("Could not update user role.", "danger");
-                    }
+                    SqlConnection con = new SqlConnection(connectionString);
+                    string query = "update Register set role = '" + newRole + "' where Id = " + userId;
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+
+                    Response.Write("<script>alert('User role updated to " + newRole + "');</script>");
+                    LoadUsersGrid();
                 }
             }
             else if (e.CommandName == "DeleteUserRow")
             {
                 int userId = Convert.ToInt32(e.CommandArgument);
-                bool deleted = DbHelper.DeleteUser(userId);
-                if (deleted)
-                {
-                    ShowAlert("User #" + userId + " was deleted from the database.", "info");
-                    LoadUsersGrid();
-                }
-                else
-                {
-                    ShowAlert("Failed to delete user.", "danger");
-                }
+
+                SqlConnection con = new SqlConnection(connectionString);
+                string query = "delete from Register where Id = " + userId;
+                SqlCommand cmd = new SqlCommand(query, con);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+                Response.Write("<script>alert('User Deleted Successfully');</script>");
+                LoadUsersGrid();
             }
         }
 

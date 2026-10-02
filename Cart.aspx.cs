@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web;
@@ -10,6 +11,8 @@ namespace Project
 {
     public partial class Cart : System.Web.UI.Page
     {
+        string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Krutika_24SOECE11036_.NET\\Project\\App_Data\\Database1.mdf;Integrated Security=True";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -25,18 +28,12 @@ namespace Project
 
             try
             {
-                using (var con = DbHelper.GetConnection())
-                {
-                    con.Open();
-                    using (var cmd = new SqlCommand("SELECT CartId, UserEmail, ProductName, Price, Quantity, ImageUrl, CreatedDate FROM Cart WHERE UserEmail = @Email ORDER BY CartId DESC", con))
-                    {
-                        cmd.Parameters.AddWithValue("@Email", email);
-                        using (var da = new SqlDataAdapter(cmd))
-                        {
-                            da.Fill(dt);
-                        }
-                    }
-                }
+                SqlConnection con = new SqlConnection(connectionString);
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT CartId, UserEmail, ProductName, Price, Quantity, ImageUrl, CreatedDate FROM Cart WHERE UserEmail = '" + email + "' ORDER BY CartId DESC", con);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                con.Close();
 
                 if (dt.Rows.Count == 0)
                 {
@@ -90,58 +87,38 @@ namespace Project
 
             try
             {
-                using (var con = DbHelper.GetConnection())
-                {
-                    con.Open();
-                    if (e.CommandName == "IncreaseQty")
-                    {
-                        using (var cmd = new SqlCommand("UPDATE Cart SET Quantity = Quantity + 1 WHERE CartId = @CartId AND UserEmail = @Email", con))
-                        {
-                            cmd.Parameters.AddWithValue("@CartId", cartId);
-                            cmd.Parameters.AddWithValue("@Email", email);
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-                    else if (e.CommandName == "DecreaseQty")
-                    {
-                        using (var checkCmd = new SqlCommand("SELECT Quantity FROM Cart WHERE CartId = @CartId AND UserEmail = @Email", con))
-                        {
-                            checkCmd.Parameters.AddWithValue("@CartId", cartId);
-                            checkCmd.Parameters.AddWithValue("@Email", email);
-                            int currentQty = Convert.ToInt32(checkCmd.ExecuteScalar());
+                SqlConnection con = new SqlConnection(connectionString);
+                con.Open();
 
-                            if (currentQty > 1)
-                            {
-                                using (var updateCmd = new SqlCommand("UPDATE Cart SET Quantity = Quantity - 1 WHERE CartId = @CartId AND UserEmail = @Email", con))
-                                {
-                                    updateCmd.Parameters.AddWithValue("@CartId", cartId);
-                                    updateCmd.Parameters.AddWithValue("@Email", email);
-                                    updateCmd.ExecuteNonQuery();
-                                }
-                            }
-                            else
-                            {
-                                using (var delCmd = new SqlCommand("DELETE FROM Cart WHERE CartId = @CartId AND UserEmail = @Email", con))
-                                {
-                                    delCmd.Parameters.AddWithValue("@CartId", cartId);
-                                    delCmd.Parameters.AddWithValue("@Email", email);
-                                    delCmd.ExecuteNonQuery();
-                                }
-                            }
-                        }
-                    }
-                    else if (e.CommandName == "RemoveItem")
+                if (e.CommandName == "IncreaseQty")
+                {
+                    SqlCommand cmd = new SqlCommand("UPDATE Cart SET Quantity = Quantity + 1 WHERE CartId = " + cartId + " AND UserEmail = '" + email + "'", con);
+                    cmd.ExecuteNonQuery();
+                }
+                else if (e.CommandName == "DecreaseQty")
+                {
+                    SqlCommand checkCmd = new SqlCommand("SELECT Quantity FROM Cart WHERE CartId = " + cartId + " AND UserEmail = '" + email + "'", con);
+                    int currentQty = Convert.ToInt32(checkCmd.ExecuteScalar());
+
+                    if (currentQty > 1)
                     {
-                        using (var delCmd = new SqlCommand("DELETE FROM Cart WHERE CartId = @CartId AND UserEmail = @Email", con))
-                        {
-                            delCmd.Parameters.AddWithValue("@CartId", cartId);
-                            delCmd.Parameters.AddWithValue("@Email", email);
-                            delCmd.ExecuteNonQuery();
-                        }
-                        ShowAlert("Item removed from your cart.", true);
+                        SqlCommand updateCmd = new SqlCommand("UPDATE Cart SET Quantity = Quantity - 1 WHERE CartId = " + cartId + " AND UserEmail = '" + email + "'", con);
+                        updateCmd.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        SqlCommand delCmd = new SqlCommand("DELETE FROM Cart WHERE CartId = " + cartId + " AND UserEmail = '" + email + "'", con);
+                        delCmd.ExecuteNonQuery();
                     }
                 }
+                else if (e.CommandName == "RemoveItem")
+                {
+                    SqlCommand delCmd = new SqlCommand("DELETE FROM Cart WHERE CartId = " + cartId + " AND UserEmail = '" + email + "'", con);
+                    delCmd.ExecuteNonQuery();
+                    Response.Write("<script>alert('Item removed from your cart.');</script>");
+                }
 
+                con.Close();
                 LoadCartItems();
             }
             catch (Exception ex)
@@ -155,16 +132,13 @@ namespace Project
             string email = DbHelper.GetCurrentUserEmail(HttpContext.Current);
             try
             {
-                using (var con = DbHelper.GetConnection())
-                {
-                    con.Open();
-                    using (var cmd = new SqlCommand("DELETE FROM Cart WHERE UserEmail = @Email", con))
-                    {
-                        cmd.Parameters.AddWithValue("@Email", email);
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-                ShowAlert("Cart has been cleared.", true);
+                SqlConnection con = new SqlConnection(connectionString);
+                con.Open();
+                SqlCommand cmd = new SqlCommand("DELETE FROM Cart WHERE UserEmail = '" + email + "'", con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+                Response.Write("<script>alert('Cart has been cleared.');</script>");
                 LoadCartItems();
             }
             catch (Exception ex)

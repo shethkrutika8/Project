@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web;
@@ -10,6 +11,8 @@ namespace Project
 {
     public partial class Wishlist : System.Web.UI.Page
     {
+        string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Krutika_24SOECE11036_.NET\\Project\\App_Data\\Database1.mdf;Integrated Security=True";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -25,18 +28,12 @@ namespace Project
 
             try
             {
-                using (var con = DbHelper.GetConnection())
-                {
-                    con.Open();
-                    using (var cmd = new SqlCommand("SELECT WishlistId, UserEmail, ProductName, Price, ImageUrl, CreatedDate FROM Wishlist WHERE UserEmail = @Email ORDER BY WishlistId DESC", con))
-                    {
-                        cmd.Parameters.AddWithValue("@Email", email);
-                        using (var da = new SqlDataAdapter(cmd))
-                        {
-                            da.Fill(dt);
-                        }
-                    }
-                }
+                SqlConnection con = new SqlConnection(connectionString);
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT WishlistId, UserEmail, ProductName, Price, ImageUrl, CreatedDate FROM Wishlist WHERE UserEmail = '" + email + "' ORDER BY WishlistId DESC", con);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                con.Close();
 
                 if (dt.Rows.Count == 0)
                 {
@@ -75,54 +72,40 @@ namespace Project
                     decimal price = 0;
                     string imageUrl = "";
 
-                    using (var con = DbHelper.GetConnection())
+                    SqlConnection con = new SqlConnection(connectionString);
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT ProductName, Price, ImageUrl FROM Wishlist WHERE WishlistId = " + wishlistId + " AND UserEmail = '" + email + "'", con);
+                    SqlDataReader r = cmd.ExecuteReader();
+                    if (r.Read())
                     {
-                        con.Open();
-                        using (var cmd = new SqlCommand("SELECT ProductName, Price, ImageUrl FROM Wishlist WHERE WishlistId = @WishlistId AND UserEmail = @Email", con))
-                        {
-                            cmd.Parameters.AddWithValue("@WishlistId", wishlistId);
-                            cmd.Parameters.AddWithValue("@Email", email);
-                            using (var r = cmd.ExecuteReader())
-                            {
-                                if (r.Read())
-                                {
-                                    productName = r["ProductName"].ToString();
-                                    price = Convert.ToDecimal(r["Price"]);
-                                    imageUrl = r["ImageUrl"] != DBNull.Value ? r["ImageUrl"].ToString() : "";
-                                }
-                            }
-                        }
-
-                        if (!string.IsNullOrEmpty(productName))
-                        {
-                            // Add to cart
-                            DbHelper.AddToCart(email, productName, price, 1, imageUrl);
-
-                            // Remove from wishlist
-                            using (var delCmd = new SqlCommand("DELETE FROM Wishlist WHERE WishlistId = @WishlistId AND UserEmail = @Email", con))
-                            {
-                                delCmd.Parameters.AddWithValue("@WishlistId", wishlistId);
-                                delCmd.Parameters.AddWithValue("@Email", email);
-                                delCmd.ExecuteNonQuery();
-                            }
-
-                            ShowAlert("'" + productName + "' moved to your shopping cart!", true);
-                        }
+                        productName = r["ProductName"].ToString();
+                        price = Convert.ToDecimal(r["Price"]);
+                        imageUrl = r["ImageUrl"] != DBNull.Value ? r["ImageUrl"].ToString() : "";
                     }
+                    r.Close();
+
+                    if (!string.IsNullOrEmpty(productName))
+                    {
+                        // Add to cart
+                        DbHelper.AddToCart(email, productName, price, 1, imageUrl);
+
+                        // Remove from wishlist
+                        SqlCommand delCmd = new SqlCommand("DELETE FROM Wishlist WHERE WishlistId = " + wishlistId + " AND UserEmail = '" + email + "'", con);
+                        delCmd.ExecuteNonQuery();
+
+                        Response.Write("<script>alert('" + productName + " moved to your shopping cart!');</script>");
+                    }
+                    con.Close();
                 }
                 else if (e.CommandName == "RemoveWish")
                 {
-                    using (var con = DbHelper.GetConnection())
-                    {
-                        con.Open();
-                        using (var delCmd = new SqlCommand("DELETE FROM Wishlist WHERE WishlistId = @WishlistId AND UserEmail = @Email", con))
-                        {
-                            delCmd.Parameters.AddWithValue("@WishlistId", wishlistId);
-                            delCmd.Parameters.AddWithValue("@Email", email);
-                            delCmd.ExecuteNonQuery();
-                        }
-                    }
-                    ShowAlert("Item removed from your wishlist.", true);
+                    SqlConnection con = new SqlConnection(connectionString);
+                    con.Open();
+                    SqlCommand delCmd = new SqlCommand("DELETE FROM Wishlist WHERE WishlistId = " + wishlistId + " AND UserEmail = '" + email + "'", con);
+                    delCmd.ExecuteNonQuery();
+                    con.Close();
+
+                    Response.Write("<script>alert('Item removed from your wishlist.');</script>");
                 }
 
                 LoadWishlist();

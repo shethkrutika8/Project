@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI;
@@ -8,6 +9,8 @@ namespace Project
 {
     public partial class Reports : Page
     {
+        string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Krutika_24SOECE11036_.NET\\Project\\App_Data\\Database1.mdf;Integrated Security=True";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             // Protect admin page
@@ -39,32 +42,25 @@ namespace Project
                 litDeliveredOrders.Text = analytics["DeliveredOrders"].ToString();
 
                 // Load orders table
-                using (var con = DbHelper.GetConnection())
-                {
-                    con.Open();
-                    using (var cmd = new SqlCommand("SELECT OrderNumber, CustomerName, UserEmail, City, TotalAmount, PaymentMethod, OrderStatus, OrderDate FROM Orders ORDER BY OrderId DESC", con))
-                    {
-                        DataTable dtOrders = new DataTable();
-                        using (var da = new SqlDataAdapter(cmd))
-                        {
-                            da.Fill(dtOrders);
-                        }
-                        gvOrdersReport.DataSource = dtOrders;
-                        gvOrdersReport.DataBind();
-                    }
+                SqlConnection con = new SqlConnection(connectionString);
+                con.Open();
 
-                    // Load products inventory
-                    using (var cmdProd = new SqlCommand("SELECT ProductId, Name, Category, Price, StockQuantity, CreatedDate FROM Products WHERE IsActive = 1 ORDER BY StockQuantity ASC", con))
-                    {
-                        DataTable dtProd = new DataTable();
-                        using (var da = new SqlDataAdapter(cmdProd))
-                        {
-                            da.Fill(dtProd);
-                        }
-                        gvInventoryReport.DataSource = dtProd;
-                        gvInventoryReport.DataBind();
-                    }
-                }
+                SqlCommand cmd = new SqlCommand("SELECT OrderNumber, CustomerName, UserEmail, City, TotalAmount, PaymentMethod, OrderStatus, OrderDate FROM Orders ORDER BY OrderId DESC", con);
+                DataTable dtOrders = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dtOrders);
+                gvOrdersReport.DataSource = dtOrders;
+                gvOrdersReport.DataBind();
+
+                // Load products inventory
+                SqlCommand cmdProd = new SqlCommand("SELECT ProductId, Name, Category, Price, StockQuantity, CreatedDate FROM Products WHERE IsActive = 1 ORDER BY StockQuantity ASC", con);
+                DataTable dtProd = new DataTable();
+                SqlDataAdapter daProd = new SqlDataAdapter(cmdProd);
+                daProd.Fill(dtProd);
+                gvInventoryReport.DataSource = dtProd;
+                gvInventoryReport.DataBind();
+
+                con.Close();
             }
             catch (Exception ex)
             {

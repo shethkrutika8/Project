@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Web;
 using System.Web.UI;
@@ -8,6 +10,8 @@ namespace Project
 {
     public partial class Settings : System.Web.UI.Page
     {
+        string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Krutika_24SOECE11036_.NET\\Project\\App_Data\\Database1.mdf;Integrated Security=True";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -23,49 +27,40 @@ namespace Project
 
             try
             {
-                using (var con = DbHelper.GetConnection())
+                SqlConnection con = new SqlConnection(connectionString);
+                con.Open();
+
+                // Load from Register table
+                SqlCommand cmd = new SqlCommand("SELECT name, contact, city FROM Register WHERE email = '" + email + "'", con);
+                SqlDataReader r = cmd.ExecuteReader();
+                if (r.Read())
                 {
-                    con.Open();
-
-                    // Load from Register table
-                    using (var cmd = new SqlCommand("SELECT name, contact, city FROM Register WHERE email = @Email", con))
-                    {
-                        cmd.Parameters.AddWithValue("@Email", email);
-                        using (var r = cmd.ExecuteReader())
-                        {
-                            if (r.Read())
-                            {
-                                if (r["name"] != DBNull.Value) txtFullName.Text = r["name"].ToString();
-                                if (r["contact"] != DBNull.Value) txtContact.Text = r["contact"].ToString().Trim();
-                                if (r["city"] != DBNull.Value) txtCity.Text = r["city"].ToString();
-                            }
-                        }
-                    }
-
-                    // Load from UserSettings table
-                    using (var cmd = new SqlCommand("SELECT FullName, ContactNumber, ShippingAddress, City, EmailNotifications, SmsAlerts FROM UserSettings WHERE UserEmail = @Email", con))
-                    {
-                        cmd.Parameters.AddWithValue("@Email", email);
-                        using (var r = cmd.ExecuteReader())
-                        {
-                            if (r.Read())
-                            {
-                                if (r["FullName"] != DBNull.Value && !string.IsNullOrEmpty(r["FullName"].ToString()))
-                                    txtFullName.Text = r["FullName"].ToString();
-                                if (r["ContactNumber"] != DBNull.Value && !string.IsNullOrEmpty(r["ContactNumber"].ToString()))
-                                    txtContact.Text = r["ContactNumber"].ToString();
-                                if (r["City"] != DBNull.Value && !string.IsNullOrEmpty(r["City"].ToString()))
-                                    txtCity.Text = r["City"].ToString();
-                                if (r["ShippingAddress"] != DBNull.Value)
-                                    txtAddress.Text = r["ShippingAddress"].ToString();
-                                if (r["EmailNotifications"] != DBNull.Value)
-                                    chkEmailAlerts.Checked = Convert.ToBoolean(r["EmailNotifications"]);
-                                if (r["SmsAlerts"] != DBNull.Value)
-                                    chkSmsAlerts.Checked = Convert.ToBoolean(r["SmsAlerts"]);
-                            }
-                        }
-                    }
+                    if (r["name"] != DBNull.Value) txtFullName.Text = r["name"].ToString();
+                    if (r["contact"] != DBNull.Value) txtContact.Text = r["contact"].ToString().Trim();
+                    if (r["city"] != DBNull.Value) txtCity.Text = r["city"].ToString();
                 }
+                r.Close();
+
+                // Load from UserSettings table
+                SqlCommand cmdSettings = new SqlCommand("SELECT FullName, ContactNumber, ShippingAddress, City, EmailNotifications, SmsAlerts FROM UserSettings WHERE UserEmail = '" + email + "'", con);
+                SqlDataReader rSettings = cmdSettings.ExecuteReader();
+                if (rSettings.Read())
+                {
+                    if (rSettings["FullName"] != DBNull.Value && !string.IsNullOrEmpty(rSettings["FullName"].ToString()))
+                        txtFullName.Text = rSettings["FullName"].ToString();
+                    if (rSettings["ContactNumber"] != DBNull.Value && !string.IsNullOrEmpty(rSettings["ContactNumber"].ToString()))
+                        txtContact.Text = rSettings["ContactNumber"].ToString();
+                    if (rSettings["City"] != DBNull.Value && !string.IsNullOrEmpty(rSettings["City"].ToString()))
+                        txtCity.Text = rSettings["City"].ToString();
+                    if (rSettings["ShippingAddress"] != DBNull.Value)
+                        txtAddress.Text = rSettings["ShippingAddress"].ToString();
+                    if (rSettings["EmailNotifications"] != DBNull.Value)
+                        chkEmailAlerts.Checked = Convert.ToBoolean(rSettings["EmailNotifications"]);
+                    if (rSettings["SmsAlerts"] != DBNull.Value)
+                        chkSmsAlerts.Checked = Convert.ToBoolean(rSettings["SmsAlerts"]);
+                }
+                rSettings.Close();
+                con.Close();
             }
             catch (Exception ex)
             {
@@ -79,57 +74,34 @@ namespace Project
 
             try
             {
-                using (var con = DbHelper.GetConnection())
+                SqlConnection con = new SqlConnection(connectionString);
+                con.Open();
+
+                // Update Register table
+                SqlCommand regCmd = new SqlCommand("UPDATE Register SET name = '" + txtFullName.Text.Trim() + "', contact = '" + txtContact.Text.Trim() + "', city = '" + txtCity.Text.Trim() + "' WHERE email = '" + email + "'", con);
+                regCmd.ExecuteNonQuery();
+
+                // Upsert UserSettings table
+                SqlCommand checkCmd = new SqlCommand("SELECT COUNT(*) FROM UserSettings WHERE UserEmail = '" + email + "'", con);
+                int exists = Convert.ToInt32(checkCmd.ExecuteScalar());
+
+                if (exists > 0)
                 {
-                    con.Open();
-
-                    // Update Register table if user exists
-                    using (var regCmd = new SqlCommand("UPDATE Register SET name = @Name, contact = @Contact, city = @City WHERE email = @Email", con))
-                    {
-                        regCmd.Parameters.AddWithValue("@Name", txtFullName.Text.Trim());
-                        regCmd.Parameters.AddWithValue("@Contact", txtContact.Text.Trim());
-                        regCmd.Parameters.AddWithValue("@City", txtCity.Text.Trim());
-                        regCmd.Parameters.AddWithValue("@Email", email);
-                        regCmd.ExecuteNonQuery();
-                    }
-
-                    // Upsert UserSettings table
-                    int exists = 0;
-                    using (var checkCmd = new SqlCommand("SELECT COUNT(*) FROM UserSettings WHERE UserEmail = @Email", con))
-                    {
-                        checkCmd.Parameters.AddWithValue("@Email", email);
-                        exists = Convert.ToInt32(checkCmd.ExecuteScalar());
-                    }
-
-                    if (exists > 0)
-                    {
-                        string updateSql = "UPDATE UserSettings SET FullName = @Name, ContactNumber = @Contact, ShippingAddress = @Address, City = @City, UpdatedDate = GETDATE() WHERE UserEmail = @Email";
-                        using (var cmd = new SqlCommand(updateSql, con))
-                        {
-                            cmd.Parameters.AddWithValue("@Name", txtFullName.Text.Trim());
-                            cmd.Parameters.AddWithValue("@Contact", txtContact.Text.Trim());
-                            cmd.Parameters.AddWithValue("@Address", txtAddress.Text.Trim());
-                            cmd.Parameters.AddWithValue("@City", txtCity.Text.Trim());
-                            cmd.Parameters.AddWithValue("@Email", email);
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-                    else
-                    {
-                        string insertSql = "INSERT INTO UserSettings (UserEmail, FullName, ContactNumber, ShippingAddress, City, UpdatedDate) VALUES (@Email, @Name, @Contact, @Address, @City, GETDATE())";
-                        using (var cmd = new SqlCommand(insertSql, con))
-                        {
-                            cmd.Parameters.AddWithValue("@Email", email);
-                            cmd.Parameters.AddWithValue("@Name", txtFullName.Text.Trim());
-                            cmd.Parameters.AddWithValue("@Contact", txtContact.Text.Trim());
-                            cmd.Parameters.AddWithValue("@Address", txtAddress.Text.Trim());
-                            cmd.Parameters.AddWithValue("@City", txtCity.Text.Trim());
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
+                    string updateSql = "UPDATE UserSettings SET FullName = '" + txtFullName.Text.Trim() + "', ContactNumber = '" + txtContact.Text.Trim() + "', ShippingAddress = '" + txtAddress.Text.Trim() + "', City = '" + txtCity.Text.Trim() + "', UpdatedDate = GETDATE() WHERE UserEmail = '" + email + "'";
+                    SqlCommand cmd = new SqlCommand(updateSql, con);
+                    cmd.ExecuteNonQuery();
+                }
+                else
+                {
+                    string insertSql = "INSERT INTO UserSettings (UserEmail, FullName, ContactNumber, ShippingAddress, City, UpdatedDate) VALUES ('" + email + "', '" + txtFullName.Text.Trim() + "', '" + txtContact.Text.Trim() + "', '" + txtAddress.Text.Trim() + "', '" + txtCity.Text.Trim() + "', GETDATE())";
+                    SqlCommand cmd = new SqlCommand(insertSql, con);
+                    cmd.ExecuteNonQuery();
                 }
 
+                con.Close();
+
                 ShowAlert("Profile details updated successfully in the database!", true);
+                Response.Write("<script>alert('Profile details updated successfully!');</script>");
             }
             catch (Exception ex)
             {
@@ -159,31 +131,27 @@ namespace Project
 
             try
             {
-                using (var con = DbHelper.GetConnection())
+                SqlConnection con = new SqlConnection(connectionString);
+                con.Open();
+
+                SqlCommand checkCmd = new SqlCommand("SELECT COUNT(*) FROM Register WHERE email = '" + email + "' AND password = '" + txtCurrentPassword.Text + "'", con);
+                int valid = Convert.ToInt32(checkCmd.ExecuteScalar());
+
+                if (valid == 0)
                 {
-                    con.Open();
-                    using (var checkCmd = new SqlCommand("SELECT COUNT(*) FROM Register WHERE email = @Email AND password = @Password", con))
-                    {
-                        checkCmd.Parameters.AddWithValue("@Email", email);
-                        checkCmd.Parameters.AddWithValue("@Password", txtCurrentPassword.Text);
-                        int valid = Convert.ToInt32(checkCmd.ExecuteScalar());
-
-                        if (valid == 0)
-                        {
-                            ShowAlert("Current password is incorrect.", false);
-                            return;
-                        }
-                    }
-
-                    using (var updateCmd = new SqlCommand("UPDATE Register SET password = @NewPass WHERE email = @Email", con))
-                    {
-                        updateCmd.Parameters.AddWithValue("@NewPass", txtNewPassword.Text);
-                        updateCmd.Parameters.AddWithValue("@Email", email);
-                        updateCmd.ExecuteNonQuery();
-                    }
+                    con.Close();
+                    ShowAlert("Current password is incorrect.", false);
+                    Response.Write("<script>alert('Current password is incorrect.');</script>");
+                    return;
                 }
 
+                SqlCommand updateCmd = new SqlCommand("UPDATE Register SET password = '" + txtNewPassword.Text + "' WHERE email = '" + email + "'", con);
+                updateCmd.ExecuteNonQuery();
+                con.Close();
+
                 ShowAlert("Password changed successfully!", true);
+                Response.Write("<script>alert('Password changed successfully!');</script>");
+
                 txtCurrentPassword.Text = "";
                 txtNewPassword.Text = "";
                 txtConfirmPassword.Text = "";
@@ -200,39 +168,30 @@ namespace Project
 
             try
             {
-                using (var con = DbHelper.GetConnection())
-                {
-                    con.Open();
-                    int exists = 0;
-                    using (var checkCmd = new SqlCommand("SELECT COUNT(*) FROM UserSettings WHERE UserEmail = @Email", con))
-                    {
-                        checkCmd.Parameters.AddWithValue("@Email", email);
-                        exists = Convert.ToInt32(checkCmd.ExecuteScalar());
-                    }
+                SqlConnection con = new SqlConnection(connectionString);
+                con.Open();
 
-                    if (exists > 0)
-                    {
-                        using (var cmd = new SqlCommand("UPDATE UserSettings SET EmailNotifications = @EmailAlerts, SmsAlerts = @SmsAlerts, UpdatedDate = GETDATE() WHERE UserEmail = @Email", con))
-                        {
-                            cmd.Parameters.AddWithValue("@EmailAlerts", chkEmailAlerts.Checked);
-                            cmd.Parameters.AddWithValue("@SmsAlerts", chkSmsAlerts.Checked);
-                            cmd.Parameters.AddWithValue("@Email", email);
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-                    else
-                    {
-                        using (var cmd = new SqlCommand("INSERT INTO UserSettings (UserEmail, EmailNotifications, SmsAlerts, UpdatedDate) VALUES (@Email, @EmailAlerts, @SmsAlerts, GETDATE())", con))
-                        {
-                            cmd.Parameters.AddWithValue("@Email", email);
-                            cmd.Parameters.AddWithValue("@EmailAlerts", chkEmailAlerts.Checked);
-                            cmd.Parameters.AddWithValue("@SmsAlerts", chkSmsAlerts.Checked);
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
+                SqlCommand checkCmd = new SqlCommand("SELECT COUNT(*) FROM UserSettings WHERE UserEmail = '" + email + "'", con);
+                int exists = Convert.ToInt32(checkCmd.ExecuteScalar());
+
+                int emailAlerts = chkEmailAlerts.Checked ? 1 : 0;
+                int smsAlerts = chkSmsAlerts.Checked ? 1 : 0;
+
+                if (exists > 0)
+                {
+                    SqlCommand cmd = new SqlCommand("UPDATE UserSettings SET EmailNotifications = " + emailAlerts + ", SmsAlerts = " + smsAlerts + ", UpdatedDate = GETDATE() WHERE UserEmail = '" + email + "'", con);
+                    cmd.ExecuteNonQuery();
+                }
+                else
+                {
+                    SqlCommand cmd = new SqlCommand("INSERT INTO UserSettings (UserEmail, EmailNotifications, SmsAlerts, UpdatedDate) VALUES ('" + email + "', " + emailAlerts + ", " + smsAlerts + ", GETDATE())", con);
+                    cmd.ExecuteNonQuery();
                 }
 
+                con.Close();
+
                 ShowAlert("Preferences saved successfully in database!", true);
+                Response.Write("<script>alert('Preferences saved successfully!');</script>");
             }
             catch (Exception ex)
             {

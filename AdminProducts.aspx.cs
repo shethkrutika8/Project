@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI;
@@ -9,6 +10,8 @@ namespace Project
 {
     public partial class AdminProducts : Page
     {
+        string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Krutika_24SOECE11036_.NET\\Project\\App_Data\\Database1.mdf;Integrated Security=True";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             // Protect admin page
@@ -33,7 +36,16 @@ namespace Project
         {
             try
             {
-                DataTable dt = DbHelper.GetAllProductsDataTable();
+                SqlConnection con = new SqlConnection(connectionString);
+                string query = "select ProductId, Name, Category, Price, ImageUrl, Description, StockQuantity, IsActive, CreatedDate from Products order by ProductId desc";
+                SqlCommand cmd = new SqlCommand(query, con);
+                con.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                con.Close();
+
                 gvProducts.DataSource = dt;
                 gvProducts.DataBind();
                 litProductCount.Text = dt.Rows.Count.ToString();
@@ -64,13 +76,13 @@ namespace Project
 
             if (!decimal.TryParse(txtPrice.Text.Trim(), out price) || price < 0)
             {
-                ShowAlert("Price must be a valid non-negative number.", "danger");
+                Response.Write("<script>alert('Price must be a valid non-negative number.');</script>");
                 return;
             }
 
             if (!int.TryParse(txtStock.Text.Trim(), out stock) || stock < 0)
             {
-                ShowAlert("Stock quantity must be a non-negative integer.", "danger");
+                Response.Write("<script>alert('Stock quantity must be a non-negative integer.');</script>");
                 return;
             }
 
@@ -79,46 +91,28 @@ namespace Project
 
             try
             {
-                using (var con = DbHelper.GetConnection())
+                SqlConnection con = new SqlConnection(connectionString);
+                con.Open();
+
+                if (editId > 0)
                 {
-                    con.Open();
-                    if (editId > 0)
-                    {
-                        // Update existing product
-                        string updateSql = @"UPDATE Products 
-                                             SET Name = @Name, Category = @Category, Price = @Price, 
-                                                 Description = @Desc, StockQuantity = @Stock, ImageUrl = @Img 
-                                             WHERE ProductId = @Id";
-                        using (var cmd = new SqlCommand(updateSql, con))
-                        {
-                            cmd.Parameters.AddWithValue("@Name", name);
-                            cmd.Parameters.AddWithValue("@Category", category);
-                            cmd.Parameters.AddWithValue("@Price", price);
-                            cmd.Parameters.AddWithValue("@Desc", description);
-                            cmd.Parameters.AddWithValue("@Stock", stock);
-                            cmd.Parameters.AddWithValue("@Img", imageUrl);
-                            cmd.Parameters.AddWithValue("@Id", editId);
-                            cmd.ExecuteNonQuery();
-                        }
-                        ShowAlert("Product '" + name + "' updated successfully in the database!", "success");
-                    }
-                    else
-                    {
-                        // Insert new product
-                        string insertSql = @"INSERT INTO Products (Name, Category, Price, Description, StockQuantity, ImageUrl, IsActive, CreatedDate) 
-                                             VALUES (@Name, @Category, @Price, @Desc, @Stock, @Img, 1, GETDATE())";
-                        using (var cmd = new SqlCommand(insertSql, con))
-                        {
-                            cmd.Parameters.AddWithValue("@Name", name);
-                            cmd.Parameters.AddWithValue("@Category", category);
-                            cmd.Parameters.AddWithValue("@Price", price);
-                            cmd.Parameters.AddWithValue("@Desc", description);
-                            cmd.Parameters.AddWithValue("@Stock", stock);
-                            cmd.Parameters.AddWithValue("@Img", imageUrl);
-                            cmd.ExecuteNonQuery();
-                        }
-                        ShowAlert("New product '" + name + "' added successfully to database!", "success");
-                    }
+                    // Update existing product
+                    string updateSql = "update Products set Name='" + name + "', Category='" + category + "', Price=" + price + ", Description='" + description + "', StockQuantity=" + stock + ", ImageUrl='" + imageUrl + "' where ProductId=" + editId;
+                    SqlCommand cmd = new SqlCommand(updateSql, con);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+
+                    Response.Write("<script>alert('Product updated successfully!');</script>");
+                }
+                else
+                {
+                    // Insert new product
+                    string insertSql = "insert into Products (Name, Category, Price, Description, StockQuantity, ImageUrl, IsActive, CreatedDate) values ('" + name + "','" + category + "'," + price + ",'" + description + "'," + stock + ",'" + imageUrl + "', 1, GETDATE())";
+                    SqlCommand cmd = new SqlCommand(insertSql, con);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+
+                    Response.Write("<script>alert('Product added successfully!');</script>");
                 }
 
                 ResetForm();
@@ -157,16 +151,14 @@ namespace Project
             {
                 try
                 {
-                    using (var con = DbHelper.GetConnection())
-                    {
-                        con.Open();
-                        using (var cmd = new SqlCommand("DELETE FROM Products WHERE ProductId = @Id", con))
-                        {
-                            cmd.Parameters.AddWithValue("@Id", productId);
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-                    ShowAlert("Product #" + productId + " removed from the database.", "info");
+                    SqlConnection con = new SqlConnection(connectionString);
+                    string query = "delete from Products where ProductId=" + productId;
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+
+                    Response.Write("<script>alert('Product deleted successfully!');</script>");
                     ResetForm();
                     LoadProductsGrid();
                 }

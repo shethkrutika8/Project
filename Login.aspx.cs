@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using Project.Models;
 
@@ -23,62 +26,46 @@ namespace Project
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            // ASP.NET server-side validation must pass first — NO JavaScript
             if (!Page.IsValid)
                 return;
 
             string email = txtEmail.Text.Trim();
             string password = txtPassword.Text;
 
-            try
+            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Krutika_24SOECE11036_.NET\\Project\\App_Data\\Database1.mdf;Integrated Security=True";
+
+            SqlConnection con = new SqlConnection(connectionString);
+            string query = "select role from Register where email = '" + email + "' and password = '" + password + "'";
+            SqlCommand cmd = new SqlCommand(query, con);
+            con.Open();
+
+            object roleObj = cmd.ExecuteScalar();
+
+            if (roleObj != null)
             {
-                using (var con = DbHelper.GetConnection())
+                string role = roleObj.ToString().Trim();
+
+                string guestEmail = "guest_" + Session.SessionID.Substring(0, Math.Min(8, Session.SessionID.Length)) + "@agriculture.com";
+                DbHelper.MigrateGuestItems(guestEmail, email);
+
+                Session["UserEmail"] = email;
+                con.Close();
+
+                if (string.Equals(role, "Admin", StringComparison.OrdinalIgnoreCase) || email.ToLower().Contains("admin"))
                 {
-                    con.Open();
-                    string query = "SELECT role FROM Register WHERE email = @Email AND password = @Password";
-                    using (var cmd = new SqlCommand(query, con))
-                    {
-                        cmd.Parameters.AddWithValue("@Email", email);
-                        cmd.Parameters.AddWithValue("@Password", password);
-
-                        object roleObj = cmd.ExecuteScalar();
-                        if (roleObj != null)
-                        {
-                            string role = roleObj.ToString().Trim();
-
-                            // Migrate guest cart/wishlist to the authenticated user account
-                            string guestEmail = "guest_" + Session.SessionID.Substring(0, Math.Min(8, Session.SessionID.Length)) + "@agriculture.com";
-                            DbHelper.MigrateGuestItems(guestEmail, email);
-
-                            Session["UserEmail"] = email;
-
-                            // When Admin logs in, redirect to Admin pages; When User logs in, redirect to User pages
-                            if (string.Equals(role, "Admin", StringComparison.OrdinalIgnoreCase) || email.ToLower().Contains("admin"))
-                            {
-                                Session["Role"] = "Admin";
-                                Response.Redirect("AdminDashboard.aspx", false);
-                            }
-                            else
-                            {
-                                Session["Role"] = "User";
-                                Response.Redirect("Dashboard.aspx", false);
-                            }
-                            Context.ApplicationInstance.CompleteRequest();
-                        }
-                        else
-                        {
-                            // ASP.NET Panel-based server-side error — no JavaScript
-                            pnlLoginError.Visible = true;
-                            litLoginError.Text = "Invalid email address or password. Please check your credentials and try again.";
-                        }
-                    }
+                    Session["Role"] = "Admin";
+                    Response.Write("<script>alert('Login Successful! Welcome Administrator.');window.location='AdminDashboard.aspx';</script>");
+                }
+                else
+                {
+                    Session["Role"] = "User";
+                    Response.Write("<script>alert('Login Successful! Welcome.');window.location='Dashboard.aspx';</script>");
                 }
             }
-            catch (Exception ex)
+            else
             {
-                pnlLoginError.Visible = true;
-                litLoginError.Text = "A database error occurred. Please try again later.";
-                System.Diagnostics.Debug.WriteLine("Login error: " + ex.Message);
+                con.Close();
+                Response.Write("<script>alert('Invalid Email or Password. Please try again.');</script>");
             }
         }
     }

@@ -12,8 +12,8 @@ namespace Project
     {
         public string SelectedCategory
         {
-            get  => ViewState["SelectedCategory"] != null ? ViewState["SelectedCategory"].ToString() : "all";
-            set  => ViewState["SelectedCategory"] = value;
+            get => ViewState["SelectedCategory"] != null ? ViewState["SelectedCategory"].ToString() : "all";
+            set => ViewState["SelectedCategory"] = value;
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -34,14 +34,14 @@ namespace Project
         private void HighlightCategoryTab()
         {
             string cat = SelectedCategory.ToLower();
-            btnCatAll.CssClass         = "cat-tab" + (cat == "all"         ? " active" : "");
-            btnCatPlants.CssClass      = "cat-tab" + (cat == "plants"      ? " active" : "");
-            btnCatSeeds.CssClass       = "cat-tab" + (cat == "seeds"       ? " active" : "");
+            btnCatAll.CssClass = "cat-tab" + (cat == "all" ? " active" : "");
+            btnCatPlants.CssClass = "cat-tab" + (cat == "plants" ? " active" : "");
+            btnCatSeeds.CssClass = "cat-tab" + (cat == "seeds" ? " active" : "");
             btnCatFertilizers.CssClass = "cat-tab" + (cat == "fertilizers" ? " active" : "");
-            btnCatPots.CssClass        = "cat-tab" + (cat == "pots"        ? " active" : "");
-            btnCatTools.CssClass       = "cat-tab" + (cat == "tools"       ? " active" : "");
-            btnCatCare.CssClass        = "cat-tab" + (cat == "care"        ? " active" : "");
-            btnCatGifts.CssClass       = "cat-tab" + (cat == "gifts"       ? " active" : "");
+            btnCatPots.CssClass = "cat-tab" + (cat == "pots" ? " active" : "");
+            btnCatTools.CssClass = "cat-tab" + (cat == "tools" ? " active" : "");
+            btnCatCare.CssClass = "cat-tab" + (cat == "care" ? " active" : "");
+            btnCatGifts.CssClass = "cat-tab" + (cat == "gifts" ? " active" : "");
         }
 
         private void BindProducts()
@@ -53,11 +53,11 @@ namespace Project
             if (products.Count == 0)
             {
                 // Show empty state message if no products in DB for selected category
-                pnlAlert.CssClass  = "alert alert-info d-flex align-items-center justify-content-between p-3 mb-4 rounded-3 shadow-sm";
-                litAlertMsg.Text   = "No products found for the selected category. Please select a different category or check back later.";
-                pnlAlert.Visible   = true;
+                pnlAlert.CssClass = "alert alert-info d-flex align-items-center justify-content-between p-3 mb-4 rounded-3 shadow-sm";
+                litAlertMsg.Text = "No products found for the selected category. Please select a different category or check back later.";
+                pnlAlert.Visible = true;
             }
-
+                
             rptProducts.DataSource = products;
             rptProducts.DataBind();
         }
@@ -66,8 +66,8 @@ namespace Project
         {
             if (sender is LinkButton btn)
             {
-                SelectedCategory     = btn.CommandArgument;
-                pnlAlert.Visible     = false;
+                SelectedCategory = btn.CommandArgument;
+                pnlAlert.Visible = false;
                 HighlightCategoryTab();
                 BindProducts();
             }
@@ -82,8 +82,8 @@ namespace Project
             if (product == null)
             {
                 pnlAlert.CssClass = "alert alert-danger d-flex align-items-center justify-content-between p-3 mb-4 rounded-3 shadow-sm";
-                litAlertMsg.Text  = "Product not found in the database. Please refresh the page.";
-                pnlAlert.Visible  = true;
+                litAlertMsg.Text = "Product not found in the database. Please refresh the page.";
+                pnlAlert.Visible = true;
                 return;
             }
 
@@ -95,15 +95,16 @@ namespace Project
                 if (success)
                 {
                     pnlAlert.CssClass = "alert alert-success d-flex align-items-center justify-content-between p-3 mb-4 rounded-3 shadow-sm";
-                    litAlertMsg.Text  = $"<strong>Added to Cart!</strong> '{product.Name}' (&#8377;{product.Price:N0}) has been added to your cart.";
-                    pnlAlert.Visible  = true;
+                    litAlertMsg.Text = $"<strong>Added to Cart!</strong> '{product.Name}' (&#8377;{product.Price:N0}) has been added to your cart.";
+                    pnlAlert.Visible = true;
                     (Master as Site1)?.RefreshCartAndWishlistCounts();
+                    Response.Write("<script>alert('Added to Cart Successfully');</script>");
                 }
                 else
                 {
                     pnlAlert.CssClass = "alert alert-danger d-flex align-items-center justify-content-between p-3 mb-4 rounded-3 shadow-sm";
-                    litAlertMsg.Text  = $"Failed to add '{product.Name}' to cart. Please try again.";
-                    pnlAlert.Visible  = true;
+                    litAlertMsg.Text = $"Failed to add '{product.Name}' to cart. Please try again.";
+                    pnlAlert.Visible = true;
                 }
             }
             else if (e.CommandName == "AddToWishlist")
@@ -112,17 +113,18 @@ namespace Project
                 if (success)
                 {
                     pnlAlert.CssClass = "alert alert-info d-flex align-items-center justify-content-between p-3 mb-4 rounded-3 shadow-sm";
-                    litAlertMsg.Text  = $"<strong>Added to Wishlist!</strong> '{product.Name}' has been saved to your wishlist.";
-                    pnlAlert.Visible  = true;
+                    litAlertMsg.Text = $"<strong>Added to Wishlist!</strong> '{product.Name}' has been saved to your wishlist.";
+                    pnlAlert.Visible = true;
                     (Master as Site1)?.RefreshCartAndWishlistCounts();
+                    Response.Write("<script>alert('Added to Wishlist Successfully');</script>");
                 }
                 else
                 {
                     pnlAlert.CssClass = "alert alert-danger d-flex align-items-center justify-content-between p-3 mb-4 rounded-3 shadow-sm";
-                    litAlertMsg.Text  = $"Failed to add '{product.Name}' to wishlist.";
-                    pnlAlert.Visible  = true;
+                    litAlertMsg.Text = $"Failed to add '{product.Name}' to wishlist.";
+                    pnlAlert.Visible = true;
                 }
             }
         }
-    }
+}
 }
