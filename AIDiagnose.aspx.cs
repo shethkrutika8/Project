@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -506,11 +506,11 @@ namespace Project
             pnlManualEntry.Visible = !pnlManualEntry.Visible;
             if (pnlManualEntry.Visible)
             {
-                btnToggleManual.Text = "✖ Cancel Manual Form";
+                btnToggleManual.Text = "âœ– Cancel Manual Form";
             }
             else
             {
-                btnToggleManual.Text = "➕ Add New Disease to Database";
+                btnToggleManual.Text = "âž• Add New Disease to Database";
             }
         }
 
@@ -563,11 +563,10 @@ namespace Project
                 txtNewPrice.Text = "199";
 
                 pnlManualEntry.Visible = false;
-                btnToggleManual.Text = "➕ Add New Disease to Database";
+                btnToggleManual.Text = "âž• Add New Disease to Database";
 
                 litAlertMsg.Text = "New plant disease condition added to SQL Server database successfully!";
                 pnlAlert.Visible = true;
-                Response.Write("<script>alert('Plant disease record saved successfully!');</script>");
 
                 LoadDiseaseCatalog();
                 PopulatePlantDropdown();
@@ -582,7 +581,7 @@ namespace Project
         protected void btnCancelManual_Click(object sender, EventArgs e)
         {
             pnlManualEntry.Visible = false;
-            btnToggleManual.Text = "➕ Add New Disease to Database";
+            btnToggleManual.Text = "âž• Add New Disease to Database";
         }
 
         protected void rptDiseaseCatalog_ItemCommand(object source, RepeaterCommandEventArgs e)
@@ -606,7 +605,6 @@ namespace Project
 
                     litAlertMsg.Text = "Plant disease record #" + diseaseId + " removed from database.";
                     pnlAlert.Visible = true;
-                    Response.Write("<script>alert('Plant disease record deleted successfully!');</script>");
 
                     LoadDiseaseCatalog();
                     PopulatePlantDropdown();

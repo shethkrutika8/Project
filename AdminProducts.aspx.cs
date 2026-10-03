@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -76,13 +76,13 @@ namespace Project
 
             if (!decimal.TryParse(txtPrice.Text.Trim(), out price) || price < 0)
             {
-                Response.Write("<script>alert('Price must be a valid non-negative number.');</script>");
+                ShowAlert("Price must be a valid non-negative number.", "danger");
                 return;
             }
 
             if (!int.TryParse(txtStock.Text.Trim(), out stock) || stock < 0)
             {
-                Response.Write("<script>alert('Stock quantity must be a non-negative integer.');</script>");
+                ShowAlert("Stock quantity must be a non-negative integer.", "danger");
                 return;
             }
 
@@ -101,8 +101,7 @@ namespace Project
                     SqlCommand cmd = new SqlCommand(updateSql, con);
                     cmd.ExecuteNonQuery();
                     con.Close();
-
-                    Response.Write("<script>alert('Product updated successfully!');</script>");
+                    ShowAlert("Product updated successfully!", "success");
                 }
                 else
                 {
@@ -111,8 +110,7 @@ namespace Project
                     SqlCommand cmd = new SqlCommand(insertSql, con);
                     cmd.ExecuteNonQuery();
                     con.Close();
-
-                    Response.Write("<script>alert('Product added successfully!');</script>");
+                    ShowAlert("Product added successfully!", "success");
                 }
 
                 ResetForm();
@@ -157,8 +155,7 @@ namespace Project
                     con.Open();
                     cmd.ExecuteNonQuery();
                     con.Close();
-
-                    Response.Write("<script>alert('Product deleted successfully!');</script>");
+                    ShowAlert("Product deleted successfully!", "success");
                     ResetForm();
                     LoadProductsGrid();
                 }

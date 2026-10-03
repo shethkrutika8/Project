@@ -101,7 +101,6 @@ namespace Project
                 con.Close();
 
                 ShowAlert("Profile details updated successfully in the database!", true);
-                Response.Write("<script>alert('Profile details updated successfully!');</script>");
             }
             catch (Exception ex)
             {
@@ -141,7 +140,6 @@ namespace Project
                 {
                     con.Close();
                     ShowAlert("Current password is incorrect.", false);
-                    Response.Write("<script>alert('Current password is incorrect.');</script>");
                     return;
                 }
 
@@ -150,7 +148,6 @@ namespace Project
                 con.Close();
 
                 ShowAlert("Password changed successfully!", true);
-                Response.Write("<script>alert('Password changed successfully!');</script>");
 
                 txtCurrentPassword.Text = "";
                 txtNewPassword.Text = "";
@@ -191,7 +188,6 @@ namespace Project
                 con.Close();
 
                 ShowAlert("Preferences saved successfully in database!", true);
-                Response.Write("<script>alert('Preferences saved successfully!');</script>");
             }
             catch (Exception ex)
             {

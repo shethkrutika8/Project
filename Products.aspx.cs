@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -46,7 +46,7 @@ namespace Project
 
         private void BindProducts()
         {
-            // Fetch products from the actual SQL Server database — NOT hardcoded
+            // Fetch products from the actual SQL Server database â€” NOT hardcoded
             string cat = SelectedCategory;
             List<ProductItem> products = DbHelper.GetProductsFromDB(cat);
 
@@ -77,7 +77,7 @@ namespace Project
         {
             int productId = Convert.ToInt32(e.CommandArgument);
 
-            // Fetch product from SQL Server database by ID — not hardcoded
+            // Fetch product from SQL Server database by ID â€” not hardcoded
             ProductItem product = DbHelper.GetProductById(productId);
             if (product == null)
             {
@@ -98,7 +98,6 @@ namespace Project
                     litAlertMsg.Text = $"<strong>Added to Cart!</strong> '{product.Name}' (&#8377;{product.Price:N0}) has been added to your cart.";
                     pnlAlert.Visible = true;
                     (Master as Site1)?.RefreshCartAndWishlistCounts();
-                    Response.Write("<script>alert('Added to Cart Successfully');</script>");
                 }
                 else
                 {
@@ -116,7 +115,6 @@ namespace Project
                     litAlertMsg.Text = $"<strong>Added to Wishlist!</strong> '{product.Name}' has been saved to your wishlist.";
                     pnlAlert.Visible = true;
                     (Master as Site1)?.RefreshCartAndWishlistCounts();
-                    Response.Write("<script>alert('Added to Wishlist Successfully');</script>");
                 }
                 else
                 {

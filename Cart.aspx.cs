@@ -115,7 +115,7 @@ namespace Project
                 {
                     SqlCommand delCmd = new SqlCommand("DELETE FROM Cart WHERE CartId = " + cartId + " AND UserEmail = '" + email + "'", con);
                     delCmd.ExecuteNonQuery();
-                    Response.Write("<script>alert('Item removed from your cart.');</script>");
+                    ShowAlert("Item removed from your cart.", true);
                 }
 
                 con.Close();
@@ -138,7 +138,7 @@ namespace Project
                 cmd.ExecuteNonQuery();
                 con.Close();
 
-                Response.Write("<script>alert('Cart has been cleared.');</script>");
+                ShowAlert("Cart has been cleared.", true);
                 LoadCartItems();
             }
             catch (Exception ex)

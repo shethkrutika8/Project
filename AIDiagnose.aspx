@@ -1,4 +1,4 @@
-<%@ Page Title="AI Plant Doctor - AgriCulture" Language="C#" MasterPageFile="~/Site1.Master"
+﻿<%@ Page Title="AI Plant Doctor - AgriCulture" Language="C#" MasterPageFile="~/Site1.Master"
     AutoEventWireup="true"
     CodeBehind="AIDiagnose.aspx.cs"
     Inherits="Project.AIDiagnose" %>
@@ -170,9 +170,9 @@
                         <asp:HiddenField ID="hfDiagnosedMedicineImage" runat="server" />
 
                         <div class="d-flex gap-2">
-                            <asp:Button ID="btnAddToCart" runat="server" Text="🛒 Add to Cart"
+                            <asp:Button ID="btnAddToCart" runat="server" Text="ðŸ›’ Add to Cart"
                                 OnClick="btnAddToCart_Click" CssClass="btn-cart-sm" CausesValidation="false" />
-                            <asp:Button ID="btnAddToWishlist" runat="server" Text="♥ Wishlist"
+                            <asp:Button ID="btnAddToWishlist" runat="server" Text="â™¥ Wishlist"
                                 OnClick="btnAddToWishlist_Click" CssClass="btn-wish-sm" CausesValidation="false" />
                         </div>
                     </div>
@@ -306,7 +306,7 @@
                         <asp:Literal ID="litRecordCount" runat="server">0</asp:Literal> Records
                     </span>
                 </span>
-                <asp:Button ID="btnToggleManual" runat="server" Text="➕ Add New Disease to Database"
+                <asp:Button ID="btnToggleManual" runat="server" Text="âž• Add New Disease to Database"
                     OnClick="btnToggleManual_Click" CssClass="btn-outline-green" CausesValidation="false" />
             </div>
 
@@ -405,7 +405,7 @@
                     </div>
 
                     <div class="col-12 d-flex gap-2 mt-3">
-                        <asp:Button ID="btnSaveManual" runat="server" Text="💾 Save Record to Database"
+                        <asp:Button ID="btnSaveManual" runat="server" Text="ðŸ’¾ Save Record to Database"
                             OnClick="btnSaveManual_Click" ValidationGroup="vgManualDisease"
                             CssClass="btn btn-sm btn-success fw-bold px-3" />
                         <asp:Button ID="btnCancelManual" runat="server" Text="Cancel"
@@ -450,7 +450,7 @@
                                 <asp:LinkButton ID="lnkDeleteRow" runat="server"
                                     CommandName="DeleteRow" CommandArgument='<%# Eval("DiseaseId") %>'
                                     CssClass="btn-del-pill"
-                                    OnClientClick="return confirm('Delete this plant disease record from database?');"
+                                    
                                     title="Delete from Database">
                                     <i class="fa-solid fa-trash"></i>
                                 </asp:LinkButton>

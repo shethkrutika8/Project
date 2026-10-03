@@ -53,7 +53,8 @@ namespace Project
             if (count > 0)
             {
                 con.Close();
-                Response.Write("<script>alert('An account with this email already exists!');</script>");
+                pnlRegisterError.Visible = true;
+                litRegisterError.Text = "An account with this email already exists!";
                 return;
             }
 
@@ -61,9 +62,9 @@ namespace Project
             SqlCommand cmd = new SqlCommand(query, con);
 
             cmd.ExecuteNonQuery();
-            Response.Write("<script>alert('Registered Successfully');window.location='Login.aspx';</script>");
-
             con.Close();
+
+            Response.Redirect("Login.aspx", false);
         }
 
         protected void Female_Btn_CheckedChanged(object sender, EventArgs e)

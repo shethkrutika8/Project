@@ -54,18 +54,19 @@ namespace Project
                 if (string.Equals(role, "Admin", StringComparison.OrdinalIgnoreCase) || email.ToLower().Contains("admin"))
                 {
                     Session["Role"] = "Admin";
-                    Response.Write("<script>alert('Login Successful! Welcome Administrator.');window.location='AdminDashboard.aspx';</script>");
+                    Response.Redirect("AdminDashboard.aspx", false);
                 }
                 else
                 {
                     Session["Role"] = "User";
-                    Response.Write("<script>alert('Login Successful! Welcome.');window.location='Dashboard.aspx';</script>");
+                    Response.Redirect("Dashboard.aspx", false);
                 }
             }
             else
             {
                 con.Close();
-                Response.Write("<script>alert('Invalid Email or Password. Please try again.');</script>");
+                pnlLoginError.Visible = true;
+                litLoginError.Text = "Invalid Email or Password. Please try again.";
             }
         }
     }

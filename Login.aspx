@@ -68,7 +68,7 @@
                                 TextMode="Password"
                                 CssClass="agri-input"
                                 placeholder="Enter your password"></asp:TextBox>
-                            <i class="fa-solid fa-eye agri-eye" onclick="togglePassword()" title="Show/Hide Password"></i>
+                            <i class="fa-solid fa-lock agri-eye" title="Password"></i>
                         </div>
                         <asp:RequiredFieldValidator
                             ID="RequiredFieldValidator2"
@@ -225,22 +225,5 @@
         </section>
 
     </div>
-
-    <!-- Password Toggle Script -->
-    <script type="text/javascript">
-        function togglePassword() {
-            var box = document.getElementById('<%= txtPassword.ClientID %>');
-            var eye = document.querySelector('.agri-eye');
-            if (box.type === 'password') {
-                box.type = 'text';
-                eye.classList.remove('fa-eye');
-                eye.classList.add('fa-eye-slash');
-            } else {
-                box.type = 'password';
-                eye.classList.remove('fa-eye-slash');
-                eye.classList.add('fa-eye');
-            }
-        }
-    </script>
 
 </asp:Content>

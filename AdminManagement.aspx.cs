@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -80,7 +80,7 @@ namespace Project
             if (count > 0)
             {
                 con.Close();
-                Response.Write("<script>alert('Account with this email already exists!');</script>");
+                ShowAlert("Account with this email already exists!", "danger");
                 return;
             }
 
@@ -88,8 +88,7 @@ namespace Project
             SqlCommand cmd = new SqlCommand(query, con);
             cmd.ExecuteNonQuery();
             con.Close();
-
-            Response.Write("<script>alert('User Account Created Successfully');</script>");
+            ShowAlert("User Account Created Successfully", "success");
 
             txtAdminName.Text = "";
             txtAdminEmail.Text = "";
@@ -115,8 +114,7 @@ namespace Project
                     con.Open();
                     cmd.ExecuteNonQuery();
                     con.Close();
-
-                    Response.Write("<script>alert('User role updated to " + newRole + "');</script>");
+                    ShowAlert("User role updated to " + newRole, "success");
                     LoadUsersGrid();
                 }
             }
@@ -130,8 +128,7 @@ namespace Project
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
-
-                Response.Write("<script>alert('User Deleted Successfully');</script>");
+                ShowAlert("User Deleted Successfully", "success");
                 LoadUsersGrid();
             }
         }

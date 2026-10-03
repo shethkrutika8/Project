@@ -34,12 +34,16 @@ namespace Project
             if (count > 0)
             {
                 con.Close();
-                Response.Write("<script>alert('Password reset link has been sent to your email.');window.location='Login.aspx';</script>");
+                pnlForgotAlert.Visible = true;
+                pnlForgotAlert.CssClass = "alert alert-success py-2 my-2";
+                litForgotAlert.Text = "Password reset link has been sent to your email address.";
             }
             else
             {
                 con.Close();
-                Response.Write("<script>alert('Email address not found in our records.');</script>");
+                pnlForgotAlert.Visible = true;
+                pnlForgotAlert.CssClass = "alert alert-danger py-2 my-2";
+                litForgotAlert.Text = "Email address not found in our records.";
             }
         }
     }

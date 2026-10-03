@@ -93,7 +93,7 @@ namespace Project
                         SqlCommand delCmd = new SqlCommand("DELETE FROM Wishlist WHERE WishlistId = " + wishlistId + " AND UserEmail = '" + email + "'", con);
                         delCmd.ExecuteNonQuery();
 
-                        Response.Write("<script>alert('" + productName + " moved to your shopping cart!');</script>");
+                        ShowAlert(productName + " moved to your shopping cart!", true);
                     }
                     con.Close();
                 }
@@ -105,7 +105,7 @@ namespace Project
                     delCmd.ExecuteNonQuery();
                     con.Close();
 
-                    Response.Write("<script>alert('Item removed from your wishlist.');</script>");
+                    ShowAlert("Item removed from your wishlist.", true);
                 }
 
                 LoadWishlist();
