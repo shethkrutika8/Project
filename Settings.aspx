@@ -86,29 +86,56 @@
             <h4 class="settings-card-title">
                 <i class="fa-solid fa-user text-success"></i> Personal Profile & Delivery Defaults
             </h4>
+            
+            <!-- ASP.NET Server-Side Validation Summary (NO JavaScript) -->
+            <asp:ValidationSummary ID="vsProfile" runat="server" ValidationGroup="vgProfile"
+                CssClass="alert alert-danger py-2 mb-3" HeaderText="Please fix the following errors:"
+                EnableClientScript="false" ShowMessageBox="false" ShowSummary="true" />
+            
             <div class="row g-3">
                 <div class="col-md-6">
-                    <label class="settings-label">Email Address (Account ID)</label>
-                    <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control bg-light" ReadOnly="true"></asp:TextBox>
+                    <label class="settings-label">Email Address (Account ID) *</label>
+                    <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="e.g. user@example.com"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail"
+                        ValidationGroup="vgProfile" ErrorMessage="Email Address is required." ForeColor="#FF3300"
+                        EnableClientScript="false" Display="Dynamic" />
+                    <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail"
+                        ValidationGroup="vgProfile" ErrorMessage="Please enter a valid email address." ForeColor="#FF3300"
+                        EnableClientScript="false" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" Display="Dynamic" />
                 </div>
                 <div class="col-md-6">
-                    <label class="settings-label">Full Name</label>
+                    <label class="settings-label">Full Name *</label>
                     <asp:TextBox ID="txtFullName" runat="server" CssClass="form-control" placeholder="e.g. John Doe"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvFullName" runat="server" ControlToValidate="txtFullName"
+                        ValidationGroup="vgProfile" ErrorMessage="Full Name is required." ForeColor="#FF3300"
+                        EnableClientScript="false" Display="Dynamic" />
                 </div>
                 <div class="col-md-6">
-                    <label class="settings-label">Contact Phone Number</label>
+                    <label class="settings-label">Contact Phone Number *</label>
                     <asp:TextBox ID="txtContact" runat="server" CssClass="form-control" placeholder="e.g. 9876543210"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvContact" runat="server" ControlToValidate="txtContact"
+                        ValidationGroup="vgProfile" ErrorMessage="Contact Phone Number is required." ForeColor="#FF3300"
+                        EnableClientScript="false" Display="Dynamic" />
+                    <asp:RegularExpressionValidator ID="revContact" runat="server" ControlToValidate="txtContact"
+                        ValidationGroup="vgProfile" ErrorMessage="Phone number must be exactly 10 digits." ForeColor="#FF3300"
+                        EnableClientScript="false" ValidationExpression="^\d{10}$" Display="Dynamic" />
                 </div>
                 <div class="col-md-6">
-                    <label class="settings-label">City</label>
+                    <label class="settings-label">City *</label>
                     <asp:TextBox ID="txtCity" runat="server" CssClass="form-control" placeholder="e.g. Ahmedabad"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvCity" runat="server" ControlToValidate="txtCity"
+                        ValidationGroup="vgProfile" ErrorMessage="City is required." ForeColor="#FF3300"
+                        EnableClientScript="false" Display="Dynamic" />
                 </div>
                 <div class="col-12">
-                    <label class="settings-label">Default Delivery Address</label>
+                    <label class="settings-label">Default Delivery Address *</label>
                     <asp:TextBox ID="txtAddress" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="2" placeholder="Your primary shipping address"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvAddress" runat="server" ControlToValidate="txtAddress"
+                        ValidationGroup="vgProfile" ErrorMessage="Delivery Address is required." ForeColor="#FF3300"
+                        EnableClientScript="false" Display="Dynamic" />
                 </div>
                 <div class="col-12 text-end">
-                    <asp:Button ID="btnSaveProfile" runat="server" Text="Save Profile Information" CssClass="btn-save-settings" OnClick="btnSaveProfile_Click" />
+                    <asp:Button ID="btnSaveProfile" runat="server" Text="Save Profile Information" ValidationGroup="vgProfile" CssClass="btn-save-settings" OnClick="btnSaveProfile_Click" />
                 </div>
             </div>
         </div>

@@ -70,37 +70,74 @@ namespace Project
 
         protected void btnSaveProfile_Click(object sender, EventArgs e)
         {
-            string email = DbHelper.GetCurrentUserEmail(HttpContext.Current);
+            // ASP.NET server-side validation must pass first
+            if (!Page.IsValid)
+                return;
+
+            string oldEmail = DbHelper.GetCurrentUserEmail(HttpContext.Current);
+            string newEmail = txtEmail.Text.Trim();
 
             try
             {
                 SqlConnection con = new SqlConnection(connectionString);
                 con.Open();
 
-                // Update Register table
-                SqlCommand regCmd = new SqlCommand("UPDATE Register SET name = '" + txtFullName.Text.Trim() + "', contact = '" + txtContact.Text.Trim() + "', city = '" + txtCity.Text.Trim() + "' WHERE email = '" + email + "'", con);
+                // Check if new email already exists in Register table (if email is being changed)
+                if (oldEmail.ToLower() != newEmail.ToLower())
+                {
+                    SqlCommand checkEmailCmd = new SqlCommand("SELECT COUNT(*) FROM Register WHERE email = '" + newEmail + "'", con);
+                    int emailExists = Convert.ToInt32(checkEmailCmd.ExecuteScalar());
+                    
+                    if (emailExists > 0)
+                    {
+                        con.Close();
+                        ShowAlert("This email address is already registered to another account.", false);
+                        return;
+                    }
+                }
+
+                // Update Register table with new email and other details
+                SqlCommand regCmd = new SqlCommand("UPDATE Register SET email = '" + newEmail + "', name = '" + txtFullName.Text.Trim() + "', contact = '" + txtContact.Text.Trim() + "', city = '" + txtCity.Text.Trim() + "' WHERE email = '" + oldEmail + "'", con);
                 regCmd.ExecuteNonQuery();
 
-                // Upsert UserSettings table
-                SqlCommand checkCmd = new SqlCommand("SELECT COUNT(*) FROM UserSettings WHERE UserEmail = '" + email + "'", con);
+                // Update UserSettings table - handle email change
+                SqlCommand checkCmd = new SqlCommand("SELECT COUNT(*) FROM UserSettings WHERE UserEmail = '" + oldEmail + "'", con);
                 int exists = Convert.ToInt32(checkCmd.ExecuteScalar());
 
                 if (exists > 0)
                 {
-                    string updateSql = "UPDATE UserSettings SET FullName = '" + txtFullName.Text.Trim() + "', ContactNumber = '" + txtContact.Text.Trim() + "', ShippingAddress = '" + txtAddress.Text.Trim() + "', City = '" + txtCity.Text.Trim() + "', UpdatedDate = GETDATE() WHERE UserEmail = '" + email + "'";
+                    // Update existing record with new email
+                    string updateSql = "UPDATE UserSettings SET UserEmail = '" + newEmail + "', FullName = '" + txtFullName.Text.Trim() + "', ContactNumber = '" + txtContact.Text.Trim() + "', ShippingAddress = '" + txtAddress.Text.Trim() + "', City = '" + txtCity.Text.Trim() + "', UpdatedDate = GETDATE() WHERE UserEmail = '" + oldEmail + "'";
                     SqlCommand cmd = new SqlCommand(updateSql, con);
                     cmd.ExecuteNonQuery();
                 }
                 else
                 {
-                    string insertSql = "INSERT INTO UserSettings (UserEmail, FullName, ContactNumber, ShippingAddress, City, UpdatedDate) VALUES ('" + email + "', '" + txtFullName.Text.Trim() + "', '" + txtContact.Text.Trim() + "', '" + txtAddress.Text.Trim() + "', '" + txtCity.Text.Trim() + "', GETDATE())";
+                    // Insert new record with new email
+                    string insertSql = "INSERT INTO UserSettings (UserEmail, FullName, ContactNumber, ShippingAddress, City, UpdatedDate) VALUES ('" + newEmail + "', '" + txtFullName.Text.Trim() + "', '" + txtContact.Text.Trim() + "', '" + txtAddress.Text.Trim() + "', '" + txtCity.Text.Trim() + "', GETDATE())";
                     SqlCommand cmd = new SqlCommand(insertSql, con);
                     cmd.ExecuteNonQuery();
                 }
 
                 con.Close();
 
-                ShowAlert("Profile details updated successfully in the database!", true);
+                // Update session/cookie with new email
+                if (oldEmail.ToLower() != newEmail.ToLower())
+                {
+                    Session["UserEmail"] = newEmail;
+                    if (Request.Cookies["UserEmail"] != null)
+                    {
+                        HttpCookie cookie = new HttpCookie("UserEmail");
+                        cookie.Value = newEmail;
+                        cookie.Expires = DateTime.Now.AddDays(30);
+                        Response.Cookies.Add(cookie);
+                    }
+                }
+
+                ShowAlert("Profile details updated successfully in the database!" + (oldEmail.ToLower() != newEmail.ToLower() ? " Your email address has been changed." : ""), true);
+                
+                // Reload settings to reflect changes
+                LoadUserSettings();
             }
             catch (Exception ex)
             {
