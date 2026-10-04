@@ -80,13 +80,13 @@ namespace Project.Models
                         @"IF NOT EXISTS (SELECT 1 FROM [dbo].[Register] WHERE [email] = 'admin@agriconnect.com')
                         BEGIN
                             INSERT INTO [dbo].[Register] ([name], [email], [password], [gender], [contact], [city], [role])
-                            VALUES ('System Administrator', 'admin@agriconnect.com', 'admin123', 'Male', '9876543210', 'Ahmedabad', 'Admin');
+                            VALUES ('Krutika Sheth', 'admin@agriconnect.com', 'admin123', 'Female', '9876543210', 'Ahmedabad', 'Admin');
                         END",
 
                         @"IF NOT EXISTS (SELECT 1 FROM [dbo].[Register] WHERE [email] = 'user@agriconnect.com')
                         BEGIN
                             INSERT INTO [dbo].[Register] ([name], [email], [password], [gender], [contact], [city], [role])
-                            VALUES ('Demo Farmer', 'user@agriconnect.com', 'user123', 'Male', '9876543211', 'Ahmedabad', 'User');
+                            VALUES ('Krutika Sheth', 'user@agriconnect.com', 'user123', 'Female', '9876543211', 'Ahmedabad', 'User');
                         END",
 
                         // 4. Products Table

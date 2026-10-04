@@ -105,7 +105,7 @@
                 </div>
                 <div class="col-md-6">
                     <label class="settings-label">Full Name *</label>
-                    <asp:TextBox ID="txtFullName" runat="server" CssClass="form-control" placeholder="e.g. John Doe"></asp:TextBox>
+                    <asp:TextBox ID="txtFullName" runat="server" CssClass="form-control" placeholder="e.g. Krutika Sheth"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvFullName" runat="server" ControlToValidate="txtFullName"
                         ValidationGroup="vgProfile" ErrorMessage="Full Name is required." ForeColor="#FF3300"
                         EnableClientScript="false" Display="Dynamic" />

@@ -177,9 +177,9 @@
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label class="order-input-label">Full Name *</label>
-                                <asp:TextBox ID="txtCustomerName" runat="server" CssClass="form-control" placeholder="e.g. John Doe"></asp:TextBox>
+                                <asp:TextBox ID="txtCustomerName" runat="server" CssClass="form-control" placeholder="e.g. Krutika Sheth"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="rfvCustomerName" runat="server"
-                                    ControlToValidate="txtCustomerName" ValidationGroup="vgCheckout"
+                                    ControlToValidate="txtCustomerName ValidationGroup="vgCheckout"
                                     ErrorMessage="Full Name is required." ForeColor="#FF3300"
                                     EnableClientScript="false" Display="Dynamic" />
                             </div>
