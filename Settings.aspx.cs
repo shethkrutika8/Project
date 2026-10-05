@@ -42,7 +42,7 @@ namespace Project
                 r.Close();
 
                 // Load from UserSettings table
-                SqlCommand cmdSettings = new SqlCommand("SELECT FullName, ContactNumber, ShippingAddress, City, EmailNotifications, SmsAlerts FROM UserSettings WHERE UserEmail = '" + email + "'", con);
+                SqlCommand cmdSettings = new SqlCommand("SELECT FullName, ContactNumber, ShippingAddress, City, EmailNotifications FROM UserSettings WHERE UserEmail = '" + email + "'", con);
                 SqlDataReader rSettings = cmdSettings.ExecuteReader();
                 if (rSettings.Read())
                 {
@@ -56,8 +56,6 @@ namespace Project
                         txtAddress.Text = rSettings["ShippingAddress"].ToString();
                     if (rSettings["EmailNotifications"] != DBNull.Value)
                         chkEmailAlerts.Checked = Convert.ToBoolean(rSettings["EmailNotifications"]);
-                    if (rSettings["SmsAlerts"] != DBNull.Value)
-                        chkSmsAlerts.Checked = Convert.ToBoolean(rSettings["SmsAlerts"]);
                 }
                 rSettings.Close();
                 con.Close();
@@ -209,16 +207,15 @@ namespace Project
                 int exists = Convert.ToInt32(checkCmd.ExecuteScalar());
 
                 int emailAlerts = chkEmailAlerts.Checked ? 1 : 0;
-                int smsAlerts = chkSmsAlerts.Checked ? 1 : 0;
 
                 if (exists > 0)
                 {
-                    SqlCommand cmd = new SqlCommand("UPDATE UserSettings SET EmailNotifications = " + emailAlerts + ", SmsAlerts = " + smsAlerts + ", UpdatedDate = GETDATE() WHERE UserEmail = '" + email + "'", con);
+                    SqlCommand cmd = new SqlCommand("UPDATE UserSettings SET EmailNotifications = " + emailAlerts + ", UpdatedDate = GETDATE() WHERE UserEmail = '" + email + "'", con);
                     cmd.ExecuteNonQuery();
                 }
                 else
                 {
-                    SqlCommand cmd = new SqlCommand("INSERT INTO UserSettings (UserEmail, EmailNotifications, SmsAlerts, UpdatedDate) VALUES ('" + email + "', " + emailAlerts + ", " + smsAlerts + ", GETDATE())", con);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO UserSettings (UserEmail, EmailNotifications, UpdatedDate) VALUES ('" + email + "', " + emailAlerts + ", GETDATE())", con);
                     cmd.ExecuteNonQuery();
                 }
 

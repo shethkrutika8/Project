@@ -192,12 +192,6 @@
                     <strong>Email Notifications:</strong> Receive order updates, invoice copies, and plant care reminders.
                 </label>
             </div>
-            <div class="form-check form-switch mb-3">
-                <asp:CheckBox ID="chkSmsAlerts" runat="server" CssClass="form-check-input" />
-                <label class="form-check-label ms-2" for="chkSmsAlerts">
-                    <strong>SMS Updates:</strong> Receive instant shipment delivery tracking alerts via SMS.
-                </label>
-            </div>
             <div class="text-end">
                 <asp:Button ID="btnSavePreferences" runat="server" Text="Save Preferences" CssClass="btn-save-settings" OnClick="btnSavePreferences_Click" />
             </div>
