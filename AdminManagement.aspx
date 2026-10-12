@@ -168,14 +168,8 @@
                         </asp:TemplateField>
                         <asp:BoundField DataField="contact" HeaderText="Contact" />
                         <asp:BoundField DataField="city" HeaderText="City" />
-                        <asp:TemplateField HeaderText="Role Actions">
+                        <asp:TemplateField HeaderText="Actions">
                             <ItemTemplate>
-                                <asp:LinkButton ID="btnToggleRole" runat="server"
-                                    CommandName="ToggleRole" CommandArgument='<%# Eval("Id") + ";" + Eval("role") %>'
-                                    CssClass="btn btn-sm btn-outline-primary me-1">
-                                    <i class="fa-solid fa-arrows-rotate me-1"></i>
-                                    <%# Eval("role") != null && Eval("role").ToString().ToLower() == "admin" ? "Make User" : "Make Admin" %>
-                                </asp:LinkButton>
                                 <asp:LinkButton ID="btnDeleteUser" runat="server"
                                     CommandName="DeleteUserRow" CommandArgument='<%# Eval("Id") %>'
                                     CssClass="btn btn-sm btn-outline-danger"

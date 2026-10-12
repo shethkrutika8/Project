@@ -1,4 +1,4 @@
-﻿<%@ Page Title="AI Plant Doctor - AgriCulture" Language="C#" MasterPageFile="~/Site1.Master"
+<%@ Page Title="AI Plant Doctor - AgriCulture" Language="C#" MasterPageFile="~/Site1.Master"
     AutoEventWireup="true"
     CodeBehind="AIDiagnose.aspx.cs"
     Inherits="Project.AIDiagnose" %>
@@ -29,8 +29,9 @@
     <asp:Label ID="lblError" runat="server" Visible="false" CssClass="alert alert-danger d-block mt-3 mb-2 py-2 px-3 rounded-2 text-danger fw-semibold"></asp:Label>
 
     <!-- =========================================================
-         1. HERO SECTION (AI PLANT DOCTOR) - Exact Figma Layout
+         1. HERO SECTION (AI PLANT DOCTOR) - Hidden for Admins
          ========================================================= -->
+    <asp:Panel ID="pnlHeroSection" runat="server" Visible="true">
     <section class="doc-hero-section">
         <div class="doc-hero-card">
 
@@ -79,6 +80,19 @@
                     <!-- Plant selection from Database -->
                     <div class="upload-select-wrapper">
                         <asp:DropDownList ID="ddlPlant" runat="server" CssClass="form-select diagnosis-select" aria-label="Select Plant">
+                            <asp:ListItem Text="-- Select a Plant (or auto-detect from upload) --" Value=""></asp:ListItem>
+                            <asp:ListItem Text="Tulsi (Holy Basil)" Value="Tulsi (Holy Basil)"></asp:ListItem>
+                            <asp:ListItem Text="Tomato Plant" Value="Tomato Plant"></asp:ListItem>
+                            <asp:ListItem Text="Rose Plant" Value="Rose Plant"></asp:ListItem>
+                            <asp:ListItem Text="Sunflower" Value="Sunflower"></asp:ListItem>
+                            <asp:ListItem Text="Neem Tree" Value="Neem Tree"></asp:ListItem>
+                            <asp:ListItem Text="Mango Tree" Value="Mango Tree"></asp:ListItem>
+                            <asp:ListItem Text="Snake Plant" Value="Snake Plant"></asp:ListItem>
+                            <asp:ListItem Text="Aloe Vera" Value="Aloe Vera"></asp:ListItem>
+                            <asp:ListItem Text="Money Plant" Value="Money Plant"></asp:ListItem>
+                            <asp:ListItem Text="Cotton Plant" Value="Cotton Plant"></asp:ListItem>
+                            <asp:ListItem Text="Marigold" Value="Marigold"></asp:ListItem>
+                            <asp:ListItem Text="Lemon Tree" Value="Lemon Tree"></asp:ListItem>
                         </asp:DropDownList>
                     </div>
 
@@ -89,7 +103,8 @@
 
                     <!-- Diagnose Action Button -->
                     <asp:Button ID="btnDiagnose" runat="server" Text="Choose Image"
-                        OnClick="btnDiagnose_Click" CssClass="btn-choose-image" />
+                        OnClientClick="document.getElementById('<%= fileUploadPlant.ClientID %>').click(); return false;"
+                        CssClass="btn-choose-image" />
                 </div>
 
                 <div class="doc-security-note">
@@ -105,6 +120,7 @@
 
         </div>
     </section>
+    </asp:Panel>
 
     <!-- =========================================================
          DIAGNOSIS RESULT CARD (Populated dynamically via ADO.NET)
@@ -116,8 +132,7 @@
                     <i class="fa-solid fa-circle-check"></i> Diagnosis Result &amp; Treatment Plan
                 </span>
                 <asp:Button ID="btnCloseResult" runat="server" Text="&times; Close Result"
-                    OnClick="btnCloseResult_Click"
-                    CssClass="btn btn-sm btn-outline-secondary" CausesValidation="false" />
+                    CssClass="btn btn-sm btn-outline-secondary" CausesValidation="false" OnClientClick="return false;" />
             </div>
 
             <div class="row g-3 align-items-start">
@@ -152,38 +167,15 @@
                         <asp:Literal ID="litTreatmentText" runat="server"></asp:Literal>
                     </div>
 
-                    <!-- Recommended Medicine Product Card -->
-                    <div class="medicine-card">
-                        <div class="d-flex align-items-center gap-3">
-                            <asp:Image ID="imgMedicine" runat="server" CssClass="medicine-thumb"
-                                AlternateText="Prescribed Treatment Product" />
-                            <div>
-                                <div class="med-label">Recommended Treatment Product:</div>
-                                <div class="med-name"><asp:Literal ID="litMedicineName" runat="server"></asp:Literal></div>
-                                <div class="med-price">&#8377;<asp:Literal ID="litMedicinePrice" runat="server"></asp:Literal></div>
-                            </div>
-                        </div>
-
-                        <!-- Hidden state for Cart / Wishlist actions -->
-                        <asp:HiddenField ID="hfDiagnosedMedicineName" runat="server" />
-                        <asp:HiddenField ID="hfDiagnosedMedicinePrice" runat="server" />
-                        <asp:HiddenField ID="hfDiagnosedMedicineImage" runat="server" />
-
-                        <div class="d-flex gap-2">
-                            <asp:Button ID="btnAddToCart" runat="server" Text="ðŸ›’ Add to Cart"
-                                OnClick="btnAddToCart_Click" CssClass="btn-cart-sm" CausesValidation="false" />
-                            <asp:Button ID="btnAddToWishlist" runat="server" Text="â™¥ Wishlist"
-                                OnClick="btnAddToWishlist_Click" CssClass="btn-wish-sm" CausesValidation="false" />
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </asp:Panel>
 
     <!-- =========================================================
-         2. HOW IT WORKS SECTION - 4 Steps Matching Figma
+         2. HOW IT WORKS SECTION - Hidden for Admins
          ========================================================= -->
+    <asp:Panel ID="pnlHowItWorks" runat="server" Visible="true">
     <section class="how-section">
         <h2 class="how-title">How It Works</h2>
 
@@ -257,10 +249,12 @@
             </div>
         </div>
     </section>
+    </asp:Panel>
 
     <!-- =========================================================
-         3. TIPS FOR BETTER RESULTS BAR - Exact Figma Match
+         3. TIPS FOR BETTER RESULTS BAR - Hidden for Admins
          ========================================================= -->
+    <asp:Panel ID="pnlTipsSection" runat="server" Visible="true">
     <section class="tips-section">
         <div class="tips-card">
             <div class="tips-title-box">
@@ -292,6 +286,7 @@
             </div>
         </div>
     </section>
+    </asp:Panel>
 
     <!-- =========================================================
          4. ADMIN DATABASE MANAGEMENT SECTION
@@ -306,8 +301,8 @@
                         <asp:Literal ID="litRecordCount" runat="server">0</asp:Literal> Records
                     </span>
                 </span>
-                <asp:Button ID="btnToggleManual" runat="server" Text="âž• Add New Disease to Database"
-                    OnClick="btnToggleManual_Click" CssClass="btn-outline-green" CausesValidation="false" />
+                <asp:Button ID="btnToggleManual" runat="server" Text="➕ Add New Disease to Database"
+                    CssClass="btn-outline-green" CausesValidation="false" OnClientClick="return false;" />
             </div>
 
             <!-- Collapsible Manual Entry Form with pure server-side .NET validation -->
@@ -393,23 +388,48 @@
                     <div class="col-md-3">
                         <label class="form-label-custom">Product Image</label>
                         <asp:DropDownList ID="ddlNewImage" runat="server" CssClass="form-select form-select-custom">
+                            <asp:ListItem Text="Amla" Value="image/Amla.jfif"></asp:ListItem>
+                            <asp:ListItem Text="Ashvagandha" Value="image/Ashvagandha.jfif"></asp:ListItem>
+                            <asp:ListItem Text="Banana" Value="image/Banana.jfif"></asp:ListItem>
+                            <asp:ListItem Text="Broguieanvilla" Value="image/Broguieanvilla.jfif"></asp:ListItem>
+                            <asp:ListItem Text="Gauva" Value="image/Gauva.jfif"></asp:ListItem>
                             <asp:ListItem Text="Tulsi / Herb" Value="image/tulsi.jfif"></asp:ListItem>
-                            <asp:ListItem Text="Sunflower" Value="image/sunflower.jfif"></asp:ListItem>
-                            <asp:ListItem Text="Snake Plant" Value="image/product-snake-plant.png"></asp:ListItem>
-                            <asp:ListItem Text="Succulent" Value="image/product-succulent.png"></asp:ListItem>
-                            <asp:ListItem Text="Garden Plants" Value="image/about-plants.PNG"></asp:ListItem>
+                            <asp:ListItem Text="Chili" Value="image/chili.jfif"></asp:ListItem>
+                            <asp:ListItem Text="Coconut" Value="image/coconut.jfif"></asp:ListItem>
+                            <asp:ListItem Text="Coriander" Value="image/coriender.jfif"></asp:ListItem>
+                            <asp:ListItem Text="Cotton" Value="image/cotton.jfif"></asp:ListItem>
+                            <asp:ListItem Text="Curry" Value="image/curry.jfif"></asp:ListItem>
+                            <asp:ListItem Text="Drumstick" Value="image/drumstick.jfif"></asp:ListItem>
+                            <asp:ListItem Text="Fenugreek" Value="image/fenugreek.jfif"></asp:ListItem>
                             <asp:ListItem Text="Flower" Value="image/flower.jfif"></asp:ListItem>
-                            <asp:ListItem Text="Periwinkle" Value="image/perivinkle.jfif"></asp:ListItem>
+                            <asp:ListItem Text="Hibiscus" Value="image/hibscous.jfif"></asp:ListItem>
+                            <asp:ListItem Text="Jasmine" Value="image/jasmin.jfif"></asp:ListItem>
+                            <asp:ListItem Text="Lavender" Value="image/lavender.jfif"></asp:ListItem>
+                            <asp:ListItem Text="Lemon" Value="image/lemon.jfif"></asp:ListItem>
+                            <asp:ListItem Text="Mango" Value="image/mango.jfif"></asp:ListItem>
+                            <asp:ListItem Text="Marigold" Value="image/marigold.jfif"></asp:ListItem>
+                            <asp:ListItem Text="Mint" Value="image/mint.jfif"></asp:ListItem>
                             <asp:ListItem Text="Money Plant" Value="image/money_well.jfif"></asp:ListItem>
+                            <asp:ListItem Text="Neem" Value="image/neem.jfif"></asp:ListItem>
+                            <asp:ListItem Text="Papaya" Value="image/papaya.jfif"></asp:ListItem>
+                            <asp:ListItem Text="Periwinkle" Value="image/perivinkle.jfif"></asp:ListItem>
+                            <asp:ListItem Text="Pomegranate" Value="image/pomegranets.jfif"></asp:ListItem>
+                            <asp:ListItem Text="Rice" Value="image/rice.jfif"></asp:ListItem>
+                            <asp:ListItem Text="Rose" Value="image/rose.jfif"></asp:ListItem>
+                            <asp:ListItem Text="Snake Plant" Value="image/sanke.jfif"></asp:ListItem>
+                            <asp:ListItem Text="Sunflower" Value="image/sunflower.jfif"></asp:ListItem>
+                            <asp:ListItem Text="Brahmi" Value="image/brahmi.jfif"></asp:ListItem>
+                            <asp:ListItem Text="Blooms" Value="image/blooms.jfif"></asp:ListItem>
+                            <asp:ListItem Text="Garden Plants" Value="image/about-plants.PNG"></asp:ListItem>
                         </asp:DropDownList>
                     </div>
 
                     <div class="col-12 d-flex gap-2 mt-3">
-                        <asp:Button ID="btnSaveManual" runat="server" Text="ðŸ’¾ Save Record to Database"
-                            OnClick="btnSaveManual_Click" ValidationGroup="vgManualDisease"
+                        <asp:Button ID="btnSaveManual" runat="server" Text="💾 Save Record to Database"
+                            ValidationGroup="vgManualDisease" OnClientClick="return false;"
                             CssClass="btn btn-sm btn-success fw-bold px-3" />
                         <asp:Button ID="btnCancelManual" runat="server" Text="Cancel"
-                            OnClick="btnCancelManual_Click" CausesValidation="false"
+                            CausesValidation="false" OnClientClick="return false;"
                             CssClass="btn btn-sm btn-outline-secondary px-3" />
                     </div>
                 </div>
@@ -417,7 +437,7 @@
 
             <!-- Records Table -->
             <div class="table-responsive">
-                <asp:Repeater ID="rptDiseaseCatalog" runat="server" OnItemCommand="rptDiseaseCatalog_ItemCommand">
+                <asp:Repeater ID="rptDiseaseCatalog" runat="server">
                     <HeaderTemplate>
                         <table class="table records-table align-middle">
                             <thead>
@@ -444,16 +464,17 @@
                             <td class="text-end">
                                 <asp:LinkButton ID="lnkDiagnoseRow" runat="server"
                                     CommandName="DiagnoseRow" CommandArgument='<%# Eval("DiseaseId") %>'
-                                    CssClass="btn-view-pill me-1" title="View Diagnosis">
+                                    CssClass="btn-view-pill me-1" title="View Diagnosis" OnClientClick="return false;">
                                     <i class="fa-solid fa-eye me-1"></i>View
                                 </asp:LinkButton>
-                                <asp:LinkButton ID="lnkDeleteRow" runat="server"
-                                    CommandName="DeleteRow" CommandArgument='<%# Eval("DiseaseId") %>'
-                                    CssClass="btn-del-pill"
-                                    
-                                    title="Delete from Database">
-                                    <i class="fa-solid fa-trash"></i>
-                                </asp:LinkButton>
+                                <asp:Panel ID="pnlDeleteButton" runat="server">
+                                    <asp:LinkButton ID="lnkDeleteRow" runat="server"
+                                        CommandName="DeleteRow" CommandArgument='<%# Eval("DiseaseId") %>'
+                                        CssClass="btn-del-pill"
+                                        title="Delete from Database" OnClientClick="return false;">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </asp:LinkButton>
+                                </asp:Panel>
                             </td>
                         </tr>
                     </ItemTemplate>

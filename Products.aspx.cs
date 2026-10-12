@@ -46,7 +46,7 @@ namespace Project
 
         private void BindProducts()
         {
-            // Fetch products from the actual SQL Server database â€” NOT hardcoded
+            // Fetch products from the actual SQL Server database  NOT hardcoded
             string cat = SelectedCategory;
             List<ProductItem> products = DbHelper.GetProductsFromDB(cat);
 

@@ -7,8 +7,29 @@ namespace Project
 {
     public partial class Site1 : System.Web.UI.MasterPage
     {
+        // Public property to control menu expansion (C# + CSS, no JavaScript)
+        public bool IsMenuExpanded
+        {
+            get
+            {
+                if (Session["MenuExpanded"] != null)
+                    return (bool)Session["MenuExpanded"];
+                return false; // Default to closed
+            }
+            set
+            {
+                Session["MenuExpanded"] = value;
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Initialize menu state to closed if not set
+            if (Session["MenuExpanded"] == null)
+            {
+                Session["MenuExpanded"] = false;
+            }
+
             UpdateNavUserState();
             // Always refresh dynamic counts from database
             RefreshCartAndWishlistCounts();
@@ -55,6 +76,12 @@ namespace Project
             Session.Clear();
             Session.Abandon();
             Response.Redirect("Login.aspx");
+        }
+
+        protected void btnMenuToggle_Click(object sender, EventArgs e)
+        {
+            // Toggle menu state using C# session (no JavaScript)
+            IsMenuExpanded = !IsMenuExpanded;
         }
     }
 }

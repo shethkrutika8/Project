@@ -371,7 +371,7 @@
                                 <th>Date &amp; Time</th>
                                 <th>Customer</th>
                                 <th>Shipping Info</th>
-                                <th>Total (₹)</th>
+                                <th>Total </th>
                                 <th>Payment</th>
                                 <th>Status</th>
                                 <th style="min-width: 220px;">Manage Status Action</th>
@@ -400,7 +400,7 @@
                             <small class="text-success fw-semibold"><i class="fa-solid fa-location-dot me-1"></i><%# Eval("City") %></small>
                         </td>
                         <td>
-                            <strong class="text-dark">₹<%# Convert.ToDecimal(Eval("TotalAmount")).ToString("N2") %></strong>
+                            <strong class="text-dark"><%# Convert.ToDecimal(Eval("TotalAmount")).ToString("N2") %></strong>
                         </td>
                         <td>
                             <span class="badge bg-light text-dark border"><%# Eval("PaymentMethod") %></span>
@@ -415,7 +415,7 @@
                             <div class="btn-action-group">
                                 <!-- Mark Processing Button -->
                                 <asp:Button ID="btnSetProcessing" runat="server"
-                                    Text="⚙ Processing"
+                                    Text=" Processing"
                                     CommandName="SetProcessing"
                                     CommandArgument='<%# Eval("OrderId") %>'
                                     CssClass="btn-status-action btn-process"
@@ -424,7 +424,7 @@
 
                                 <!-- Mark Delivered Button -->
                                 <asp:Button ID="btnSetDelivered" runat="server"
-                                    Text="✔ Delivered"
+                                    Text=" Delivered"
                                     CommandName="SetDelivered"
                                     CommandArgument='<%# Eval("OrderId") %>'
                                     CssClass="btn-status-action btn-deliver"
@@ -433,7 +433,7 @@
 
                                 <!-- View Details Button -->
                                 <asp:Button ID="btnViewItems" runat="server"
-                                    Text="👁 Items"
+                                    Text="Items"
                                     CommandName="ViewItems"
                                     CommandArgument='<%# Eval("OrderId") %>'
                                     CssClass="btn-status-action btn-view-items"
@@ -442,7 +442,7 @@
 
                                 <!-- Cancel Button -->
                                 <asp:Button ID="btnSetCancelled" runat="server"
-                                    Text="✖"
+                                    Text="Cancelled"
                                     CommandName="SetCancelled"
                                     CommandArgument='<%# Eval("OrderId") %>'
                                     CssClass="btn-status-action btn-cancel-ord"

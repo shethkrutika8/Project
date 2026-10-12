@@ -14,10 +14,15 @@ namespace Project
         protected global::System.Web.UI.WebControls.Panel pnlAlert;
         protected global::System.Web.UI.WebControls.Literal litAlertMsg;
         protected global::System.Web.UI.WebControls.Label lblError;
+        protected global::System.Web.UI.WebControls.Panel pnlHeroSection;
+        protected global::System.Web.UI.WebControls.Panel pnlHowItWorks;
+        protected global::System.Web.UI.WebControls.Panel pnlTipsSection;
 
         protected global::System.Web.UI.WebControls.DropDownList ddlPlant;
         protected global::System.Web.UI.WebControls.FileUpload fileUploadPlant;
         protected global::System.Web.UI.WebControls.Button btnDiagnose;
+        protected global::System.Web.UI.WebControls.Panel plantImagePreview;
+        protected global::System.Web.UI.WebControls.Image imgPlantPreview;
 
         protected global::System.Web.UI.WebControls.Panel pnlResultCard;
         protected global::System.Web.UI.WebControls.Button btnCloseResult;

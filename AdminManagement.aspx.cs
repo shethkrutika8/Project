@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -100,25 +100,7 @@ namespace Project
 
         protected void gvUsers_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "ToggleRole")
-            {
-                string[] parts = e.CommandArgument.ToString().Split(';');
-                if (parts.Length == 2 && int.TryParse(parts[0], out int userId))
-                {
-                    string currentRole = parts[1];
-                    string newRole = currentRole.ToLower() == "admin" ? "User" : "Admin";
-
-                    SqlConnection con = new SqlConnection(connectionString);
-                    string query = "update Register set role = '" + newRole + "' where Id = " + userId;
-                    SqlCommand cmd = new SqlCommand(query, con);
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                    ShowAlert("User role updated to " + newRole, "success");
-                    LoadUsersGrid();
-                }
-            }
-            else if (e.CommandName == "DeleteUserRow")
+            if (e.CommandName == "DeleteUserRow")
             {
                 int userId = Convert.ToInt32(e.CommandArgument);
 

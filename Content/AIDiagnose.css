@@ -19,6 +19,23 @@
     padding: 0 15px;
 }
 
+/* Plant Image Preview */
+.upload-image-preview {
+    margin-top: 12px;
+    text-align: center;
+    padding: 10px;
+    background: #f9fcf8;
+    border-radius: 8px;
+    border: 1px dashed #c7dbc3;
+}
+
+.preview-image {
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 8px;
+    border: 2px solid #dce8db;
+}
+
 /* Alert / Notification box */
 .diag-alert-box {
     background: #edf7eb;

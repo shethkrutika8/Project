@@ -78,7 +78,7 @@
                         </asp:DropDownList>
                     </div>
                     <div class="col-md-3">
-                        <label class="form-label">Price (₹) *</label>
+                        <label class="form-label">Price  *</label>
                         <asp:TextBox ID="txtPrice" runat="server" CssClass="form-control" placeholder="e.g. 499"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvPrice" runat="server"
                             ControlToValidate="txtPrice" ErrorMessage="Price is required."
