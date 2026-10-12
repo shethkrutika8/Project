@@ -114,9 +114,6 @@
                             crops, seasons, and
                             best practices.
                         </p>
-                        <a href="Products.aspx" class="feature-link">
-                            View More <i class="fa-solid fa-arrow-right"></i>
-                        </a>
                     </div>
 
                     <!-- Government Schemes -->
@@ -130,9 +127,6 @@
                             government schemes
                             and subsidies.
                         </p>
-                        <a href="About.aspx" class="feature-link">
-                            View More <i class="fa-solid fa-arrow-right"></i>
-                        </a>
                     </div>
 
                     <!-- Market Prices -->
@@ -146,9 +140,6 @@
                             prices in your local
                             market.
                         </p>
-                        <a href="Pricing.aspx" class="feature-link">
-                            View More <i class="fa-solid fa-arrow-right"></i>
-                        </a>
                     </div>
 
                     <!-- Weather Updates -->
@@ -162,9 +153,6 @@
                             forecasts for better
                             planning.
                         </p>
-                        <a href="Features.aspx" class="feature-link">
-                            View More <i class="fa-solid fa-arrow-right"></i>
-                        </a>
                     </div>
 
                     <!-- Farming Guides -->
@@ -178,9 +166,6 @@
                             and farming
                             tips.
                         </p>
-                        <a href="AIDiagnose.aspx" class="feature-link">
-                            View More <i class="fa-solid fa-arrow-right"></i>
-                        </a>
                     </div>
 
                     <!-- Community -->
@@ -194,9 +179,6 @@
                             farmers and share
                             knowledge.
                         </p>
-                        <a href="About.aspx" class="feature-link">
-                            View More <i class="fa-solid fa-arrow-right"></i>
-                        </a>
                     </div>
 
                 </div>
