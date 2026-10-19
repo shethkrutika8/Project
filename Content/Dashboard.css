@@ -32,8 +32,7 @@ body {
 }
 
 .hero-container {
-    max-width: 1240px;
-    margin: 0 auto;
+    width: 100%;
     padding: 0 40px;
     display: flex;
     align-items: center;
@@ -121,8 +120,8 @@ body {
 }
 
 .stats-container {
-    max-width: 1240px;
-    margin: 0 auto;
+    width: calc(100% - 80px);
+    margin: 0 40px;
     padding: 22px 35px;
     background-color: #ffffff;
     border-radius: 14px;
@@ -193,8 +192,7 @@ body {
 }
 
 .features-container {
-    max-width: 1240px;
-    margin: 0 auto;
+    width: 100%;
     padding: 0 40px;
 }
 

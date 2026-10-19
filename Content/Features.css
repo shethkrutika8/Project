@@ -11,12 +11,10 @@
     padding-bottom: 40px;
 }
 
-/* Page Container - Consistent 92% width max 1160px */
+/* Page Container - Full width */
 .features-wrapper {
-    width: 92%;
-    max-width: 1160px;
-    margin: 0 auto;
-    padding: 0 15px;
+    width: 100%;
+    padding: 0 30px;
 }
 
 /* =========================================================

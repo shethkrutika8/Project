@@ -20,9 +20,8 @@
 }
 
 .prod-hero-wrapper {
-    width: 92%;
-    max-width: 1080px;
-    margin: 0 auto;
+    width: 100%;
+    padding: 0 24px;
 }
 
 .prod-hero-card {
@@ -102,9 +101,8 @@
 }
 
 .prod-categories-wrapper {
-    width: 92%;
-    max-width: 1080px;
-    margin: 0 auto;
+    width: 100%;
+    padding: 0 24px;
 }
 
 .prod-categories-list {
@@ -192,9 +190,8 @@
 }
 
 .prod-grid-wrapper {
-    width: 92%;
-    max-width: 1080px;
-    margin: 0 auto;
+    width: 100%;
+    padding: 0 24px;
 }
 
 .prod-grid {
@@ -305,9 +302,8 @@
 }
 
 .prod-help-wrapper {
-    width: 92%;
-    max-width: 1080px;
-    margin: 0 auto;
+    width: 100%;
+    padding: 0 24px;
 }
 
 .prod-help-card {

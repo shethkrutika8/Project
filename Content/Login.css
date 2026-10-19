@@ -1,4 +1,4 @@
-﻿/* =====================================================
+/* =====================================================
    AGRICONNECT LOGIN PAGE
    ===================================================== */
 
@@ -22,10 +22,9 @@
 }
 
 .agri-login-card {
-    width: 90%;
-    max-width: 1060px;
+    width: calc(100% - 80px);
     min-height: 320px;
-    margin: 0 auto;
+    margin: 0 40px;
     padding: 36px 40px;
     display: flex;
     flex-direction: row;

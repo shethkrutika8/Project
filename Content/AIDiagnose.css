@@ -13,10 +13,8 @@
 
 /* Page Container - Exactly aligned with Master Page */
 .diagnose-container {
-    width: 92%;
-    max-width: 1160px;
-    margin: 0 auto;
-    padding: 0 15px;
+    width: 100%;
+    padding: 0 24px;
 }
 
 /* Plant Image Preview */
