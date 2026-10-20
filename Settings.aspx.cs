@@ -68,7 +68,8 @@ namespace Project
 
         protected void btnSaveProfile_Click(object sender, EventArgs e)
         {
-            // ASP.NET server-side validation must pass first
+            // ASP.NET server-side validation — validate only the profile group
+            Page.Validate("vgProfile");
             if (!Page.IsValid)
                 return;
 
@@ -145,7 +146,8 @@ namespace Project
 
         protected void btnChangePassword_Click(object sender, EventArgs e)
         {
-            // ASP.NET server-side validation must pass first
+            // ASP.NET server-side validation — validate only the password group
+            Page.Validate("vgPassword");
             if (!Page.IsValid)
                 return;
 

@@ -104,7 +104,7 @@ namespace Project
                         {
                             query += " WHERE";
                         }
-                        query += " ProductName LIKE @Search OR Description LIKE @Search";
+                        query += " (ProductName LIKE @Search OR Description LIKE @Search)";
                     }
 
                     SqlCommand cmd = new SqlCommand(query, con);

@@ -70,7 +70,7 @@
     .about-content p {
         width: 90%;
         margin: 0;
-        font-size: 10px;
+        font-size: 14px;
         line-height: 1.55;
         color: #5c6d66;
     }
@@ -159,7 +159,7 @@
 
 .feature-item h4 {
     margin: 0 0 8px;
-    font-size: 10px;
+    font-size: 14px;
     font-weight: 700;
     color: #596761;
 }
@@ -204,7 +204,7 @@
 
     .story-content h3 {
         margin: 0 0 35px;
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 700;
         color: #2b9f3d;
     }
@@ -304,7 +304,7 @@
 
         .about-content p {
             width: 100%;
-            font-size: 10px;
+            font-size: 14px;
         }
 
 
@@ -375,7 +375,7 @@
 
 
     .about-content h3 {
-        font-size: 12px;
+        font-size: 14px;
     }
 
 

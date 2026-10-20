@@ -79,7 +79,7 @@ body {
 }
 
     .navbar-nav .nav-link {
-        font-size: 13px;
+        font-size: 14px;
         color: #556255;
         font-weight: 500;
         padding: 6px 10px !important;
@@ -104,7 +104,7 @@ body {
     border: none;
     background: transparent;
     color: #1e261f;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     padding: 7px 14px;
@@ -122,7 +122,7 @@ body {
     color: white;
     min-width: 110px;
     padding: 8px 18px;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
     border-radius: 6px;
     cursor: pointer;
@@ -271,7 +271,7 @@ body {
 .stat-content span {
     margin: 4px 0 0;
     color: #4e584f;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
     white-space: nowrap;
 }
@@ -297,7 +297,7 @@ body {
 
 .features-title,
 .section-title {
-    font-size: 19px;
+    font-size: 20px;
     color: #1e3b20;
     font-weight: 700;
     margin: 0 0 20px 0;
@@ -486,7 +486,7 @@ body {
 /* Form input consistent styling */
 .agri-form .form-control,
 .agri-form .form-select {
-    font-size: 13px;
+    font-size: 14px;
     border: 1px solid #c7dbc3;
     border-radius: 6px;
     padding: 8px 12px;
@@ -501,7 +501,7 @@ body {
     }
 
 .agri-form label {
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 600;
     color: #2d4a30;
     margin-bottom: 4px;
@@ -565,7 +565,7 @@ body {
 ===================================================== */
 
 .agrinavbar .badge {
-    font-size: 10px;
+    font-size: 11.5px;
     padding: 3px 6px;
     border-radius: 10px;
     font-weight: 700;

@@ -79,8 +79,12 @@
 
                     <!-- Plant selection from Database -->
                     <div class="upload-select-wrapper">
-                        <asp:DropDownList ID="ddlPlant" runat="server" CssClass="form-select diagnosis-select" aria-label="Select Plant">
-                            <asp:ListItem Text="-- Select a Plant (or auto-detect from upload) --" Value=""></asp:ListItem>
+                        <asp:DropDownList ID="ddlPlant" runat="server"
+                            CssClass="form-select diagnosis-select"
+                            aria-label="Select Plant"
+                            AutoPostBack="true"
+                            OnSelectedIndexChanged="ddlPlant_SelectedIndexChanged">
+                            <asp:ListItem Text="-- Select a Plant --" Value=""></asp:ListItem>
                             <asp:ListItem Text="Tulsi (Holy Basil)" Value="Tulsi (Holy Basil)"></asp:ListItem>
                             <asp:ListItem Text="Tomato Plant" Value="Tomato Plant"></asp:ListItem>
                             <asp:ListItem Text="Rose Plant" Value="Rose Plant"></asp:ListItem>
@@ -96,15 +100,16 @@
                         </asp:DropDownList>
                     </div>
 
-                    <!-- File Upload Control -->
+                    <!-- File Upload Control (optional) -->
                     <div class="upload-input-wrapper">
                         <asp:FileUpload ID="fileUploadPlant" runat="server" CssClass="form-control diagnosis-file-input" />
                     </div>
 
-                    <!-- Diagnose Action Button -->
-                    <asp:Button ID="btnDiagnose" runat="server" Text="Choose Image"
-                        OnClientClick="document.getElementById('<%= fileUploadPlant.ClientID %>').click(); return false;"
-                        CssClass="btn-choose-image" />
+                    <!-- Diagnose Action Button (server-side postback, ASP.NET only) -->
+                    <asp:Button ID="btnDiagnose" runat="server" Text="Diagnose Plant"
+                        CssClass="btn-choose-image"
+                        OnClick="btnDiagnose_Click"
+                        CausesValidation="false" />
                 </div>
 
                 <div class="doc-security-note">

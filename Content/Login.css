@@ -76,7 +76,7 @@
 
 .agri-login-subtitle {
     margin: 0 0 18px;
-    font-size: 11px;
+    font-size: 13px;
     color: #666;
 }
 
@@ -92,7 +92,7 @@
 .agri-input-group label {
     display: block;
     margin: 0 0 5px;
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 600;
     color: #333;
 }
@@ -109,7 +109,7 @@
     top: 50%;
     transform: translateY(-50%);
     z-index: 5;
-    font-size: 11px;
+    font-size: 13px;
     color: #888;
     pointer-events: none;
 }
@@ -123,7 +123,7 @@
     border-radius: 4px;
     background: #ffffff;
     color: #222;
-    font-size: 11px;
+    font-size: 13px;
     outline: none;
     transition: border-color 0.2s;
 }
@@ -142,7 +142,7 @@
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 12px;
+    font-size: 14px;
     color: #888;
     cursor: pointer;
     z-index: 10;
@@ -163,7 +163,7 @@
     justify-content: space-between;
     align-items: center;
     margin: 6px 0 16px;
-    font-size: 11px;
+    font-size: 13px;
 }
 
 .agri-remember {
@@ -172,7 +172,7 @@
     align-items: center;
     gap: 6px;
     margin: 0;
-    font-size: 11px;
+    font-size: 13px;
     color: #444;
     cursor: pointer;
 }
@@ -188,7 +188,7 @@
 .agri-login-options a {
     color: #333;
     text-decoration: none;
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 500;
 }
 
@@ -245,7 +245,7 @@
     padding: 0 10px;
     background: #ffffff;
     color: #888;
-    font-size: 11px;
+    font-size: 13px;
 }
 
 /* =====================================================
@@ -255,7 +255,7 @@
 .agri-register {
     width: 100%;
     text-align: center;
-    font-size: 11px;
+    font-size: 13px;
     color: #555;
 }
 
@@ -309,13 +309,13 @@
 
 .agri-welcome-text p {
     margin: 0 0 6px;
-    font-size: 12px;
+    font-size: 14px;
     color: #555;
     line-height: 1.6;
 }
 
 .agri-welcome-text small {
-    font-size: 11px;
+    font-size: 13px;
     color: #777;
 }
 
@@ -355,14 +355,14 @@
 
 .agri-feature strong {
     display: block;
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 600;
     color: #333;
 }
 
 .agri-feature span {
     display: block;
-    font-size: 10px;
+    font-size: 14px;
     color: #666;
     margin-top: -2px;
 }
@@ -413,7 +413,7 @@
 
 .agri-trust-item strong {
     display: block;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
     color: #222;
     margin-bottom: 2px;
@@ -421,7 +421,7 @@
 
 .agri-trust-item span {
     display: block;
-    font-size: 10px;
+    font-size: 14px;
     color: #555;
 }
 

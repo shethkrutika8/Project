@@ -260,13 +260,13 @@ body {
 .feature-card p {
     margin: 0 0 16px 0;
     color: #5a665b;
-    font-size: 11px;
+    font-size: 13px;
     line-height: 1.55;
     flex-grow: 1;
 }
 
 .feature-link {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     color: #238b37 !important;
     text-decoration: none !important;
@@ -283,7 +283,7 @@ body {
 }
 
 .feature-link i {
-    font-size: 10px;
+    font-size: 14px;
 }
 
 
