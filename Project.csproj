@@ -266,6 +266,34 @@
     <Compile Include="Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
     </Compile>
+    <Compile Include="AddAdmin.aspx.cs">
+      <DependentUpon>AddAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddAdmin.aspx.designer.cs">
+      <DependentUpon>AddAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminDetails.aspx.cs">
+      <DependentUpon>AdminDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminDetails.aspx.designer.cs">
+      <DependentUpon>AdminDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AIDiagnosesManagement.aspx.cs">
+      <DependentUpon>AIDiagnosesManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AIDiagnosesManagement.aspx.designer.cs">
+      <DependentUpon>AIDiagnosesManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductManagement.aspx.cs">
+      <DependentUpon>ProductManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProductManagement.aspx.designer.cs">
+      <DependentUpon>ProductManagement.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Database1.mdf" />
@@ -397,6 +425,15 @@
     <Content Include="Content\PaymentCheckout.css" />
     <Content Include="OrderPlaced.aspx" />
     <Content Include="Content\OrderPlaced.css" />
+    <Content Include="AddAdmin.aspx" />
+    <Content Include="AdminDetails.aspx" />
+    <Content Include="AIDiagnosesManagement.aspx" />
+    <Content Include="ProductManagement.aspx" />
+    <Content Include="Content\AIDiagnose.css" />
+    <Content Include="Content\Wishlist.css" />
+    <Content Include="image\ai-plant-doctor.png" />
+    <Content Include="images\farmer.jpg" />
+    <Content Include="images\farmer.png" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

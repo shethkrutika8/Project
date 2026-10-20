@@ -5,16 +5,19 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Web.UI.WebControls;
 
+using Project.Models;
+
 namespace Project
 {
     public partial class ProductManagement : System.Web.UI.Page
     {
-        private string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["AgriConnectDB"].ConnectionString;
+        private string connectionString = DbHelper.GetConnectionString();
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                DbHelper.EnsureDatabaseTablesExist();
                 LoadProductStats();
                 LoadProducts();
             }
