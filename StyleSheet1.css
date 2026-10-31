@@ -12,13 +12,6 @@ html {
     height: 100%;
 }
 
-/* Main content wrapper to push footer to bottom */
-.main-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
 body {
     margin: 0;
     font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
@@ -27,6 +20,22 @@ body {
     font-size: 14px;
     line-height: 1.5;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ASP.NET Web Forms form wrapper to maintain 100vh flex chain */
+form#form1 {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+    width: 100%;
+}
+
+/* Main content wrapper to push footer to bottom */
+.main-content {
+    flex: 1 0 auto;
     display: flex;
     flex-direction: column;
 }
