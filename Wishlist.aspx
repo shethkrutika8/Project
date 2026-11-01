@@ -8,13 +8,15 @@
             padding: 0 15px;
         }
         .wishlist-header-title {
-            font-size: 28px;
-            font-weight: 700;
-            color: #203520;
+            font-family: 'Poppins', sans-serif;
+            font-size: 34px;
+            font-weight: 800;
+            color: #17381b;
             display: flex;
             align-items: center;
             gap: 12px;
             margin-bottom: 25px;
+            letter-spacing: -0.4px;
         }
         .wishlist-grid {
             display: grid;
@@ -50,35 +52,38 @@
             object-fit: contain;
         }
         .wish-body {
-            padding: 18px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
         }
         .wish-title {
-            font-size: 17px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
             font-weight: 700;
-            color: #213221;
+            color: #17381b;
             margin-bottom: 6px;
         }
         .wish-price {
-            font-size: 18px;
-            font-weight: 700;
-            color: #2e8b38;
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            color: #228b37;
             margin-bottom: 14px;
         }
         .btn-move-cart {
             background: #2ea339;
             color: #fff;
             border: none;
-            padding: 10px;
-            font-size: 14px;
-            font-weight: 600;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: 700;
             border-radius: 6px;
             cursor: pointer;
             transition: 0.2s;
             width: 100%;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            font-family: 'Inter', sans-serif;
         }
         .btn-move-cart:hover {
             background: #23842c;
@@ -88,13 +93,14 @@
             background: #fff;
             color: #dc3545;
             border: 1px solid #f5c2c7;
-            padding: 8px;
-            font-size: 13px;
+            padding: 10px;
+            font-size: 15px;
             font-weight: 600;
             border-radius: 6px;
             cursor: pointer;
             transition: 0.2s;
             width: 100%;
+            font-family: 'Inter', sans-serif;
         }
         .btn-remove-wish:hover {
             background: #f8d7da;

@@ -1,7 +1,9 @@
 /* =====================================================
-   GLOBAL STYLES - AgriCulture Web Application
-   Consistent green theme across all pages
+   GLOBAL STYLES - AgriCulture / AgriConnect Web Application
+   Universal Typography System (Poppins + Inter), Full Readability & Signature Green Theme
 ===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap');
 
 * {
     box-sizing: border-box;
@@ -10,18 +12,89 @@
 html {
     scroll-behavior: smooth;
     height: 100%;
+    font-size: 16px;
 }
 
 body {
     margin: 0;
-    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     background: #f4f8f1;
-    color: #253525;
-    font-size: 14px;
-    line-height: 1.5;
+    color: #243525;
+    font-size: 16px;
+    line-height: 1.65;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* =====================================================
+   GLOBAL TYPOGRAPHY SYSTEM
+===================================================== */
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #15331e;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    letter-spacing: -0.3px;
+}
+
+/* Main page headings (H1): 36px–44px */
+h1, .h1 {
+    font-size: 40px;
+    line-height: 1.25;
+    font-weight: 800;
+    letter-spacing: -0.6px;
+}
+
+/* Section headings (H2): 28px–32px */
+h2, .h2 {
+    font-size: 30px;
+    line-height: 1.3;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+}
+
+/* Subheadings (H3): 22px–26px */
+h3, .h3 {
+    font-size: 24px;
+    line-height: 1.35;
+    font-weight: 700;
+}
+
+/* Card headings: 19px–22px */
+h4, .h4 {
+    font-size: 20px;
+    line-height: 1.4;
+    font-weight: 600;
+}
+
+h5, .h5 {
+    font-size: 18px;
+    line-height: 1.45;
+    font-weight: 600;
+}
+
+/* Normal paragraph text: 16px–18px */
+p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #3c4f41;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+a {
+    color: #238b37;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: #176525;
 }
 
 /* ASP.NET Web Forms form wrapper to maintain 100vh flex chain */
@@ -42,14 +115,14 @@ form#form1 {
 
 
 /* =====================================================
-   NAVBAR
+   NAVBAR (Navigation menu: 15px–17px)
 ===================================================== */
 
 .agrinavbar {
-    min-height: 64px;
+    min-height: 68px;
     background-color: #dbe7d5;
     border-bottom: none;
-    padding: 0 20px;
+    padding: 0 24px;
 }
 
 /* Hamburger menu icon (CSS-only, no JavaScript) */
@@ -76,32 +149,73 @@ form#form1 {
 }
 
 .agri-logo {
-    font-size: 18px;
-    font-weight: 700;
-    color: #1e261f !important;
+    font-size: 22px;
+    font-weight: 800;
+    font-family: 'Poppins', sans-serif;
+    color: #18381c !important;
     margin-right: 32px;
-    letter-spacing: -0.2px;
+    letter-spacing: -0.3px;
+    text-decoration: none !important;
 }
 
 .navbar-nav {
     gap: 14px;
+    align-items: center;
 }
 
     .navbar-nav .nav-link {
-        font-size: 14px;
-        color: #556255;
-        font-weight: 500;
-        padding: 6px 10px !important;
+        font-size: 16px;
+        color: #3b503e;
+        font-weight: 600;
+        padding: 8px 14px !important;
         transition: color 0.2s;
-        border-radius: 4px;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
     }
 
         .navbar-nav .nav-link:hover,
         .navbar-nav .nav-link.active {
-            color: #2fa13a !important;
-            font-weight: 600;
+            color: #1e8328 !important;
+            font-weight: 700;
             background: transparent;
         }
+
+.header-icon-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.header-icon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-icon i {
+    font-size: 17px;
+}
+
+.header-icon-text {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.header-badge {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background: #2ea039;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 5px;
+    border-radius: 10px;
+    line-height: 1;
+}
 
 .nav-buttons {
     display: flex;
@@ -109,33 +223,36 @@ form#form1 {
     gap: 16px;
 }
 
+/* Buttons: 15px–17px */
 .btn-signin {
     border: none;
     background: transparent;
-    color: #1e261f;
-    font-size: 14px;
+    color: #18361b;
+    font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    padding: 7px 14px;
-    border-radius: 4px;
+    padding: 8px 16px;
+    border-radius: 6px;
     transition: color 0.2s;
+    font-family: 'Inter', sans-serif;
 }
 
     .btn-signin:hover {
-        color: #2fa13a;
+        color: #238b37;
     }
 
 .btn-getstarted {
     border: none;
     background: #36a941;
     color: white;
-    min-width: 110px;
-    padding: 8px 18px;
-    font-size: 14px;
+    min-width: 120px;
+    padding: 10px 22px;
+    font-size: 16px;
     font-weight: 600;
     border-radius: 6px;
     cursor: pointer;
     transition: background 0.2s, transform 0.2s;
+    font-family: 'Inter', sans-serif;
 }
 
     .btn-getstarted:hover {
@@ -151,7 +268,7 @@ form#form1 {
 
 .hero-section {
     background-color: #dbe7d5;
-    padding: 38px 0 48px 0;
+    padding: 44px 0 54px 0;
 }
 
 .hero-content {
@@ -159,17 +276,17 @@ form#form1 {
 }
 
     .hero-content h1 {
-        color: #928045;
-        font-size: 34px;
+        color: #16361a;
+        font-size: 42px;
         line-height: 1.25;
-        font-weight: 700;
+        font-weight: 800;
         margin-bottom: 20px;
-        letter-spacing: -0.2px;
+        letter-spacing: -0.6px;
     }
 
     .hero-content p {
-        color: #525e52;
-        font-size: 14px;
+        color: #3d5241;
+        font-size: 17px;
         line-height: 1.8;
         font-weight: 400;
         margin-bottom: 0;
@@ -179,15 +296,16 @@ form#form1 {
 .explore-btn {
     display: inline-block;
     text-decoration: none !important;
-    background-color: #38a644;
+    background-color: #36a941;
     color: white !important;
-    padding: 11px 24px;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: 600;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
     margin-top: 24px;
     transition: background-color 0.2s ease, transform 0.2s ease;
     border: none;
+    font-family: 'Inter', sans-serif;
 }
 
     .btn-explore:hover,
@@ -206,13 +324,13 @@ form#form1 {
 
 .hero-image img {
     width: 100%;
-    max-width: 510px;
+    max-width: 530px;
     height: auto;
     aspect-ratio: 1536 / 1024;
     object-fit: cover;
-    border-radius: 14px;
+    border-radius: 16px;
     display: block;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.09);
 }
 
 
@@ -221,7 +339,7 @@ form#form1 {
 ===================================================== */
 
 .stats-section {
-    padding: 24px 0 10px 0;
+    padding: 26px 0 12px 0;
     background-color: #f3f8f1;
 }
 
@@ -229,13 +347,13 @@ form#form1 {
     width: calc(100% - 80px);
     margin: 0 40px;
     background: white;
-    border-radius: 14px;
-    padding: 22px 35px;
+    border-radius: 16px;
+    padding: 26px 38px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     align-items: center;
-    gap: 20px;
-    box-shadow: 0 2px 12px rgba(40, 80, 40, 0.04);
+    gap: 24px;
+    box-shadow: 0 2px 14px rgba(40, 80, 40, 0.05);
     border: 1px solid #edf3eb;
 }
 
@@ -244,21 +362,21 @@ form#form1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 16px;
+    gap: 18px;
     min-width: 0;
 }
 
 .stat-icon {
-    width: 56px;
-    height: 56px;
-    min-width: 56px;
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
     border-radius: 50%;
     background-color: #eaf6e8;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #228b37;
-    font-size: 24px;
+    font-size: 26px;
     flex-shrink: 0;
 }
 
@@ -270,18 +388,19 @@ form#form1 {
 .stat-item h2,
 .stat-content h2 {
     margin: 0;
-    color: #153c1b;
-    font-size: 28px;
-    font-weight: 700;
-    line-height: 1.1;
+    color: #123816;
+    font-size: 32px;
+    font-weight: 800;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.15;
 }
 
 .stat-item p,
 .stat-content span {
     margin: 4px 0 0;
-    color: #4e584f;
-    font-size: 14px;
-    font-weight: 500;
+    color: #435948;
+    font-size: 16px;
+    font-weight: 600;
     white-space: nowrap;
 }
 
@@ -295,7 +414,7 @@ form#form1 {
 ===================================================== */
 
 .features-section {
-    padding: 22px 0 45px 0;
+    padding: 26px 0 50px 0;
     background-color: #f3f8f1;
 }
 
@@ -304,26 +423,28 @@ form#form1 {
     padding: 0 40px;
 }
 
+/* Section headings (H2): 28px–32px */
 .features-title,
 .section-title {
-    font-size: 20px;
-    color: #1e3b20;
-    font-weight: 700;
-    margin: 0 0 20px 0;
+    font-size: 28px;
+    color: #143818;
+    font-weight: 800;
+    margin: 0 0 24px 0;
     text-align: left;
+    letter-spacing: -0.4px;
 }
 
 .feature-grid {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: 16px;
+    gap: 18px;
 }
 
 .feature-card {
     background-color: #ffffff;
     border-radius: 14px;
-    padding: 26px 14px 20px 14px;
+    padding: 28px 16px 22px 16px;
     text-align: center;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
     transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
@@ -341,8 +462,8 @@ form#form1 {
     }
 
 .feature-icon {
-    width: 52px;
-    height: 52px;
+    width: 56px;
+    height: 56px;
     margin: 0 auto 16px;
     border-radius: 50%;
     background-color: #eaf6e8;
@@ -350,27 +471,28 @@ form#form1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 22px;
+    font-size: 24px;
     flex-shrink: 0;
 }
 
+/* Card headings: 19px–22px */
 .feature-card h3,
 .feature-card h4 {
-    font-size: 13px;
-    color: #1e3321;
+    font-size: 19px;
+    color: #17381b;
     font-weight: 700;
     margin: 0 0 10px;
-    line-height: 1.3;
-    min-height: 34px;
+    line-height: 1.35;
+    min-height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .feature-card p {
-    font-size: 11px;
-    line-height: 1.55;
-    color: #5a665b;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #4d6051;
     margin: 0 0 16px 0;
     flex-grow: 1;
 }
@@ -379,7 +501,7 @@ form#form1 {
 .feature-link {
     text-decoration: none !important;
     color: #238b37 !important;
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 700;
     display: inline-flex;
     align-items: center;
@@ -391,7 +513,7 @@ form#form1 {
     .feature-card a i,
     .feature-link i {
         margin-left: 2px;
-        font-size: 10px;
+        font-size: 13px;
     }
 
     .feature-card a:hover,
@@ -402,12 +524,12 @@ form#form1 {
 
 
 /* =====================================================
-   FOOTER
+   FOOTER (Footer text: 14px–16px)
 ===================================================== */
 
 .agri-footer {
     background-color: #dbe7d5;
-    padding: 16px 0;
+    padding: 22px 0;
     text-align: center;
     margin-top: auto;
     border-top: none;
@@ -416,8 +538,9 @@ form#form1 {
 
     .agri-footer p {
         margin: 0;
-        font-size: 12px;
-        color: #556255;
+        font-size: 15px;
+        color: #3e5241;
+        font-weight: 500;
     }
 
 
@@ -429,7 +552,7 @@ form#form1 {
 .page-wrapper {
     background: #f4f8f1;
     min-height: calc(100vh - 140px);
-    padding: 25px 0 40px;
+    padding: 28px 0 44px;
 }
 
 /* Standard page container */
@@ -441,50 +564,54 @@ form#form1 {
 /* Standard card component */
 .agri-card {
     background: #ffffff;
-    border-radius: 10px;
+    border-radius: 12px;
     border: 1px solid #dce8db;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
-    padding: 22px 24px;
-    margin-bottom: 20px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    padding: 26px 28px;
+    margin-bottom: 24px;
 }
 
+/* Card headings: 19px–22px */
 .agri-card-header {
-    font-size: 16px;
+    font-size: 21px;
     font-weight: 700;
-    color: #1b351d;
+    color: #17381b;
     border-bottom: 2px solid #eef5ed;
-    padding-bottom: 12px;
-    margin-bottom: 16px;
+    padding-bottom: 14px;
+    margin-bottom: 18px;
 }
 
-/* Standard button styles */
+/* Standard button styles (Buttons: 15px–17px) */
 .btn-agri-primary {
     background: #36a941;
     color: #fff;
     border: none;
-    border-radius: 5px;
-    padding: 8px 18px;
-    font-size: 13px;
+    border-radius: 6px;
+    padding: 10px 22px;
+    font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.2s, transform 0.15s;
+    font-family: 'Inter', sans-serif;
 }
 
     .btn-agri-primary:hover {
         background: #2b8a34;
         color: #fff;
+        transform: translateY(-1px);
     }
 
 .btn-agri-outline {
     background: transparent;
     color: #36a941;
-    border: 1px solid #36a941;
-    border-radius: 5px;
-    padding: 7px 16px;
-    font-size: 13px;
+    border: 2px solid #36a941;
+    border-radius: 6px;
+    padding: 9px 20px;
+    font-size: 16px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
 }
 
     .btn-agri-outline:hover {
@@ -492,49 +619,60 @@ form#form1 {
         color: #fff;
     }
 
-/* Form input consistent styling */
+/* Form input consistent styling (Form labels and inputs: 16px) */
 .agri-form .form-control,
-.agri-form .form-select {
-    font-size: 14px;
+.agri-form .form-select,
+.form-control,
+.form-select {
+    font-size: 16px;
     border: 1px solid #c7dbc3;
     border-radius: 6px;
-    padding: 8px 12px;
+    padding: 10px 14px;
     background-color: #fbfdfb;
+    color: #203522;
     transition: border-color 0.2s, box-shadow 0.2s;
+    font-family: 'Inter', sans-serif;
 }
 
     .agri-form .form-control:focus,
-    .agri-form .form-select:focus {
+    .agri-form .form-select:focus,
+    .form-control:focus,
+    .form-select:focus {
         border-color: #36a941;
-        box-shadow: 0 0 0 3px rgba(54, 169, 65, 0.12);
+        box-shadow: 0 0 0 3px rgba(54, 169, 65, 0.14);
     }
 
-.agri-form label {
-    font-size: 13px;
+.agri-form label,
+label.form-label,
+label {
+    font-size: 16px;
     font-weight: 600;
-    color: #2d4a30;
-    margin-bottom: 4px;
+    color: #1e3822;
+    margin-bottom: 6px;
+    display: inline-block;
 }
 
 /* Table consistent styling */
 .agri-table {
-    font-size: 12px;
+    font-size: 15px;
 }
 
     .agri-table thead th {
-        font-size: 11px;
+        font-size: 15px;
         font-weight: 700;
-        color: #3a5d3c;
+        color: #264b28;
         text-transform: uppercase;
-        letter-spacing: 0.3px;
+        letter-spacing: 0.4px;
         background: #f5faf3;
-        padding: 10px 12px;
+        padding: 12px 14px;
         border-bottom: 2px solid #dce8db;
     }
 
     .agri-table tbody td {
-        padding: 10px 12px;
+        padding: 12px 14px;
         vertical-align: middle;
+        font-size: 15px;
+        color: #2a3e2e;
         border-bottom: 1px solid #eef5ed;
     }
 
@@ -545,27 +683,27 @@ form#form1 {
 /* Badge styles */
 .badge-green {
     background: #e8f5e5;
-    color: #218c2b;
+    color: #1b7a24;
     border: 1px solid #b8dbb5;
-    font-size: 11px;
-    padding: 3px 8px;
-    border-radius: 10px;
+    font-size: 14px;
+    padding: 4px 10px;
+    border-radius: 12px;
     font-weight: 600;
 }
 
 .badge-red {
     color: #c0392b;
     font-weight: 600;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 /* Alert consistent styling */
 .agri-alert {
     border-radius: 8px;
-    padding: 12px 16px;
-    font-size: 13px;
+    padding: 14px 18px;
+    font-size: 16px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    margin-bottom: 16px;
+    margin-bottom: 18px;
 }
 
 
@@ -574,20 +712,20 @@ form#form1 {
 ===================================================== */
 
 .agrinavbar .badge {
-    font-size: 11.5px;
-    padding: 3px 6px;
-    border-radius: 10px;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 12px;
     font-weight: 700;
     vertical-align: middle;
 }
 
 .user-greeting {
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 600;
-    color: #2b5e28;
+    color: #1e521c;
     background: #e8f5e5;
-    padding: 5px 12px;
-    border-radius: 18px;
+    padding: 6px 14px;
+    border-radius: 20px;
     border: 1px solid #c7e5c2;
     display: inline-flex;
     align-items: center;
@@ -603,7 +741,7 @@ form#form1 {
 
 
 /* =====================================================
-   RESPONSIVE
+   RESPONSIVE TYPOGRAPHY & LAYOUT
 ===================================================== */
 
 /* Desktop view - menu always visible */
@@ -647,6 +785,10 @@ form#form1 {
         padding: 25px 10px;
     }
 
+    .hero-content h1 {
+        font-size: 34px;
+    }
+
     .hero-image-wrapper {
         padding-bottom: 25px;
     }
@@ -669,11 +811,15 @@ form#form1 {
 @media (max-width: 576px) {
 
     .hero-section {
-        padding: 10px 15px 20px;
+        padding: 15px 15px 25px;
     }
 
     .hero-content h1 {
-        font-size: 23px;
+        font-size: 28px;
+    }
+
+    .hero-content p {
+        font-size: 15px;
     }
 
     .desktop-break {
@@ -690,7 +836,7 @@ form#form1 {
     }
 
     .stats-container {
-        padding: 20px 10px;
+        padding: 20px 14px;
         grid-template-columns: 1fr;
     }
 
@@ -699,12 +845,17 @@ form#form1 {
     }
 
     .features-section {
-        padding: 15px;
+        padding: 20px 14px;
+    }
+
+    .features-title,
+    .section-title {
+        font-size: 24px;
     }
 
     .feature-card {
         height: auto;
-        min-height: 200px;
+        min-height: 180px;
     }
 
     .page-container {

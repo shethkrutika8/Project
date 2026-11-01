@@ -19,12 +19,14 @@
             gap: 12px;
         }
         .admin-title {
-            font-size: 28px;
-            font-weight: 700;
-            color: #1e3a1f;
+            font-family: 'Poppins', sans-serif;
+            font-size: 34px;
+            font-weight: 800;
+            color: #17381b;
             display: flex;
             align-items: center;
             gap: 12px;
+            letter-spacing: -0.4px;
         }
         .admin-stats-grid {
             display: grid;
@@ -36,20 +38,20 @@
             background: #fff;
             border: 1px solid #dce8db;
             border-radius: 12px;
-            padding: 22px 24px;
+            padding: 24px 26px;
             display: flex;
             align-items: center;
             gap: 18px;
             box-shadow: 0 3px 14px rgba(0,0,0,0.05);
         }
         .stat-icon-box {
-            width: 54px;
-            height: 54px;
+            width: 58px;
+            height: 58px;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 26px;
             flex-shrink: 0;
         }
         .stat-icon-green  { background: #edf7eb; color: #2e8b38; }
@@ -57,14 +59,16 @@
         .stat-icon-orange { background: #fff5e6; color: #c97320; }
         .stat-icon-red    { background: #fdf0f0; color: #c93434; }
         .stat-value {
-            font-size: 30px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 34px;
             font-weight: 800;
-            color: #1e2e1f;
+            color: #17381b;
             line-height: 1;
         }
         .stat-label {
-            font-size: 13px;
-            color: #556b54;
+            font-size: 15px;
+            font-weight: 600;
+            color: #4a5e4d;
             margin-top: 4px;
         }
         .admin-section-card {
@@ -77,26 +81,29 @@
         }
         .admin-section-header {
             background: #f5faf4;
-            padding: 16px 22px;
+            padding: 18px 24px;
             border-bottom: 1px solid #e2ebe0;
-            font-size: 17px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
             font-weight: 700;
-            color: #1b351d;
+            color: #17381b;
             display: flex;
             align-items: center;
             gap: 10px;
         }
         .admin-table th {
             background: #f7faf5;
-            color: #436240;
-            font-weight: 600;
-            font-size: 13px;
-            padding: 12px 16px;
+            color: #274b26;
+            font-weight: 700;
+            font-size: 15px;
+            padding: 14px 18px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
         }
         .admin-table td {
-            padding: 13px 16px;
+            padding: 14px 18px;
             vertical-align: middle;
-            font-size: 14px;
+            font-size: 15px;
             border-bottom: 1px solid #edf2ec;
         }
         .admin-nav-cards {

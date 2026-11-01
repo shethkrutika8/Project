@@ -1,13 +1,15 @@
 /* =========================================================
    AGRICULTURE - PRODUCTS PAGE STYLESHEET
+   Clean Modern Typography (Poppins + Inter) & Green Aesthetic
    ========================================================= */
 
 .products-page {
     width: 100%;
     background: #f3f8f1;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     color: #243328;
-    padding-bottom: 20px;
+    padding-bottom: 30px;
+    font-size: 16px;
 }
 
 /* =========================================================
@@ -16,7 +18,7 @@
 
 .prod-hero-section {
     width: 100%;
-    padding: 20px 0 10px;
+    padding: 24px 0 14px;
 }
 
 .prod-hero-wrapper {
@@ -26,13 +28,14 @@
 
 .prod-hero-card {
     background: #dfeeda;
-    border-radius: 14px;
-    padding: 28px 36px;
+    border-radius: 16px;
+    padding: 34px 40px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     gap: 32px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
 }
 
 .prod-hero-content {
@@ -40,18 +43,20 @@
 }
 
 .prod-hero-title {
-    margin: 0 0 10px;
-    font-size: 32px;
+    margin: 0 0 12px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 38px;
     font-weight: 800;
-    color: #1a3923;
+    color: #16361a;
     line-height: 1.2;
+    letter-spacing: -0.5px;
 }
 
 .prod-hero-desc {
-    margin: 0 0 20px;
-    font-size: 13px;
-    color: #4d6653;
-    line-height: 1.6;
+    margin: 0 0 22px;
+    font-size: 17px;
+    color: #3b503e;
+    line-height: 1.7;
     font-weight: 400;
 }
 
@@ -60,13 +65,14 @@
     background: #34a843;
     color: #ffffff;
     border: none;
-    border-radius: 4px;
-    padding: 10px 22px;
-    font-size: 14px;
+    border-radius: 6px;
+    padding: 12px 26px;
+    font-size: 16px;
     font-weight: 700;
     cursor: pointer;
     box-shadow: 0 2px 6px rgba(52, 168, 67, 0.25);
     transition: background 0.2s ease, transform 0.15s ease;
+    font-family: 'Inter', sans-serif;
 }
 
 .btn-shop-all:hover {
@@ -76,28 +82,29 @@
 
 .prod-hero-image-wrap {
     flex: 0 0 46%;
-    max-width: 440px;
-    height: 180px;
+    max-width: 460px;
+    height: 200px;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .prod-hero-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
     border-radius: 12px;
 }
 
 /* =========================================================
-   2. CATEGORY TABS
+   2. CATEGORIES FILTER BAR
    ========================================================= */
 
 .prod-categories-section {
     width: 100%;
-    padding: 18px 0 10px;
+    padding: 10px 0 14px;
 }
 
 .prod-categories-wrapper {
@@ -107,37 +114,38 @@
 
 .prod-categories-list {
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 8px;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+    overflow-x: auto;
+    padding: 8px 0;
 }
 
 .cat-tab {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-decoration: none !important;
     cursor: pointer;
-    padding-bottom: 2px;
-    flex: 1;
-    text-align: center;
-    user-select: none;
+    background: transparent;
+    border: none;
+    padding: 4px 10px;
+    outline: none;
+    color: #4e5a51;
 }
 
 .cat-icon-box {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-    background: #e2ede0;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #eaf3e8;
+    color: #2fa13a;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 22px;
     margin-bottom: 8px;
-    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.cat-icon-box svg {
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, background 0.2s ease;
 }
 
 .cat-tab:hover .cat-icon-box {
@@ -151,9 +159,9 @@
 }
 
 .cat-label {
-    font-size: 13.5px;
-    color: #4e5a51;
-    font-weight: 500;
+    font-size: 16px;
+    color: #3e5042;
+    font-weight: 600;
     white-space: nowrap;
     transition: color 0.2s ease, font-weight 0.2s ease;
 }
@@ -169,7 +177,7 @@
 
 .cat-underline {
     width: 0;
-    height: 2px;
+    height: 3px;
     background: #2fa13a;
     margin-top: 6px;
     border-radius: 2px;
@@ -186,7 +194,7 @@
 
 .prod-grid-section {
     width: 100%;
-    padding: 12px 0 22px;
+    padding: 14px 0 28px;
 }
 
 .prod-grid-wrapper {
@@ -197,35 +205,35 @@
 .prod-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 16px;
+    gap: 20px;
 }
 
 .prod-card {
     background: #ffffff;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
     border: 1px solid #eef2ec;
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .prod-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(35, 75, 45, 0.12);
+    box-shadow: 0 8px 24px rgba(35, 75, 45, 0.12);
     border-color: #d6e8d2;
 }
 
 .prod-card-img-wrap {
     width: 100%;
-    height: 146px;
+    height: 160px;
     background: #f7f9f6;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    padding: 6px;
+    padding: 8px;
 }
 
 .prod-card-img {
@@ -241,33 +249,36 @@
 }
 
 .prod-card-body {
-    padding: 12px 12px 14px;
+    padding: 16px 16px 18px;
     display: flex;
     flex-direction: column;
     flex: 1;
 }
 
+/* Card headings: 19px–22px */
 .prod-title {
-    margin: 0 0 3px;
-    font-size: 14px;
+    margin: 0 0 6px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 19px;
     font-weight: 700;
-    color: #1b231c;
-    line-height: 1.3;
+    color: #17381b;
+    line-height: 1.35;
 }
 
 .prod-desc {
-    margin: 0 0 8px;
-    font-size: 14px;
-    color: #707f74;
-    line-height: 1.45;
-    min-height: 28px;
+    margin: 0 0 10px;
+    font-size: 15px;
+    color: #4e6052;
+    line-height: 1.55;
+    min-height: 32px;
 }
 
 .prod-price {
-    font-size: 13.5px;
-    font-weight: 700;
-    color: #2fa13a;
-    margin-bottom: 10px;
+    font-size: 19px;
+    font-weight: 800;
+    color: #228b37;
+    margin-bottom: 12px;
+    font-family: 'Poppins', sans-serif;
 }
 
 .btn-add-cart {
@@ -275,12 +286,12 @@
     background: #34a843;
     color: #ffffff;
     border: none;
-    border-radius: 4px;
-    padding: 8px 0;
-    font-size: 13px;
-    font-weight: 600;
+    border-radius: 6px;
+    padding: 11px 0;
+    font-size: 16px;
+    font-weight: 700;
     cursor: pointer;
-    font-family: inherit;
+    font-family: 'Inter', sans-serif;
     transition: background 0.2s ease, transform 0.1s ease;
 }
 
@@ -298,7 +309,7 @@
 
 .prod-help-section {
     width: 100%;
-    padding: 6px 0 24px;
+    padding: 8px 0 26px;
 }
 
 .prod-help-wrapper {
@@ -308,8 +319,8 @@
 
 .prod-help-card {
     background: #dfeeda;
-    border-radius: 10px;
-    padding: 14px 24px;
+    border-radius: 12px;
+    padding: 18px 28px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -324,15 +335,17 @@
 }
 
 .prod-help-icon-box {
-    width: 48px;
-    height: 48px;
-    min-width: 48px;
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
     background: #ffffff;
-    border-radius: 10px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    font-size: 22px;
+    color: #28a83b;
 }
 
 .prod-help-text {
@@ -341,16 +354,17 @@
 }
 
 .prod-help-title {
-    margin: 0 0 3px;
-    font-size: 13.5px;
-    font-weight: 700;
-    color: #1a3923;
+    margin: 0 0 4px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: #17381b;
 }
 
 .prod-help-desc {
     margin: 0;
-    font-size: 13px;
-    color: #4e6554;
+    font-size: 16px;
+    color: #3b503f;
     line-height: 1.5;
 }
 
@@ -358,14 +372,15 @@
     background: #34a843;
     color: #ffffff;
     border: none;
-    border-radius: 4px;
-    padding: 9px 18px;
-    font-size: 14px;
-    font-weight: 600;
+    border-radius: 6px;
+    padding: 11px 24px;
+    font-size: 16px;
+    font-weight: 700;
     cursor: pointer;
     white-space: nowrap;
     box-shadow: 0 2px 6px rgba(52, 168, 67, 0.2);
     transition: background 0.2s ease, transform 0.15s ease;
+    font-family: 'Inter', sans-serif;
 }
 
 .btn-expert:hover {
@@ -383,14 +398,14 @@
     right: 25px;
     background: #1b3824;
     color: #ffffff;
-    padding: 12px 20px;
-    border-radius: 8px;
+    padding: 14px 24px;
+    border-radius: 10px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-size: 14.5px;
-    font-weight: 500;
+    gap: 12px;
+    font-size: 16px;
+    font-weight: 600;
     opacity: 0;
     transform: translateY(20px);
     pointer-events: none;
@@ -405,21 +420,27 @@
 }
 
 .cart-toast-icon {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     background: #34a843;
     color: #fff;
     border-radius: 50%;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: bold;
 }
 
 /* =========================================================
    6. RESPONSIVE BREAKPOINTS
    ========================================================= */
+
+@media (max-width: 1200px) {
+    .prod-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
 
 @media (max-width: 1024px) {
     .prod-grid {
@@ -449,7 +470,7 @@
     }
 
     .prod-hero-title {
-        font-size: 26px;
+        font-size: 30px;
     }
 
     .prod-hero-image-wrap {
@@ -460,7 +481,7 @@
 
     .prod-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+        gap: 14px;
     }
 
     .prod-help-card {

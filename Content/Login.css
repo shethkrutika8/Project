@@ -6,9 +6,10 @@
     width: 100%;
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
     color: #222;
     background: #f4f8f1;
+    font-size: 16px;
 }
 
 /* =====================================================
@@ -61,23 +62,24 @@
     flex: 1;
     background: #ffffff;
     border-radius: 8px;
-    padding: 28px 30px 24px;
+    padding: 32px 34px 28px;
     box-shadow: 0 3px 18px rgba(0,0,0,0.10);
     box-sizing: border-box;
 }
 
 .agri-login-form h1 {
-    margin: 0 0 6px;
-    font-size: 20px;
-    font-weight: 700;
-    color: #181818;
-    line-height: 1.2;
+    margin: 0 0 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: #15331e;
+    line-height: 1.25;
 }
 
 .agri-login-subtitle {
-    margin: 0 0 18px;
-    font-size: 13px;
-    color: #666;
+    margin: 0 0 20px;
+    font-size: 15px;
+    color: #556858;
 }
 
 /* =====================================================
@@ -86,51 +88,52 @@
 
 .agri-input-group {
     width: 100%;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
 }
 
 .agri-input-group label {
     display: block;
-    margin: 0 0 5px;
-    font-size: 13px;
+    margin: 0 0 6px;
+    font-size: 16px;
     font-weight: 600;
-    color: #333;
+    color: #1e3822;
 }
 
 .agri-input-wrapper {
     position: relative;
     width: 100%;
-    height: 36px;
+    height: 44px;
 }
 
 .agri-input-wrapper > i:first-child {
     position: absolute;
-    left: 11px;
+    left: 14px;
     top: 50%;
     transform: translateY(-50%);
     z-index: 5;
-    font-size: 13px;
-    color: #888;
+    font-size: 16px;
+    color: #77887a;
     pointer-events: none;
 }
 
 .agri-input {
     width: 100%;
-    height: 36px;
+    height: 44px;
     box-sizing: border-box;
-    padding: 0 34px;
-    border: 1px solid #d0d0d0;
-    border-radius: 4px;
+    padding: 0 38px;
+    border: 1px solid #c7dbc3;
+    border-radius: 6px;
     background: #ffffff;
-    color: #222;
-    font-size: 13px;
+    color: #203523;
+    font-size: 16px;
     outline: none;
-    transition: border-color 0.2s;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .agri-input:focus {
     border-color: #29ad3c;
-    box-shadow: 0 0 0 3px rgba(41, 173, 60, 0.10);
+    box-shadow: 0 0 0 3px rgba(41, 173, 60, 0.12);
 }
 
 /* =====================================================
@@ -139,11 +142,11 @@
 
 .agri-input-wrapper .agri-eye {
     position: absolute;
-    right: 10px;
+    right: 12px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 14px;
-    color: #888;
+    font-size: 16px;
+    color: #77887a;
     cursor: pointer;
     z-index: 10;
 }
@@ -162,38 +165,38 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin: 6px 0 16px;
-    font-size: 13px;
+    margin: 8px 0 18px;
+    font-size: 15px;
 }
 
 .agri-remember {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     margin: 0;
-    font-size: 13px;
-    color: #444;
+    font-size: 15px;
+    color: #3b4e40;
     cursor: pointer;
 }
 
 .agri-remember input[type="checkbox"] {
-    width: 13px;
-    height: 13px;
+    width: 16px;
+    height: 16px;
     margin: 0;
     accent-color: #29ad3c;
     cursor: pointer;
 }
 
 .agri-login-options a {
-    color: #333;
+    color: #228b37;
     text-decoration: none;
-    font-size: 13px;
-    font-weight: 500;
+    font-size: 15px;
+    font-weight: 600;
 }
 
 .agri-login-options a:hover {
-    color: #29a83c;
+    color: #176525;
 }
 
 /* =====================================================
@@ -202,17 +205,18 @@
 
 .agri-login-button {
     width: 100%;
-    height: 38px;
+    height: 44px;
     padding: 0;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     background: #29ad3c;
     color: #ffffff;
-    font-size: 13px;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 700;
     cursor: pointer;
     transition: background 0.2s;
     letter-spacing: 0.3px;
+    font-family: 'Inter', sans-serif;
 }
 
 .agri-login-button:hover {
@@ -226,7 +230,7 @@
 .agri-or {
     position: relative;
     width: 100%;
-    margin: 14px 0 10px;
+    margin: 16px 0 12px;
     text-align: center;
 }
 
@@ -244,8 +248,8 @@
     position: relative;
     padding: 0 10px;
     background: #ffffff;
-    color: #888;
-    font-size: 13px;
+    color: #77887a;
+    font-size: 14px;
 }
 
 /* =====================================================
@@ -255,8 +259,14 @@
 .agri-register {
     width: 100%;
     text-align: center;
-    font-size: 13px;
-    color: #555;
+    font-size: 15px;
+    color: #4e6052;
+}
+
+.agri-register a {
+    color: #228b37;
+    font-weight: 700;
+    text-decoration: none;
 }
 
 .agri-register a {

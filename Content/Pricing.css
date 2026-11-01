@@ -1,13 +1,15 @@
 /* =========================================================
    AGRICULTURE - PRICING PAGE STYLESHEET
+   Clean Modern Typography (Poppins + Inter) & Green Aesthetic
    ========================================================= */
 
 .pricing-page {
     width: 100%;
     background: #f3f8f1;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     color: #243328;
-    padding-bottom: 24px;
+    padding-bottom: 30px;
+    font-size: 16px;
 }
 
 /* =========================================================
@@ -16,7 +18,7 @@
 
 .pricing-hero-section {
     width: 100%;
-    padding: 20px 0 10px;
+    padding: 24px 0 14px;
 }
 
 .pricing-hero-wrapper {
@@ -26,8 +28,8 @@
 
 .pricing-hero-card {
     background: #dfeeda;
-    border-radius: 14px;
-    padding: 28px 36px;
+    border-radius: 16px;
+    padding: 34px 40px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -40,18 +42,20 @@
 }
 
 .pricing-hero-title {
-    margin: 0 0 10px;
-    font-size: 32px;
+    margin: 0 0 12px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 38px;
     font-weight: 800;
-    color: #1a3923;
+    color: #16361a;
     line-height: 1.2;
+    letter-spacing: -0.5px;
 }
 
 .pricing-hero-desc {
-    margin: 0 0 20px;
-    font-size: 13px;
-    color: #4d6653;
-    line-height: 1.6;
+    margin: 0 0 22px;
+    font-size: 17px;
+    color: #3b503e;
+    line-height: 1.7;
     font-weight: 400;
 }
 
@@ -61,13 +65,14 @@
     color: #ffffff !important;
     text-decoration: none;
     border: none;
-    border-radius: 4px;
-    padding: 10px 22px;
-    font-size: 14px;
+    border-radius: 6px;
+    padding: 12px 26px;
+    font-size: 16px;
     font-weight: 700;
     cursor: pointer;
     box-shadow: 0 2px 6px rgba(52, 168, 67, 0.25);
     transition: background 0.2s ease, transform 0.15s ease;
+    font-family: 'Inter', sans-serif;
 }
 
 .btn-start-free:hover {
@@ -78,8 +83,8 @@
 
 .pricing-hero-image-wrap {
     flex: 0 0 46%;
-    max-width: 440px;
-    height: 180px;
+    max-width: 460px;
+    height: 200px;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
@@ -99,7 +104,7 @@
 
 .pricing-card-section {
     width: 100%;
-    padding: 28px 0 36px;
+    padding: 30px 0 40px;
 }
 
 .pricing-card-wrapper {
@@ -111,50 +116,51 @@
 
 .single-plan-card {
     width: 100%;
-    max-width: 460px;
+    max-width: 500px;
     background: #ffffff;
-    border-radius: 14px;
+    border-radius: 16px;
     border: 1px solid #e2ece0;
-    box-shadow: 0 4px 20px rgba(35, 75, 45, 0.07);
-    padding: 34px 36px 30px;
+    box-shadow: 0 4px 22px rgba(35, 75, 45, 0.08);
+    padding: 38px 40px 34px;
     text-align: center;
     transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .single-plan-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 28px rgba(35, 75, 45, 0.12);
+    box-shadow: 0 12px 32px rgba(35, 75, 45, 0.12);
     border-color: #cce5cb;
 }
 
 .plan-header {
-    margin-bottom: 12px;
+    margin-bottom: 14px;
 }
 
 .plan-tag {
     display: inline-block;
     background: #edf7eb;
-    color: #2fa13a;
+    color: #228b37;
     border: 1px solid #d2ebd0;
-    font-size: 14.5px;
+    font-size: 15px;
     font-weight: 700;
-    padding: 4px 12px;
-    border-radius: 16px;
-    margin-bottom: 12px;
+    padding: 5px 14px;
+    border-radius: 18px;
+    margin-bottom: 14px;
     letter-spacing: 0.3px;
 }
 
 .plan-name {
-    margin: 0 0 4px;
-    font-size: 26px;
+    margin: 0 0 6px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 32px;
     font-weight: 800;
-    color: #1a3923;
+    color: #15331e;
 }
 
 .plan-target {
     margin: 0;
-    font-size: 14.5px;
-    color: #6e7d72;
+    font-size: 16px;
+    color: #4e6052;
     font-weight: 400;
 }
 
@@ -162,28 +168,29 @@
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    gap: 2px;
-    margin-top: 14px;
+    gap: 4px;
+    margin-top: 16px;
     line-height: 1;
 }
 
 .plan-currency {
-    font-size: 26px;
+    font-size: 28px;
     font-weight: 700;
-    color: #2fa13a;
-    margin-top: 4px;
+    color: #228b37;
+    margin-top: 6px;
 }
 
 .plan-amount {
-    font-size: 46px;
+    font-size: 52px;
     font-weight: 800;
-    color: #2fa13a;
+    color: #228b37;
+    font-family: 'Poppins', sans-serif;
 }
 
 .plan-period {
-    margin: 8px 0 20px;
-    font-size: 14px;
-    color: #748378;
+    margin: 10px 0 24px;
+    font-size: 16px;
+    color: #4e6052;
     font-weight: 500;
 }
 
@@ -191,22 +198,22 @@
     width: 100%;
     height: 1px;
     background: #eef2ec;
-    margin: 0 0 22px;
+    margin: 0 0 24px;
 }
 
 .plan-features {
     display: flex;
     flex-direction: column;
-    gap: 13px;
+    gap: 15px;
     text-align: left;
-    margin-bottom: 26px;
-    padding: 0 12px;
+    margin-bottom: 30px;
+    padding: 0 14px;
 }
 
 .feature-item {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
 }
 
 .feature-check {
@@ -214,12 +221,15 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    color: #228b37;
+    font-size: 18px;
 }
 
 .feature-text {
-    font-size: 13px;
-    color: #334337;
+    font-size: 16px;
+    color: #2e4334;
     font-weight: 500;
+    line-height: 1.5;
 }
 
 .btn-get-started-plan {
@@ -228,13 +238,14 @@
     background: #34a843;
     color: #ffffff !important;
     text-decoration: none;
-    padding: 12px 0;
+    padding: 14px 0;
     border-radius: 6px;
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 700;
     text-align: center;
     box-shadow: 0 3px 10px rgba(52, 168, 67, 0.22);
     transition: background 0.2s ease, transform 0.15s ease;
+    font-family: 'Inter', sans-serif;
 }
 
 .btn-get-started-plan:hover {
@@ -249,7 +260,7 @@
 
 .pricing-trust-section {
     width: 100%;
-    padding: 6px 0 24px;
+    padding: 8px 0 28px;
 }
 
 .pricing-trust-wrapper {
@@ -259,30 +270,32 @@
 
 .pricing-trust-card {
     background: #dfeeda;
-    border-radius: 12px;
-    padding: 22px 28px;
+    border-radius: 14px;
+    padding: 24px 30px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    gap: 22px;
     align-items: center;
 }
 
 .trust-item {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 16px;
 }
 
 .trust-icon-box {
-    width: 46px;
-    height: 46px;
-    min-width: 46px;
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
     background: #ffffff;
-    border-radius: 10px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    font-size: 22px;
+    color: #28a83b;
 }
 
 .trust-text {
@@ -291,17 +304,18 @@
 }
 
 .trust-title {
-    margin: 0 0 3px;
-    font-size: 13px;
-    font-weight: 700;
-    color: #1a3923;
+    margin: 0 0 4px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 19px;
+    font-weight: 800;
+    color: #17381b;
 }
 
 .trust-desc {
     margin: 0;
-    font-size: 14.5px;
-    color: #4e6554;
-    line-height: 1.45;
+    font-size: 15px;
+    color: #3b503f;
+    line-height: 1.5;
 }
 
 /* =========================================================
@@ -327,7 +341,7 @@
     }
 
     .pricing-hero-title {
-        font-size: 26px;
+        font-size: 30px;
     }
 
     .pricing-hero-image-wrap {
@@ -337,7 +351,7 @@
     }
 
     .single-plan-card {
-        padding: 26px 20px;
+        padding: 28px 22px;
     }
 }
 

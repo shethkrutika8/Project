@@ -86,19 +86,20 @@
 
 .doc-title {
     margin: 0;
-    font-size: 26px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 38px;
     font-weight: 800;
     color: #15331e;
     line-height: 1.2;
-    letter-spacing: -0.3px;
+    letter-spacing: -0.5px;
 }
 
 .badge-beta {
     background: #36a941;
     color: #ffffff;
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 700;
-    padding: 3px 9px;
+    padding: 4px 10px;
     border-radius: 6px;
     display: inline-block;
     line-height: 1.2;
@@ -106,9 +107,9 @@
 
 .doc-desc {
     margin: 0 0 22px;
-    font-size: 14px;
-    color: #425946;
-    line-height: 1.6;
+    font-size: 17px;
+    color: #3b503e;
+    line-height: 1.7;
 }
 
 .doc-features-list {
@@ -182,38 +183,40 @@
 }
 
 .upload-title {
-    margin: 0 0 5px;
-    font-size: 16px;
+    margin: 0 0 6px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
     font-weight: 700;
     color: #15331e;
 }
 
 .upload-subtitle {
-    margin: 0 0 3px;
-    font-size: 13px;
-    color: #637667;
-    line-height: 1.4;
+    margin: 0 0 4px;
+    font-size: 15px;
+    color: #4e6052;
+    line-height: 1.5;
 }
 
 .upload-formats {
     margin: 0 0 14px;
-    font-size: 12px;
-    color: #8c9d90;
+    font-size: 14px;
+    color: #637667;
     font-weight: 500;
 }
 
 .upload-select-wrapper {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .diagnosis-select {
     width: 100%;
-    font-size: 13px;
+    font-size: 16px;
     border: 1px solid #c7dbc3;
     border-radius: 6px;
-    padding: 7px 10px;
+    padding: 10px 12px;
     background: #fbfdfb;
-    color: #253525;
+    color: #203522;
+    font-family: 'Inter', sans-serif;
 }
 
 .diagnosis-select:focus {
@@ -223,16 +226,17 @@
 }
 
 .upload-input-wrapper {
-    margin-bottom: 12px;
+    margin-bottom: 14px;
 }
 
 .diagnosis-file-input {
     width: 100%;
-    font-size: 13px;
+    font-size: 15px;
     border: 1px solid #d4e5d1;
     border-radius: 6px;
-    padding: 6px;
+    padding: 8px 10px;
     background: #f7faf5;
+    font-family: 'Inter', sans-serif;
 }
 
 .btn-choose-image {
@@ -240,8 +244,8 @@
     color: #ffffff;
     border: none;
     border-radius: 6px;
-    padding: 10px 24px;
-    font-size: 13px;
+    padding: 12px 24px;
+    font-size: 16px;
     font-weight: 700;
     cursor: pointer;
     width: 100%;
@@ -250,6 +254,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    font-family: 'Inter', sans-serif;
 }
 
 .btn-choose-image:hover {
@@ -295,11 +300,13 @@
 }
 
 .how-title {
-    margin: 0 0 22px;
-    font-size: 20px;
-    font-weight: 700;
+    margin: 0 0 24px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
     color: #15331e;
     text-align: center;
+    letter-spacing: -0.4px;
 }
 
 .how-grid {
@@ -307,15 +314,15 @@
     flex-direction: row;
     align-items: stretch;
     justify-content: space-between;
-    gap: 14px;
+    gap: 16px;
 }
 
 .how-card {
     flex: 1;
     background: #ffffff;
-    border-radius: 10px;
+    border-radius: 12px;
     border: 1px solid #e1eee0;
-    padding: 20px 14px 18px;
+    padding: 24px 18px 22px;
     text-align: center;
     box-shadow: 0 2px 8px rgba(45, 80, 45, 0.04);
     display: flex;
@@ -331,33 +338,33 @@
 }
 
 .how-icon-box {
-    width: 46px;
-    height: 46px;
-    border-radius: 8px;
+    width: 52px;
+    height: 52px;
+    border-radius: 10px;
     background: #eaf5e6;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
     color: #2fa13a;
-    font-size: 18px;
+    font-size: 22px;
 }
 
 .how-step-header {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 7px;
-    margin-bottom: 6px;
+    gap: 8px;
+    margin-bottom: 8px;
 }
 
 .step-number {
-    width: 18px;
-    height: 18px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     background: #36a941;
     color: #ffffff;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 700;
     display: inline-flex;
     align-items: center;
@@ -367,16 +374,17 @@
 
 .step-title {
     margin: 0;
-    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 19px;
     font-weight: 700;
     color: #15331e;
 }
 
 .step-desc {
     margin: 0;
-    font-size: 12px;
-    color: #637367;
-    line-height: 1.5;
+    font-size: 15px;
+    color: #4e6052;
+    line-height: 1.55;
 }
 
 .how-arrow {
@@ -385,7 +393,7 @@
     justify-content: center;
     flex-shrink: 0;
     color: #8bbd8c;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 /* =========================================================
@@ -400,8 +408,8 @@
 .tips-card {
     background: #dfeeda;
     border: 1px solid #c9dec6;
-    border-radius: 8px;
-    padding: 13px 24px;
+    border-radius: 10px;
+    padding: 16px 26px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -411,35 +419,36 @@
 .tips-title-box {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     flex-shrink: 0;
 }
 
 .tips-bulb-icon {
-    width: 32px;
-    height: 32px;
-    min-width: 32px;
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
     border-radius: 50%;
     background: #ffffff;
     color: #2fa13a;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
+    font-size: 17px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
 }
 
 .tips-heading {
     margin: 0;
-    font-size: 14px;
-    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    font-size: 19px;
+    font-weight: 800;
     color: #15331e;
     white-space: nowrap;
 }
 
 .tips-divider {
     width: 1px;
-    height: 28px;
+    height: 32px;
     background: #bdd2ba;
     flex-shrink: 0;
 }
@@ -449,18 +458,18 @@
     align-items: center;
     justify-content: space-around;
     flex: 1;
-    gap: 12px;
+    gap: 14px;
 }
 
 .tip-item {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
 }
 
 .tip-text {
-    font-size: 13px;
-    color: #324a35;
+    font-size: 15px;
+    color: #2e4732;
     font-weight: 600;
     white-space: nowrap;
 }
@@ -522,85 +531,87 @@
 }
 
 .result-plant-name {
-    font-size: 20px;
-    font-weight: 700;
+    font-size: 26px;
+    font-weight: 800;
+    font-family: 'Poppins', sans-serif;
     color: #1e3a1f;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
 }
 
 .result-disease-name {
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 700;
     color: #c0392b;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
 }
 
 .result-label {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
-    color: #7a8c7e;
+    color: #556c5a;
     letter-spacing: 0.5px;
-    margin-top: 8px;
-    margin-bottom: 2px;
+    margin-top: 10px;
+    margin-bottom: 4px;
 }
 
 .result-symptoms {
-    font-size: 13.5px;
-    color: #495e4e;
-    line-height: 1.5;
-    margin-bottom: 12px;
+    font-size: 16px;
+    color: #3b5040;
+    line-height: 1.6;
+    margin-bottom: 14px;
 }
 
 .treatment-box {
     background: #f5faf3;
     border-left: 3px solid #36a941;
     border-radius: 0 6px 6px 0;
-    padding: 12px 14px;
-    font-size: 13.5px;
-    color: #2b4530;
-    line-height: 1.6;
-    margin-bottom: 16px;
+    padding: 14px 18px;
+    font-size: 16px;
+    color: #243d29;
+    line-height: 1.7;
+    margin-bottom: 18px;
 }
 
 .medicine-card {
     background: #ffffff;
     border: 1px solid #d8eada;
-    border-radius: 8px;
-    padding: 12px 16px;
+    border-radius: 10px;
+    padding: 14px 18px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 14px;
+    gap: 16px;
 }
 
 .medicine-thumb {
-    width: 50px;
-    height: 50px;
+    width: 56px;
+    height: 56px;
     object-fit: cover;
-    border-radius: 6px;
+    border-radius: 8px;
     border: 1px solid #c9dec6;
 }
 
 .med-label {
-    font-size: 10px;
-    font-weight: 600;
-    color: #728575;
+    font-size: 13px;
+    font-weight: 700;
+    color: #556b57;
     text-transform: uppercase;
 }
 
 .med-name {
-    font-size: 13px;
+    font-size: 17px;
     font-weight: 700;
+    font-family: 'Poppins', sans-serif;
     color: #1a3923;
 }
 
 .med-price {
-    font-size: 13px;
-    font-weight: 700;
+    font-size: 17px;
+    font-weight: 800;
     color: #288f32;
 }
 
@@ -608,12 +619,13 @@
     background: #36a941;
     color: white;
     border: none;
-    border-radius: 5px;
-    padding: 6px 14px;
-    font-size: 13px;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 15px;
     font-weight: 600;
     cursor: pointer;
     transition: background 0.2s;
+    font-family: 'Inter', sans-serif;
 }
 
 .btn-cart-sm:hover {
@@ -624,12 +636,13 @@
     background: #fff;
     color: #e04a4a;
     border: 1px solid #f1c5c5;
-    border-radius: 5px;
-    padding: 6px 12px;
-    font-size: 13px;
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 15px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
 }
 
 .btn-wish-sm:hover {
