@@ -111,16 +111,17 @@
 .register-form-section h1 {
     margin: 0 0 8px;
     font-family: 'Poppins', sans-serif;
-    font-size: 28px;
+    font-size: 30px;
     font-weight: 800;
-    color: #15331e;
+    color: #14321e;
 }
 
 .register-description {
     margin: 0 0 20px;
-    font-size: 15px;
-    line-height: 1.6;
-    color: #4e6052;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #3d5045;
+    font-family: 'Inter', sans-serif;
 }
 
 /* =========================================================
@@ -147,7 +148,8 @@
     margin-bottom: 6px;
     font-size: 16px;
     font-weight: 600;
-    color: #1e3822;
+    color: #1a3620;
+    font-family: 'Inter', sans-serif;
 }
 
 /* =========================================================

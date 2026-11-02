@@ -70,16 +70,18 @@
 .agri-login-form h1 {
     margin: 0 0 8px;
     font-family: 'Poppins', sans-serif;
-    font-size: 28px;
+    font-size: 30px;
     font-weight: 800;
-    color: #15331e;
+    color: #14321e;
     line-height: 1.25;
 }
 
 .agri-login-subtitle {
     margin: 0 0 20px;
-    font-size: 15px;
-    color: #556858;
+    font-size: 16px;
+    color: #3d5043;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
 }
 
 /* =====================================================
@@ -96,7 +98,8 @@
     margin: 0 0 6px;
     font-size: 16px;
     font-weight: 600;
-    color: #1e3822;
+    color: #1a3620;
+    font-family: 'Inter', sans-serif;
 }
 
 .agri-input-wrapper {

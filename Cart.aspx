@@ -9,9 +9,9 @@
         }
         .cart-header-title {
             font-family: 'Poppins', sans-serif;
-            font-size: 34px;
+            font-size: 36px;
             font-weight: 800;
-            color: #17381b;
+            color: #14321a;
             display: flex;
             align-items: center;
             gap: 12px;
@@ -28,19 +28,21 @@
         }
         .cart-table th {
             background-color: #f7faf5;
-            color: #274b25;
+            color: #1f4222;
             font-weight: 700;
             font-size: 15px;
             border-bottom: 2px solid #e1ebe0;
             padding: 16px 18px;
             text-transform: uppercase;
             letter-spacing: 0.3px;
+            font-family: 'Inter', sans-serif;
         }
         .cart-table td {
             padding: 18px;
             vertical-align: middle;
             border-bottom: 1px solid #edf2ec;
-            font-size: 15px;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
         }
         .cart-item-img {
             width: 76px;
@@ -53,14 +55,15 @@
         .cart-item-name {
             font-family: 'Poppins', sans-serif;
             font-weight: 700;
-            font-size: 18px;
-            color: #17381b;
+            font-size: 19px;
+            color: #14321a;
             margin-bottom: 4px;
         }
         .cart-item-price {
             font-weight: 700;
-            color: #228b37;
-            font-size: 17px;
+            color: #1e7a2e;
+            font-size: 18px;
+            font-family: 'Poppins', sans-serif;
         }
         .qty-box {
             display: inline-flex;
@@ -111,9 +114,9 @@
         }
         .summary-title {
             font-family: 'Poppins', sans-serif;
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 700;
-            color: #17381b;
+            color: #14321a;
             border-bottom: 2px solid #edf4eb;
             padding-bottom: 14px;
             margin-bottom: 18px;
@@ -122,13 +125,14 @@
             display: flex;
             justify-content: space-between;
             margin-bottom: 14px;
-            font-size: 16px;
-            color: #4b5e4d;
+            font-size: 16.5px;
+            color: #3d5040;
+            font-family: 'Inter', sans-serif;
         }
         .summary-row.total-row {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 800;
-            color: #143616;
+            color: #112e14;
             border-top: 1px solid #e1ede0;
             padding-top: 16px;
             margin-top: 16px;

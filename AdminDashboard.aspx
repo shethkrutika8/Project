@@ -20,9 +20,9 @@
         }
         .admin-title {
             font-family: 'Poppins', sans-serif;
-            font-size: 34px;
+            font-size: 36px;
             font-weight: 800;
-            color: #17381b;
+            color: #14321a;
             display: flex;
             align-items: center;
             gap: 12px;
@@ -60,16 +60,17 @@
         .stat-icon-red    { background: #fdf0f0; color: #c93434; }
         .stat-value {
             font-family: 'Poppins', sans-serif;
-            font-size: 34px;
+            font-size: 36px;
             font-weight: 800;
-            color: #17381b;
+            color: #14321a;
             line-height: 1;
         }
         .stat-label {
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 600;
-            color: #4a5e4d;
+            color: #3a5040;
             margin-top: 4px;
+            font-family: 'Inter', sans-serif;
         }
         .admin-section-card {
             background: #fff;
@@ -84,16 +85,16 @@
             padding: 18px 24px;
             border-bottom: 1px solid #e2ebe0;
             font-family: 'Poppins', sans-serif;
-            font-size: 20px;
+            font-size: 21px;
             font-weight: 700;
-            color: #17381b;
+            color: #14321a;
             display: flex;
             align-items: center;
             gap: 10px;
         }
         .admin-table th {
             background: #f7faf5;
-            color: #274b26;
+            color: #1f4222;
             font-weight: 700;
             font-size: 15px;
             padding: 14px 18px;
@@ -103,7 +104,7 @@
         .admin-table td {
             padding: 14px 18px;
             vertical-align: middle;
-            font-size: 15px;
+            font-size: 16px;
             border-bottom: 1px solid #edf2ec;
         }
         .admin-nav-cards {
@@ -136,8 +137,9 @@
             color: #2e8b38;
         }
         .admin-nav-card span {
-            font-size: 13px;
+            font-size: 14.5px;
             font-weight: 600;
+            font-family: 'Inter', sans-serif;
         }
         .badge-status {
             padding: 4px 10px;

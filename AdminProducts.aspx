@@ -6,19 +6,19 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         .admin-wrapper { max-width: 1200px; margin: 35px auto 60px; padding: 0 15px; }
-        .admin-title { font-size: 26px; font-weight: 700; color: #1e3a1f; display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+        .admin-title { font-size: 28px; font-weight: 800; color: #14321a; display: flex; align-items: center; gap: 12px; margin-bottom: 24px; font-family: 'Poppins', sans-serif; }
         .admin-card { background: #fff; border: 1px solid #dce8db; border-radius: 12px; box-shadow: 0 3px 14px rgba(0,0,0,0.05); margin-bottom: 28px; overflow: hidden; }
-        .admin-card-header { background: #f5faf4; padding: 16px 22px; border-bottom: 1px solid #e2ebe0; font-size: 16px; font-weight: 700; color: #1b351d; display: flex; align-items: center; gap: 10px; }
+        .admin-card-header { background: #f5faf4; padding: 16px 22px; border-bottom: 1px solid #e2ebe0; font-size: 18px; font-weight: 700; color: #14321a; display: flex; align-items: center; gap: 10px; font-family: 'Poppins', sans-serif; }
         .admin-card-body { padding: 22px; }
-        .admin-table th { background: #f7faf5; color: #436240; font-weight: 600; font-size: 13px; padding: 12px 16px; }
-        .admin-table td { padding: 13px 16px; vertical-align: middle; font-size: 14px; border-bottom: 1px solid #edf2ec; }
+        .admin-table th { background: #f7faf5; color: #1f4222; font-weight: 700; font-size: 14px; padding: 13px 16px; }
+        .admin-table td { padding: 13px 16px; vertical-align: middle; font-size: 15.5px; border-bottom: 1px solid #edf2ec; }
         .prod-thumb { width: 50px; height: 50px; object-fit: cover; border-radius: 8px; border: 1px solid #e2ebe0; }
-        .form-label { font-size: 13px; font-weight: 600; color: #334432; margin-bottom: 5px; }
-        .btn-save { background: #2ea339; color: #fff; border: none; padding: 9px 22px; border-radius: 7px; font-weight: 600; cursor: pointer; }
+        .form-label { font-size: 15.5px; font-weight: 600; color: #1e3822; margin-bottom: 5px; font-family: 'Inter', sans-serif; }
+        .btn-save { background: #2ea339; color: #fff; border: none; padding: 10px 24px; border-radius: 7px; font-weight: 700; cursor: pointer; font-size: 16px; font-family: 'Inter', sans-serif; }
         .btn-save:hover { background: #22842c; color: #fff; }
-        .btn-del { background: transparent; color: #dc3545; border: 1px solid #dc3545; padding: 5px 12px; border-radius: 6px; font-size: 13px; cursor: pointer; }
+        .btn-del { background: transparent; color: #dc3545; border: 1px solid #dc3545; padding: 6px 14px; border-radius: 6px; font-size: 14px; cursor: pointer; }
         .btn-del:hover { background: #dc3545; color: #fff; }
-        .btn-back { display: inline-flex; align-items: center; gap: 6px; color: #2e8b38; font-weight: 600; text-decoration: none; margin-bottom: 16px; }
+        .btn-back { display: inline-flex; align-items: center; gap: 6px; color: #2e8b38; font-weight: 600; text-decoration: none; margin-bottom: 16px; font-size: 16px; }
         .btn-back:hover { color: #1d6124; text-decoration: underline; }
     </style>
 </asp:Content>

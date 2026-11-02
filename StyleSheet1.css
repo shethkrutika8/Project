@@ -19,9 +19,9 @@ body {
     margin: 0;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     background: #f4f8f1;
-    color: #243525;
+    color: #203524;
     font-size: 16px;
-    line-height: 1.65;
+    line-height: 1.7;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -31,12 +31,13 @@ body {
 
 /* =====================================================
    GLOBAL TYPOGRAPHY SYSTEM
+   Headings: Poppins, Body/Controls: Inter
 ===================================================== */
 
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    color: #15331e;
+    color: #14361a;
     font-weight: 700;
     margin-top: 0;
     margin-bottom: 0.5em;
@@ -49,6 +50,7 @@ h1, .h1 {
     line-height: 1.25;
     font-weight: 800;
     letter-spacing: -0.6px;
+    color: #133519;
 }
 
 /* Section headings (H2): 28px–32px */
@@ -57,6 +59,7 @@ h2, .h2 {
     line-height: 1.3;
     font-weight: 700;
     letter-spacing: -0.4px;
+    color: #15381c;
 }
 
 /* Subheadings (H3): 22px–26px */
@@ -64,32 +67,44 @@ h3, .h3 {
     font-size: 24px;
     line-height: 1.35;
     font-weight: 700;
+    color: #173b1e;
 }
 
 /* Card headings: 19px–22px */
 h4, .h4 {
     font-size: 20px;
     line-height: 1.4;
-    font-weight: 600;
+    font-weight: 700;
+    color: #173b1e;
 }
 
 h5, .h5 {
     font-size: 18px;
     line-height: 1.45;
     font-weight: 600;
+    color: #193e20;
+}
+
+h6, .h6 {
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 600;
+    color: #1f4526;
 }
 
 /* Normal paragraph text: 16px–18px */
-p {
-    font-size: 16px;
+p, .paragraph, .text-body {
+    font-size: 16.5px;
     line-height: 1.7;
-    color: #3c4f41;
+    color: #2d4232;
     margin-top: 0;
     margin-bottom: 1rem;
+    letter-spacing: -0.1px;
 }
 
 a {
     color: #238b37;
+    text-decoration: none;
     transition: color 0.2s ease;
 }
 
@@ -478,8 +493,8 @@ form#form1 {
 /* Card headings: 19px–22px */
 .feature-card h3,
 .feature-card h4 {
-    font-size: 19px;
-    color: #17381b;
+    font-size: 20px;
+    color: #15381c;
     font-weight: 700;
     margin: 0 0 10px;
     line-height: 1.35;
@@ -490,9 +505,9 @@ form#form1 {
 }
 
 .feature-card p {
-    font-size: 15px;
-    line-height: 1.6;
-    color: #4d6051;
+    font-size: 16px;
+    line-height: 1.65;
+    color: #3f5544;
     margin: 0 0 16px 0;
     flex-grow: 1;
 }
@@ -501,7 +516,7 @@ form#form1 {
 .feature-link {
     text-decoration: none !important;
     color: #238b37 !important;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 700;
     display: inline-flex;
     align-items: center;
@@ -513,7 +528,7 @@ form#form1 {
     .feature-card a i,
     .feature-link i {
         margin-left: 2px;
-        font-size: 13px;
+        font-size: 14px;
     }
 
     .feature-card a:hover,
@@ -538,9 +553,10 @@ form#form1 {
 
     .agri-footer p {
         margin: 0;
-        font-size: 15px;
-        color: #3e5241;
+        font-size: 15.5px;
+        color: #2e4732;
         font-weight: 500;
+        letter-spacing: 0.1px;
     }
 
 
@@ -575,14 +591,17 @@ form#form1 {
 .agri-card-header {
     font-size: 21px;
     font-weight: 700;
-    color: #17381b;
+    color: #15381c;
     border-bottom: 2px solid #eef5ed;
     padding-bottom: 14px;
     margin-bottom: 18px;
+    font-family: 'Poppins', sans-serif;
 }
 
 /* Standard button styles (Buttons: 15px–17px) */
-.btn-agri-primary {
+.btn-agri-primary,
+.btn-primary,
+.btn-success {
     background: #36a941;
     color: #fff;
     border: none;
@@ -595,15 +614,18 @@ form#form1 {
     font-family: 'Inter', sans-serif;
 }
 
-    .btn-agri-primary:hover {
+    .btn-agri-primary:hover,
+    .btn-primary:hover,
+    .btn-success:hover {
         background: #2b8a34;
         color: #fff;
         transform: translateY(-1px);
     }
 
-.btn-agri-outline {
+.btn-agri-outline,
+.btn-outline-success {
     background: transparent;
-    color: #36a941;
+    color: #2b8f36;
     border: 2px solid #36a941;
     border-radius: 6px;
     padding: 9px 20px;
@@ -614,7 +636,8 @@ form#form1 {
     font-family: 'Inter', sans-serif;
 }
 
-    .btn-agri-outline:hover {
+    .btn-agri-outline:hover,
+    .btn-outline-success:hover {
         background: #36a941;
         color: #fff;
     }
@@ -623,23 +646,38 @@ form#form1 {
 .agri-form .form-control,
 .agri-form .form-select,
 .form-control,
-.form-select {
-    font-size: 16px;
+.form-select,
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="tel"],
+select,
+textarea {
+    font-size: 16px !important;
     border: 1px solid #c7dbc3;
     border-radius: 6px;
     padding: 10px 14px;
     background-color: #fbfdfb;
-    color: #203522;
+    color: #1f3622;
     transition: border-color 0.2s, box-shadow 0.2s;
     font-family: 'Inter', sans-serif;
+    line-height: 1.5;
 }
 
     .agri-form .form-control:focus,
     .agri-form .form-select:focus,
     .form-control:focus,
-    .form-select:focus {
+    .form-select:focus,
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    input[type="email"]:focus,
+    input[type="number"]:focus,
+    select:focus,
+    textarea:focus {
         border-color: #36a941;
         box-shadow: 0 0 0 3px rgba(54, 169, 65, 0.14);
+        outline: none;
     }
 
 .agri-form label,
@@ -647,46 +685,54 @@ label.form-label,
 label {
     font-size: 16px;
     font-weight: 600;
-    color: #1e3822;
+    color: #1b3820;
     margin-bottom: 6px;
     display: inline-block;
 }
 
 /* Table consistent styling */
-.agri-table {
-    font-size: 15px;
+.agri-table,
+.table {
+    font-size: 15.5px;
+    font-family: 'Inter', sans-serif;
 }
 
-    .agri-table thead th {
+    .agri-table thead th,
+    .table thead th,
+    .table th {
         font-size: 15px;
         font-weight: 700;
-        color: #264b28;
+        color: #1f4422;
         text-transform: uppercase;
         letter-spacing: 0.4px;
-        background: #f5faf3;
-        padding: 12px 14px;
+        background: #f4faf2;
+        padding: 13px 16px;
         border-bottom: 2px solid #dce8db;
     }
 
-    .agri-table tbody td {
-        padding: 12px 14px;
+    .agri-table tbody td,
+    .table tbody td,
+    .table td {
+        padding: 13px 16px;
         vertical-align: middle;
-        font-size: 15px;
-        color: #2a3e2e;
+        font-size: 15.5px;
+        color: #243d28;
         border-bottom: 1px solid #eef5ed;
     }
 
-    .agri-table tbody tr:hover {
+    .agri-table tbody tr:hover,
+    .table tbody tr:hover {
         background: #f9fcf8;
     }
 
 /* Badge styles */
-.badge-green {
+.badge-green,
+.badge-role-user {
     background: #e8f5e5;
     color: #1b7a24;
     border: 1px solid #b8dbb5;
-    font-size: 14px;
-    padding: 4px 10px;
+    font-size: 13.5px;
+    padding: 5px 12px;
     border-radius: 12px;
     font-weight: 600;
 }
@@ -694,11 +740,22 @@ label {
 .badge-red {
     color: #c0392b;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 13.5px;
+}
+
+.badge-role-admin {
+    background: #fff3cd;
+    color: #995c00;
+    border: 1px solid #ffe69c;
+    font-size: 13.5px;
+    padding: 5px 12px;
+    border-radius: 12px;
+    font-weight: 700;
 }
 
 /* Alert consistent styling */
-.agri-alert {
+.agri-alert,
+.alert {
     border-radius: 8px;
     padding: 14px 18px;
     font-size: 16px;
@@ -712,7 +769,7 @@ label {
 ===================================================== */
 
 .agrinavbar .badge {
-    font-size: 12px;
+    font-size: 13px;
     padding: 4px 8px;
     border-radius: 12px;
     font-weight: 700;
@@ -720,9 +777,9 @@ label {
 }
 
 .user-greeting {
-    font-size: 15px;
+    font-size: 15.5px;
     font-weight: 600;
-    color: #1e521c;
+    color: #174a15;
     background: #e8f5e5;
     padding: 6px 14px;
     border-radius: 20px;

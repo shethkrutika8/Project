@@ -48,18 +48,19 @@
 .features-title {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    font-size: 38px;
+    font-size: 40px;
     font-weight: 800;
-    color: #15331e;
+    color: #14321e;
     line-height: 1.2;
     letter-spacing: -0.5px;
 }
 
 .features-desc {
     margin: 14px 0 24px;
-    font-size: 17px;
-    color: #3b503e;
-    line-height: 1.7;
+    font-size: 17.5px;
+    color: #2e4438;
+    line-height: 1.75;
+    font-family: 'Inter', sans-serif;
 }
 
 .explore-btn {
@@ -151,18 +152,19 @@
 .feature-card h3 {
     margin: 0 0 10px 0;
     font-family: 'Poppins', sans-serif;
-    font-size: 20px;
+    font-size: 21px;
     font-weight: 700;
-    color: #15331e;
+    color: #14321e;
     line-height: 1.35;
 }
 
 .feature-card p {
     margin: 0 auto;
-    font-size: 15px;
-    color: #4e6052;
-    line-height: 1.6;
+    font-size: 16px;
+    color: #3e5248;
+    line-height: 1.7;
     max-width: 240px;
+    font-family: 'Inter', sans-serif;
 }
 
 /* =========================================================
@@ -204,16 +206,17 @@
 .cta-heading {
     margin: 0 0 4px 0;
     font-family: 'Poppins', sans-serif;
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 800;
-    color: #15331e;
+    color: #14321e;
 }
 
 .cta-subheading {
     margin: 0;
-    font-size: 16px;
-    color: #3b503f;
+    font-size: 17px;
+    color: #2d4636;
     line-height: 1.5;
+    font-family: 'Inter', sans-serif;
 }
 
 .btn-getstarted-free {

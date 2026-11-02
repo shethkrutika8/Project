@@ -6,9 +6,11 @@
 .diagnose-page {
     width: 100%;
     background: #f4f8f1;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    color: #243328;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #1e3527;
     padding-bottom: 50px;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
 }
 
 /* Page Container - Exactly aligned with Master Page */
@@ -87,9 +89,9 @@
 .doc-title {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    font-size: 38px;
+    font-size: 40px;
     font-weight: 800;
-    color: #15331e;
+    color: #14321e;
     line-height: 1.2;
     letter-spacing: -0.5px;
 }
@@ -108,8 +110,9 @@
 .doc-desc {
     margin: 0 0 22px;
     font-size: 17px;
-    color: #3b503e;
-    line-height: 1.7;
+    color: #2e4438;
+    line-height: 1.75;
+    font-family: 'Inter', sans-serif;
 }
 
 .doc-features-list {
@@ -139,9 +142,10 @@
 }
 
 .doc-feat-text {
-    font-size: 14px;
+    font-size: 15.5px;
     font-weight: 600;
-    color: #203825;
+    color: #1c3821;
+    font-family: 'Inter', sans-serif;
 }
 
 /* Center Column: Upload Plant Image Card */
@@ -185,16 +189,17 @@
 .upload-title {
     margin: 0 0 6px;
     font-family: 'Poppins', sans-serif;
-    font-size: 20px;
+    font-size: 21px;
     font-weight: 700;
-    color: #15331e;
+    color: #14321e;
 }
 
 .upload-subtitle {
     margin: 0 0 4px;
-    font-size: 15px;
-    color: #4e6052;
-    line-height: 1.5;
+    font-size: 16px;
+    color: #3d5045;
+    line-height: 1.55;
+    font-family: 'Inter', sans-serif;
 }
 
 .upload-formats {
@@ -375,16 +380,17 @@
 .step-title {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    font-size: 19px;
+    font-size: 20px;
     font-weight: 700;
-    color: #15331e;
+    color: #14321e;
 }
 
 .step-desc {
     margin: 0;
-    font-size: 15px;
-    color: #4e6052;
-    line-height: 1.55;
+    font-size: 16px;
+    color: #3d5248;
+    line-height: 1.65;
+    font-family: 'Inter', sans-serif;
 }
 
 .how-arrow {
@@ -468,10 +474,11 @@
 }
 
 .tip-text {
-    font-size: 15px;
-    color: #2e4732;
+    font-size: 15.5px;
+    color: #203028;
     font-weight: 600;
     white-space: nowrap;
+    font-family: 'Inter', sans-serif;
 }
 
 /* =========================================================

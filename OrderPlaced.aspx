@@ -17,17 +17,18 @@
         .order-tab-btn {
             background: #fff;
             border: 1px solid #d4e2d2;
-            padding: 9px 20px;
+            padding: 10px 22px;
             border-radius: 20px;
-            font-size: 14px;
+            font-size: 15.5px;
             font-weight: 600;
-            color: #3b5038;
+            color: #2d4532;
             cursor: pointer;
             transition: 0.2s;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            font-family: 'Inter', sans-serif;
         }
         .order-tab-btn.active, .order-tab-btn:hover {
             background: #2ea339;
@@ -43,27 +44,30 @@
             margin-bottom: 24px;
         }
         .form-section-title {
-            font-size: 19px;
+            font-size: 21px;
             font-weight: 700;
-            color: #1e361d;
+            color: #14321a;
             border-bottom: 2px solid #edf4eb;
             padding-bottom: 10px;
             margin-bottom: 20px;
             display: flex;
             align-items: center;
             gap: 10px;
+            font-family: 'Poppins', sans-serif;
         }
         .order-input-label {
-            font-size: 13px;
+            font-size: 15.5px;
             font-weight: 600;
-            color: #334432;
+            color: #1e3822;
             margin-bottom: 6px;
+            font-family: 'Inter', sans-serif;
         }
         .form-control, .form-select {
             border: 1px solid #cad9c7;
             border-radius: 8px;
             padding: 10px 14px;
-            font-size: 14px;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
         }
         .form-control:focus, .form-select:focus {
             border-color: #38a542;
@@ -132,9 +136,10 @@
         .history-item-row {
             display: flex;
             justify-content: space-between;
-            font-size: 14px;
-            color: #4b5949;
+            font-size: 15.5px;
+            color: #3d5040;
             padding: 4px 0;
+            font-family: 'Inter', sans-serif;
         }
     </style>
 </asp:Content>

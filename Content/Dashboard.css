@@ -204,7 +204,7 @@ body {
 
 .section-title {
     font-family: 'Poppins', sans-serif;
-    font-size: 28px;
+    font-size: 30px;
     font-weight: 800;
     color: #143818;
     margin: 0 0 24px 0;
@@ -255,9 +255,9 @@ body {
 
 .feature-card h3 {
     margin: 0 0 10px 0;
-    color: #17381b;
+    color: #15381c;
     font-family: 'Poppins', sans-serif;
-    font-size: 19px;
+    font-size: 20px;
     font-weight: 700;
     line-height: 1.35;
     min-height: 44px;
@@ -268,14 +268,14 @@ body {
 
 .feature-card p {
     margin: 0 0 16px 0;
-    color: #4d6051;
-    font-size: 15px;
-    line-height: 1.6;
+    color: #3f5544;
+    font-size: 16px;
+    line-height: 1.65;
     flex-grow: 1;
 }
 
 .feature-link {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 700;
     color: #238b37 !important;
     text-decoration: none !important;
@@ -292,7 +292,7 @@ body {
 }
 
 .feature-link i {
-    font-size: 13px;
+    font-size: 14px;
 }
 
 

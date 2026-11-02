@@ -8,13 +8,15 @@
             padding: 0 15px;
         }
         .settings-header-title {
-            font-size: 28px;
-            font-weight: 700;
-            color: #203520;
+            font-size: 30px;
+            font-weight: 800;
+            color: #14321a;
             display: flex;
             align-items: center;
             gap: 12px;
             margin-bottom: 25px;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: -0.3px;
         }
         .settings-card {
             background: #ffffff;
@@ -25,27 +27,30 @@
             margin-bottom: 24px;
         }
         .settings-card-title {
-            font-size: 19px;
+            font-size: 21px;
             font-weight: 700;
-            color: #1e361d;
+            color: #14321a;
             border-bottom: 2px solid #edf4eb;
             padding-bottom: 10px;
             margin-bottom: 20px;
             display: flex;
             align-items: center;
             gap: 10px;
+            font-family: 'Poppins', sans-serif;
         }
         .settings-label {
-            font-size: 13px;
+            font-size: 15.5px;
             font-weight: 600;
-            color: #334432;
+            color: #1e3822;
             margin-bottom: 6px;
+            font-family: 'Inter', sans-serif;
         }
         .form-control {
             border: 1px solid #cad9c7;
             border-radius: 8px;
             padding: 10px 14px;
-            font-size: 14px;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
         }
         .form-control:focus {
             border-color: #38a542;
@@ -55,12 +60,13 @@
             background: #2ea339;
             color: #fff;
             border: none;
-            padding: 10px 24px;
-            font-size: 14px;
-            font-weight: 600;
+            padding: 11px 24px;
+            font-size: 16px;
+            font-weight: 700;
             border-radius: 6px;
             cursor: pointer;
             transition: 0.2s;
+            font-family: 'Inter', sans-serif;
         }
         .btn-save-settings:hover {
             background: #22842c;

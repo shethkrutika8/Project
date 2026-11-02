@@ -9,9 +9,9 @@
         }
         .wishlist-header-title {
             font-family: 'Poppins', sans-serif;
-            font-size: 34px;
+            font-size: 36px;
             font-weight: 800;
-            color: #17381b;
+            color: #14321a;
             display: flex;
             align-items: center;
             gap: 12px;
@@ -59,16 +59,16 @@
         }
         .wish-title {
             font-family: 'Poppins', sans-serif;
-            font-size: 20px;
+            font-size: 21px;
             font-weight: 700;
-            color: #17381b;
+            color: #14321a;
             margin-bottom: 6px;
         }
         .wish-price {
             font-family: 'Poppins', sans-serif;
-            font-size: 20px;
+            font-size: 21px;
             font-weight: 800;
-            color: #228b37;
+            color: #1e7a2e;
             margin-bottom: 14px;
         }
         .btn-move-cart {
