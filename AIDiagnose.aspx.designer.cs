@@ -18,6 +18,7 @@ namespace Project
         protected global::System.Web.UI.WebControls.Panel pnlHowItWorks;
         protected global::System.Web.UI.WebControls.Panel pnlTipsSection;
 
+        protected global::System.Web.UI.WebControls.TextBox txtPlantName;
         protected global::System.Web.UI.WebControls.DropDownList ddlPlant;
         protected global::System.Web.UI.WebControls.FileUpload fileUploadPlant;
         protected global::System.Web.UI.WebControls.Button btnDiagnose;
@@ -31,6 +32,7 @@ namespace Project
         protected global::System.Web.UI.WebControls.Label lblDiseaseTitle;
         protected global::System.Web.UI.WebControls.Literal litSymptoms;
         protected global::System.Web.UI.WebControls.Literal litTreatmentText;
+        protected global::System.Web.UI.WebControls.Literal litCareTips;
         protected global::System.Web.UI.WebControls.Image imgMedicine;
         protected global::System.Web.UI.WebControls.Literal litMedicineName;
         protected global::System.Web.UI.WebControls.Literal litMedicinePrice;

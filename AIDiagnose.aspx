@@ -77,26 +77,27 @@
                     <p class="upload-subtitle">Drag and drop an image here, or click to browse</p>
                     <p class="upload-formats">JPG, PNG, WEBP up to 10MB</p>
 
+                    <!-- Plant Name Input Field (Database-Driven Matching) -->
+                    <div class="upload-input-wrapper mb-2 text-start">
+                        <label for="<%= txtPlantName.ClientID %>" class="form-label-custom mb-1 d-block text-start" style="font-weight: 600; font-size: 13.5px; color: #1e3a22;">
+                            <i class="fa-solid fa-leaf text-success me-1"></i>Enter Plant Name:
+                        </label>
+                        <asp:TextBox ID="txtPlantName" runat="server"
+                            CssClass="form-control diagnosis-select"
+                            placeholder="e.g. Rose Plant, Tulsi Plant, Aloe Vera, Neem Plant"
+                            AutoCompleteType="None"></asp:TextBox>
+                    </div>
+
                     <!-- Plant selection from Database -->
-                    <div class="upload-select-wrapper">
+                    <div class="upload-select-wrapper mb-2 text-start">
+                        <label for="<%= ddlPlant.ClientID %>" class="form-label-custom mb-1 d-block text-start" style="font-weight: 600; font-size: 13.5px; color: #1e3a22;">
+                            <i class="fa-solid fa-list-check text-success me-1"></i>Or Select from Database Plants:
+                        </label>
                         <asp:DropDownList ID="ddlPlant" runat="server"
                             CssClass="form-select diagnosis-select"
                             aria-label="Select Plant"
-                            AutoPostBack="true"
-                            OnSelectedIndexChanged="ddlPlant_SelectedIndexChanged">
-                            <asp:ListItem Text="-- Select a Plant --" Value=""></asp:ListItem>
-                            <asp:ListItem Text="Tulsi (Holy Basil)" Value="Tulsi (Holy Basil)"></asp:ListItem>
-                            <asp:ListItem Text="Tomato Plant" Value="Tomato Plant"></asp:ListItem>
-                            <asp:ListItem Text="Rose Plant" Value="Rose Plant"></asp:ListItem>
-                            <asp:ListItem Text="Sunflower" Value="Sunflower"></asp:ListItem>
-                            <asp:ListItem Text="Neem Tree" Value="Neem Tree"></asp:ListItem>
-                            <asp:ListItem Text="Mango Tree" Value="Mango Tree"></asp:ListItem>
-                            <asp:ListItem Text="Snake Plant" Value="Snake Plant"></asp:ListItem>
-                            <asp:ListItem Text="Aloe Vera" Value="Aloe Vera"></asp:ListItem>
-                            <asp:ListItem Text="Money Plant" Value="Money Plant"></asp:ListItem>
-                            <asp:ListItem Text="Cotton Plant" Value="Cotton Plant"></asp:ListItem>
-                            <asp:ListItem Text="Marigold" Value="Marigold"></asp:ListItem>
-                            <asp:ListItem Text="Lemon Tree" Value="Lemon Tree"></asp:ListItem>
+                            onchange="if(this.value){ document.getElementById('<%= txtPlantName.ClientID %>').value = this.value; }">
+                            <asp:ListItem Text="-- Select from Existing Plants --" Value=""></asp:ListItem>
                         </asp:DropDownList>
                     </div>
 
@@ -137,7 +138,7 @@
                     <i class="fa-solid fa-circle-check"></i> Diagnosis Result &amp; Treatment Plan
                 </span>
                 <asp:Button ID="btnCloseResult" runat="server" Text="&times; Close Result"
-                    CssClass="btn btn-sm btn-outline-secondary" CausesValidation="false" OnClientClick="return false;" />
+                    CssClass="btn btn-sm btn-outline-secondary" CausesValidation="false" OnClick="btnCloseResult_Click" />
             </div>
 
             <div class="row g-3 align-items-start">
@@ -167,9 +168,41 @@
                     </div>
 
                     <!-- Recommended Treatment Steps -->
+                    <div class="result-label">Treatment Plan</div>
                     <div class="treatment-box">
                         <strong><i class="fa-solid fa-notes-medical me-1"></i> Step-by-Step Treatment &amp; Action Plan:</strong><br />
                         <asp:Literal ID="litTreatmentText" runat="server"></asp:Literal>
+                    </div>
+
+                    <!-- Expert Care Tips -->
+                    <div class="result-label">Expert Care Tips</div>
+                    <div class="tips-box" style="background:#eef7ec; border-left:3px solid #288f32; border-radius:0 6px 6px 0; padding:14px 18px; font-size:15px; color:#1e3d23; line-height:1.7; margin-bottom:18px;">
+                        <strong><i class="fa-solid fa-seedling me-1"></i> Care &amp; Prevention Advice:</strong><br />
+                        <asp:Literal ID="litCareTips" runat="server"></asp:Literal>
+                    </div>
+
+                    <!-- Recommended Pesticide / Care Product Card -->
+                    <div class="result-label">Recommended Pesticides / Medicines</div>
+                    <div class="medicine-card">
+                        <div class="d-flex align-items-center gap-3">
+                            <asp:Image ID="imgMedicine" runat="server" CssClass="medicine-thumb" />
+                            <div>
+                                <div class="med-label">Recommended Solution</div>
+                                <div class="med-name"><asp:Literal ID="litMedicineName" runat="server"></asp:Literal></div>
+                                <div class="med-price">&#8377;<asp:Literal ID="litMedicinePrice" runat="server"></asp:Literal></div>
+                            </div>
+                        </div>
+
+                        <asp:HiddenField ID="hfDiagnosedMedicineName" runat="server" />
+                        <asp:HiddenField ID="hfDiagnosedMedicinePrice" runat="server" />
+                        <asp:HiddenField ID="hfDiagnosedMedicineImage" runat="server" />
+
+                        <div class="d-flex gap-2">
+                            <asp:Button ID="btnAddToCart" runat="server" Text="🛒 Add to Cart"
+                                OnClick="btnAddToCart_Click" CssClass="btn-cart-sm" CausesValidation="false" />
+                            <asp:Button ID="btnAddToWishlist" runat="server" Text="♥ Wishlist"
+                                OnClick="btnAddToWishlist_Click" CssClass="btn-wish-sm" CausesValidation="false" />
+                        </div>
                     </div>
 
                 </div>
@@ -307,7 +340,7 @@
                     </span>
                 </span>
                 <asp:Button ID="btnToggleManual" runat="server" Text="➕ Add New Disease to Database"
-                    CssClass="btn-outline-green" CausesValidation="false" OnClientClick="return false;" />
+                    CssClass="btn-outline-green" CausesValidation="false" OnClick="btnToggleManual_Click" />
             </div>
 
             <!-- Collapsible Manual Entry Form with pure server-side .NET validation -->
@@ -431,10 +464,10 @@
 
                     <div class="col-12 d-flex gap-2 mt-3">
                         <asp:Button ID="btnSaveManual" runat="server" Text="💾 Save Record to Database"
-                            ValidationGroup="vgManualDisease" OnClientClick="return false;"
+                            ValidationGroup="vgManualDisease" OnClick="btnSaveManual_Click"
                             CssClass="btn btn-sm btn-success fw-bold px-3" />
                         <asp:Button ID="btnCancelManual" runat="server" Text="Cancel"
-                            CausesValidation="false" OnClientClick="return false;"
+                            CausesValidation="false" OnClick="btnCancelManual_Click"
                             CssClass="btn btn-sm btn-outline-secondary px-3" />
                     </div>
                 </div>
@@ -442,7 +475,7 @@
 
             <!-- Records Table -->
             <div class="table-responsive">
-                <asp:Repeater ID="rptDiseaseCatalog" runat="server">
+                <asp:Repeater ID="rptDiseaseCatalog" runat="server" OnItemCommand="rptDiseaseCatalog_ItemCommand">
                     <HeaderTemplate>
                         <table class="table records-table align-middle">
                             <thead>
@@ -469,14 +502,14 @@
                             <td class="text-end">
                                 <asp:LinkButton ID="lnkDiagnoseRow" runat="server"
                                     CommandName="DiagnoseRow" CommandArgument='<%# Eval("DiseaseId") %>'
-                                    CssClass="btn-view-pill me-1" title="View Diagnosis" OnClientClick="return false;">
+                                    CssClass="btn-view-pill me-1" title="View Diagnosis">
                                     <i class="fa-solid fa-eye me-1"></i>View
                                 </asp:LinkButton>
                                 <asp:Panel ID="pnlDeleteButton" runat="server">
                                     <asp:LinkButton ID="lnkDeleteRow" runat="server"
                                         CommandName="DeleteRow" CommandArgument='<%# Eval("DiseaseId") %>'
                                         CssClass="btn-del-pill"
-                                        title="Delete from Database" OnClientClick="return false;">
+                                        title="Delete from Database">
                                         <i class="fa-solid fa-trash"></i>
                                     </asp:LinkButton>
                                 </asp:Panel>
