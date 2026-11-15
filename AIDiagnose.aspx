@@ -6,6 +6,140 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- Page Specific CSS matching Figma design pixel-perfectly -->
     <link href="Content/AIDiagnose.css" rel="stylesheet" />
+    <style>
+        /* Single Clean Plant Photo Upload Box */
+        .plant-upload-box {
+            width: 100%;
+            min-height: 160px;
+            background: #fbfdfa;
+            border: 2px dashed #2fa13a;
+            border-radius: 12px;
+            padding: 22px 18px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            position: relative;
+        }
+        .plant-upload-box:hover {
+            border-color: #24882e;
+            background: #f4faf2;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(47, 161, 58, 0.12);
+        }
+        .plant-upload-box.drag-active {
+            border-color: #1b6d23;
+            background: #eaf5e6;
+            border-style: solid;
+            box-shadow: 0 0 0 4px rgba(47, 161, 58, 0.2);
+        }
+        .upload-box-prompt {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+        .upload-box-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #eaf5e6;
+            color: #2fa13a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            margin-bottom: 8px;
+            transition: transform 0.2s ease;
+        }
+        .plant-upload-box:hover .upload-box-icon {
+            transform: scale(1.08);
+        }
+        .upload-box-title {
+            margin: 0 0 4px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 19px;
+            font-weight: 700;
+            color: #14321e;
+        }
+        .upload-box-subtext {
+            margin: 0 0 6px;
+            font-size: 14px;
+            color: #435b4b;
+            font-family: 'Inter', sans-serif;
+        }
+        .upload-box-badge {
+            font-size: 12px;
+            font-weight: 600;
+            color: #2fa13a;
+            background: #edf7eb;
+            border: 1px solid #cce5ca;
+            padding: 3px 10px;
+            border-radius: 12px;
+            display: inline-block;
+        }
+        /* Preview State Inside the Upload Area */
+        .upload-box-preview {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            gap: 8px;
+        }
+        .upload-preview-thumbnail {
+            max-width: 130px;
+            max-height: 130px;
+            border-radius: 8px;
+            border: 2px solid #2fa13a;
+            object-fit: cover;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        .upload-preview-details {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+        .upload-preview-name {
+            font-size: 13.5px;
+            font-weight: 600;
+            color: #1c3821;
+            max-width: 250px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .upload-preview-size {
+            font-size: 12px;
+            color: #5d7563;
+        }
+        .btn-change-photo {
+            margin-top: 4px;
+            background: #ffffff;
+            color: #2fa13a;
+            border: 1px solid #2fa13a;
+            border-radius: 6px;
+            padding: 4px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn-change-photo:hover {
+            background: #2fa13a;
+            color: #ffffff;
+        }
+        .client-upload-error {
+            font-size: 13px;
+            border-radius: 6px;
+        }
+    </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -70,12 +204,40 @@
             <!-- CENTER COLUMN: Upload Plant Image Card -->
             <div class="doc-hero-center">
                 <div class="upload-card">
-                    <div class="upload-icon-circle">
-                        <i class="fa-solid fa-arrow-up-from-bracket"></i>
+
+                    <!-- Single Clean Plant Photo Upload Box (Click to Browse or Drag & Drop) -->
+                    <div id="plantUploadBox" class="plant-upload-box" onclick="triggerPlantFileInput();">
+                        <!-- Server-Side FileUpload control (hidden visually, fully active in DOM and ASP.NET) -->
+                        <asp:FileUpload ID="fileUploadPlant" runat="server"
+                            accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
+                            style="display: none;"
+                            onchange="handlePlantFileSelection(this);" />
+
+                        <!-- Default Prompt: Select Plant Photo -->
+                        <div id="uploadPromptContainer" class="upload-box-prompt">
+                            <div class="upload-box-icon">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                            </div>
+                            <h4 class="upload-box-title">Select Plant Photo</h4>
+                            <p class="upload-box-subtext">Click to browse or drag &amp; drop plant photo here</p>
+                            <span class="upload-box-badge">JPG, JPEG, PNG, WEBP (Max 10MB)</span>
+                        </div>
+
+                        <!-- Preview State: Shows selected photo inside the upload box -->
+                        <div id="uploadPreviewContainer" class="upload-box-preview" style="display: none;">
+                            <img id="plantImagePreview" src="" alt="Selected Plant Preview" class="upload-preview-thumbnail" />
+                            <div class="upload-preview-details">
+                                <span id="plantImageFileName" class="upload-preview-name"></span>
+                                <span id="plantImageFileSize" class="upload-preview-size"></span>
+                                <button type="button" class="btn-change-photo" onclick="event.stopPropagation(); triggerPlantFileInput();">
+                                    <i class="fa-solid fa-arrow-rotate-right me-1"></i>Change Photo
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="upload-title">Upload Plant Image</h3>
-                    <p class="upload-subtitle">Drag and drop an image here, or click to browse</p>
-                    <p class="upload-formats">JPG, PNG, WEBP up to 10MB</p>
+
+                    <!-- Client-side Validation Error Banner -->
+                    <div id="clientUploadError" class="client-upload-error alert alert-danger py-2 px-3 mb-2 text-start" style="display: none;"></div>
 
                     <!-- Plant Name Input Field (Database-Driven Matching) -->
                     <div class="upload-input-wrapper mb-2 text-start">
@@ -89,7 +251,7 @@
                     </div>
 
                     <!-- Plant selection from Database -->
-                    <div class="upload-select-wrapper mb-2 text-start">
+                    <div class="upload-select-wrapper mb-3 text-start">
                         <label for="<%= ddlPlant.ClientID %>" class="form-label-custom mb-1 d-block text-start" style="font-weight: 600; font-size: 13.5px; color: #1e3a22;">
                             <i class="fa-solid fa-list-check text-success me-1"></i>Or Select from Database Plants:
                         </label>
@@ -99,11 +261,6 @@
                             onchange="if(this.value){ document.getElementById('<%= txtPlantName.ClientID %>').value = this.value; }">
                             <asp:ListItem Text="-- Select from Existing Plants --" Value=""></asp:ListItem>
                         </asp:DropDownList>
-                    </div>
-
-                    <!-- File Upload Control (optional) -->
-                    <div class="upload-input-wrapper">
-                        <asp:FileUpload ID="fileUploadPlant" runat="server" CssClass="form-control diagnosis-file-input" />
                     </div>
 
                     <!-- Diagnose Action Button (server-side postback, ASP.NET only) -->
@@ -527,4 +684,141 @@
 
 </div>
 </div>
+
+<script type="text/javascript">
+    function triggerPlantFileInput() {
+        var fileInput = document.getElementById('<%= fileUploadPlant.ClientID %>');
+        if (fileInput) {
+            fileInput.click();
+        }
+    }
+
+    function handlePlantFileSelection(input) {
+        if (input && input.files && input.files.length > 0) {
+            processPlantPhoto(input.files[0]);
+        }
+    }
+
+    function processPlantPhoto(file) {
+        var errorBox = document.getElementById('clientUploadError');
+        if (errorBox) {
+            errorBox.style.display = 'none';
+            errorBox.innerHTML = '';
+        }
+
+        if (!file) return;
+
+        // 1. Image Format Validation (JPG, JPEG, PNG, WEBP)
+        var allowedExts = ['jpg', 'jpeg', 'png', 'webp'];
+        var fileName = file.name || '';
+        var ext = fileName.split('.').pop().toLowerCase();
+        var isValidExt = allowedExts.indexOf(ext) !== -1;
+        var isValidMime = file.type ? file.type.match(/^image\/(jpeg|png|webp)$/i) : false;
+
+        if (!isValidExt && !isValidMime) {
+            showUploadClientError('Invalid format. Please select a JPG, JPEG, PNG, or WEBP plant photo.');
+            resetUploadBoxState();
+            return;
+        }
+
+        // 2. File Size Validation (Max 10MB)
+        var maxBytes = 10 * 1024 * 1024; // 10MB
+        if (file.size > maxBytes) {
+            showUploadClientError('File size exceeds the 10MB limit (' + formatBytes(file.size) + '). Please choose an image under 10MB.');
+            resetUploadBoxState();
+            return;
+        }
+
+        // 3. Render Live Image Preview inside Upload Area
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            var prompt = document.getElementById('uploadPromptContainer');
+            var preview = document.getElementById('uploadPreviewContainer');
+            var img = document.getElementById('plantImagePreview');
+            var nameSpan = document.getElementById('plantImageFileName');
+            var sizeSpan = document.getElementById('plantImageFileSize');
+
+            if (img) img.src = e.target.result;
+            if (nameSpan) nameSpan.textContent = file.name;
+            if (sizeSpan) sizeSpan.textContent = formatBytes(file.size);
+
+            if (prompt) prompt.style.display = 'none';
+            if (preview) preview.style.display = 'flex';
+        };
+        reader.readAsDataURL(file);
+    }
+
+    function showUploadClientError(msg) {
+        var errorBox = document.getElementById('clientUploadError');
+        if (errorBox) {
+            errorBox.innerHTML = '<i class="fa-solid fa-triangle-exclamation me-1"></i> ' + msg;
+            errorBox.style.display = 'block';
+        }
+    }
+
+    function resetUploadBoxState() {
+        var fileInput = document.getElementById('<%= fileUploadPlant.ClientID %>');
+        if (fileInput) {
+            fileInput.value = '';
+        }
+        var prompt = document.getElementById('uploadPromptContainer');
+        var preview = document.getElementById('uploadPreviewContainer');
+        var img = document.getElementById('plantImagePreview');
+
+        if (img) img.src = '';
+        if (prompt) prompt.style.display = 'flex';
+        if (preview) preview.style.display = 'none';
+    }
+
+    function formatBytes(bytes) {
+        if (!bytes || bytes === 0) return '0 B';
+        if (bytes < 1024) return bytes + ' B';
+        if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+        return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
+    }
+
+    // Attach Drag and Drop Event Handlers
+    document.addEventListener('DOMContentLoaded', function () {
+        var dropZone = document.getElementById('plantUploadBox');
+        var fileInput = document.getElementById('<%= fileUploadPlant.ClientID %>');
+
+        if (!dropZone || !fileInput) return;
+
+        ['dragenter', 'dragover'].forEach(function (evtName) {
+            dropZone.addEventListener(evtName, function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropZone.classList.add('drag-active');
+            }, false);
+        });
+
+        ['dragleave', 'drop'].forEach(function (evtName) {
+            dropZone.addEventListener(evtName, function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropZone.classList.remove('drag-active');
+            }, false);
+        });
+
+        dropZone.addEventListener('drop', function (e) {
+            var dt = e.dataTransfer;
+            if (dt && dt.files && dt.files.length > 0) {
+                var droppedFile = dt.files[0];
+                try {
+                    // Update the ASP.NET FileUpload control's files collection
+                    if (window.DataTransfer) {
+                        var transfer = new DataTransfer();
+                        transfer.items.add(droppedFile);
+                        fileInput.files = transfer.files;
+                    } else {
+                        fileInput.files = dt.files;
+                    }
+                } catch (err) {
+                    console.warn('Could not assign files collection directly: ', err);
+                }
+                processPlantPhoto(droppedFile);
+            }
+        }, false);
+    });
+</script>
 </asp:Content>

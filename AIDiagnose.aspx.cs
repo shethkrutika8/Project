@@ -32,6 +32,11 @@ namespace Project
             lblError.Visible = false;
             pnlAlert.Visible = false;
 
+            if (Page.Form != null)
+            {
+                Page.Form.Enctype = "multipart/form-data";
+            }
+
             if (!IsPostBack)
             {
                 DbHelper.EnsureDatabaseTablesExist();
@@ -133,33 +138,52 @@ namespace Project
                 return;
             }
 
-            // Handle optional image upload
+            string uploadedImagePath = null;
+
+            // Handle optional plant photo upload with validation
             if (fileUploadPlant.HasFile)
             {
+                string ext = Path.GetExtension(fileUploadPlant.FileName).ToLower();
+                if (ext != ".jpg" && ext != ".jpeg" && ext != ".png" && ext != ".webp")
+                {
+                    lblError.Visible = true;
+                    lblError.Text = "<div class='alert alert-danger py-2 mb-2'><i class='fa-solid fa-triangle-exclamation me-1'></i> Invalid image format. Only JPG, JPEG, PNG, and WEBP formats are allowed.</div>";
+                    pnlResultCard.Visible = false;
+                    return;
+                }
+
+                if (fileUploadPlant.PostedFile.ContentLength > 10 * 1024 * 1024)
+                {
+                    lblError.Visible = true;
+                    lblError.Text = "<div class='alert alert-danger py-2 mb-2'><i class='fa-solid fa-triangle-exclamation me-1'></i> Image size exceeds the 10MB limit. Please choose a smaller photo.</div>";
+                    pnlResultCard.Visible = false;
+                    return;
+                }
+
                 try
                 {
-                    string ext = Path.GetExtension(fileUploadPlant.FileName).ToLower();
-                    if (ext == ".jpg" || ext == ".jpeg" || ext == ".png" || ext == ".webp")
-                    {
-                        string uploadDir = Server.MapPath("~/Uploads/");
-                        if (!Directory.Exists(uploadDir))
-                            Directory.CreateDirectory(uploadDir);
+                    string uploadDir = Server.MapPath("~/Uploads/");
+                    if (!Directory.Exists(uploadDir))
+                        Directory.CreateDirectory(uploadDir);
 
-                        string filename = "plant_" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + ext;
-                        string savePath = Path.Combine(uploadDir, filename);
-                        fileUploadPlant.SaveAs(savePath);
-                    }
+                    string filename = "plant_" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + ext;
+                    string savePath = Path.Combine(uploadDir, filename);
+                    fileUploadPlant.SaveAs(savePath);
+                    uploadedImagePath = "Uploads/" + filename;
                 }
-                catch { /* Image save is non-critical */ }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Image save error: " + ex.Message);
+                }
             }
 
-            DiagnosePlant(plantInput);
+            DiagnosePlant(plantInput, uploadedImagePath);
         }
 
         /// <summary>
         /// Retrieves matched plant record from database and binds all fields to UI
         /// </summary>
-        private void DiagnosePlant(string inputPlant)
+        private void DiagnosePlant(string inputPlant, string uploadedImagePath = null)
         {
             try
             {
@@ -220,13 +244,26 @@ namespace Project
                 imgMedicine.ImageUrl = "~/" + medImg.TrimStart('/');
                 hfDiagnosedMedicineImage.Value = medImg;
 
-                // 6. Plant Image
-                string plantImg = !string.IsNullOrEmpty(record.ImageUrl) ? record.ImageUrl : "image/ai-plant-doctor.png";
+                // 6. Plant Image (Show user's uploaded photo if provided, else database record's image)
+                string plantImg = !string.IsNullOrEmpty(uploadedImagePath)
+                    ? uploadedImagePath
+                    : (!string.IsNullOrEmpty(record.ImageUrl) ? record.ImageUrl : "image/ai-plant-doctor.png");
                 imgDiagnosed.ImageUrl = "~/" + plantImg.TrimStart('/');
                 imgDiagnosed.AlternateText = record.PlantName;
 
                 // Display result card
                 pnlResultCard.Visible = true;
+
+                // Log diagnostic history securely
+                SaveToHistory(record.PlantName, record.DiseaseName, record.Treatment);
+            }
+            catch (Exception ex)
+            {
+                lblError.Visible = true;
+                lblError.Text = "<div class='alert alert-danger py-2 mb-2'>Error loading diagnosis: " + Server.HtmlEncode(ex.Message) + "</div>";
+                pnlResultCard.Visible = false;
+            }
+        }
 
                 // Log diagnostic history securely
                 SaveToHistory(record.PlantName, record.DiseaseName, record.Treatment);
