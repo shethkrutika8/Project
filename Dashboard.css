@@ -39,13 +39,12 @@ body {
     padding: 0 40px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 40px;
+    gap: 32px;
 }
 
 .hero-content {
-    flex: 1;
-    max-width: 620px;
+    flex: 1 1 0;
+    min-width: 0;
 }
 
 .hero-content h1 {
@@ -95,7 +94,7 @@ body {
 
 /* Hero Image - Natural Aspect Ratio (1536x1024 = 3:2), No Cropping */
 .hero-image {
-    flex: 1;
+    flex: 0 1 46%;
     max-width: 530px;
     display: flex;
     align-items: center;

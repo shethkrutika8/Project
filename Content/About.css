@@ -93,7 +93,7 @@ body {
 .about-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    gap: 36px;
     align-items: center;
 }
 
@@ -256,7 +256,7 @@ body {
 .story-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    gap: 36px;
     align-items: center;
 }
 
@@ -324,7 +324,7 @@ body {
     .features-container,
     .story-container {
         padding: 0 40px;
-        gap: 40px;
+        gap: 32px;
     }
 
     .about-hero,

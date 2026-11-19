@@ -70,16 +70,14 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    gap: 24px;
+    gap: 28px;
     box-shadow: 0 4px 16px rgba(45, 80, 45, 0.06);
 }
 
 /* Left Column: Title, Description & Feature Points */
 .doc-hero-left {
-    flex: 1 1 54%;
+    flex: 1 1 0;
     min-width: 0;
-    max-width: 620px;
 }
 
 .doc-title-row {
@@ -153,7 +151,7 @@
 
 /* Right/Center Column: Upload Plant Image Card */
 .doc-hero-center {
-    flex: 0 0 420px;
+    flex: 0 1 420px;
     max-width: 440px;
     width: 100%;
     display: flex;
