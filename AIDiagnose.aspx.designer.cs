@@ -18,13 +18,9 @@ namespace Project
         protected global::System.Web.UI.WebControls.Panel pnlHowItWorks;
         protected global::System.Web.UI.WebControls.Panel pnlTipsSection;
 
-        protected global::System.Web.UI.WebControls.TextBox txtPlantName;
-        protected global::System.Web.UI.WebControls.DropDownList ddlPlant;
         protected global::System.Web.UI.WebControls.FileUpload fileUploadPlant;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPlant;
         protected global::System.Web.UI.WebControls.Button btnDiagnose;
-        protected global::System.Web.UI.WebControls.Panel plantImagePreview;
-        protected global::System.Web.UI.WebControls.Image imgPlantPreview;
-
         protected global::System.Web.UI.WebControls.Panel pnlResultCard;
         protected global::System.Web.UI.WebControls.Button btnCloseResult;
         protected global::System.Web.UI.WebControls.Image imgDiagnosed;
@@ -39,8 +35,8 @@ namespace Project
         protected global::System.Web.UI.WebControls.HiddenField hfDiagnosedMedicineName;
         protected global::System.Web.UI.WebControls.HiddenField hfDiagnosedMedicinePrice;
         protected global::System.Web.UI.WebControls.HiddenField hfDiagnosedMedicineImage;
-        protected global::System.Web.UI.WebControls.Button btnAddToCart;
-        protected global::System.Web.UI.WebControls.Button btnAddToWishlist;
+        protected global::System.Web.UI.WebControls.LinkButton btnAddToCart;
+        protected global::System.Web.UI.WebControls.LinkButton btnAddToWishlist;
 
         protected global::System.Web.UI.WebControls.Panel pnlAdminDatabaseManagement;
         protected global::System.Web.UI.WebControls.Literal litRecordCount;

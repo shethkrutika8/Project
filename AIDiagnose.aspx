@@ -241,27 +241,17 @@
                         </div>
                     </div>
 
-                    <!-- Plant Name Input Field (Database-Driven Matching) -->
-                    <div class="upload-input-wrapper mb-2 text-start">
-                        <label for="<%= txtPlantName.ClientID %>" class="form-label-custom mb-1 d-block text-start" style="font-weight: 600; font-size: 13.5px; color: #1e3a22;">
-                            <i class="fa-solid fa-leaf text-success me-1"></i>Enter Plant Name:
-                        </label>
-                        <asp:TextBox ID="txtPlantName" runat="server"
-                            CssClass="form-control diagnosis-select"
-                            placeholder="e.g. Rose Plant, Tulsi Plant, Aloe Vera, Neem Plant"
-                            AutoCompleteType="None"></asp:TextBox>
-                    </div>
-
-                    <!-- Plant selection from Database -->
-                    <div class="upload-select-wrapper mb-2 text-start">
+                    <!-- Plant Selection from Database ONLY (no text input field) -->
+                    <div class="upload-select-wrapper mb-3 text-start">
                         <label for="<%= ddlPlant.ClientID %>" class="form-label-custom mb-1 d-block text-start" style="font-weight: 600; font-size: 13.5px; color: #1e3a22;">
-                            <i class="fa-solid fa-list-check text-success me-1"></i>Or Select from Database Plants:
+                            <i class="fa-solid fa-leaf text-success me-1"></i>Select Plant from Database:
                         </label>
                         <asp:DropDownList ID="ddlPlant" runat="server"
                             CssClass="form-select diagnosis-select"
                             aria-label="Select Plant"
-                            onchange="if(this.value){ document.getElementById('<%= txtPlantName.ClientID %>').value = this.value; }">
-                            <asp:ListItem Text="-- Select from Existing Plants --" Value=""></asp:ListItem>
+                            AutoPostBack="true"
+                            OnSelectedIndexChanged="ddlPlant_SelectedIndexChanged">
+                            <asp:ListItem Text="-- Select a Plant from Database --" Value=""></asp:ListItem>
                         </asp:DropDownList>
                     </div>
 
@@ -276,11 +266,6 @@
                     <i class="fa-solid fa-circle-check text-success"></i>
                     <span>Your images are secure and only used for analysis</span>
                 </div>
-            </div>
-
-            <!-- RIGHT COLUMN: Plant Image -->
-            <div class="doc-hero-right">
-                <img src="image/ai-plant-doctor.png" alt="Healthy Potted Houseplant" class="doc-plant-img" />
             </div>
 
         </div>
@@ -357,10 +342,14 @@
                         <asp:HiddenField ID="hfDiagnosedMedicineImage" runat="server" />
 
                         <div class="d-flex gap-2">
-                            <asp:Button ID="btnAddToCart" runat="server" Text="🛒 Add to Cart"
-                                OnClick="btnAddToCart_Click" CssClass="btn-cart-sm" CausesValidation="false" />
-                            <asp:Button ID="btnAddToWishlist" runat="server" Text="♥ Wishlist"
-                                OnClick="btnAddToWishlist_Click" CssClass="btn-wish-sm" CausesValidation="false" />
+                            <asp:LinkButton ID="btnAddToCart" runat="server" OnClick="btnAddToCart_Click"
+                                CssClass="btn-cart-sm text-decoration-none d-inline-flex align-items-center gap-1" CausesValidation="false">
+                                <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+                            </asp:LinkButton>
+                            <asp:LinkButton ID="btnAddToWishlist" runat="server" OnClick="btnAddToWishlist_Click"
+                                CssClass="btn-wish-sm text-decoration-none d-inline-flex align-items-center gap-1" CausesValidation="false">
+                                <i class="fa-solid fa-heart"></i> Wishlist
+                            </asp:LinkButton>
                         </div>
                     </div>
 

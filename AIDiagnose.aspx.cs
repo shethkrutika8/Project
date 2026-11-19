@@ -67,7 +67,7 @@ namespace Project
             {
                 List<string> plants = GetAvailablePlantNamesFromDb();
                 ddlPlant.Items.Clear();
-                ddlPlant.Items.Add(new ListItem("-- Select from Existing Plants --", ""));
+                ddlPlant.Items.Add(new ListItem("-- Select a Plant from Database --", ""));
 
                 foreach (string p in plants)
                 {
@@ -115,19 +115,31 @@ namespace Project
         }
 
         /// <summary>
-        /// Diagnose Plant button handler: fetches matching record directly from database
+        /// Triggered whenever the user selects a plant from the dropdown:
+        /// immediately runs the diagnosis and displays that plant's correct image in the result
+        /// </summary>
+        protected void ddlPlant_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedPlant = ddlPlant.SelectedValue;
+            if (!string.IsNullOrEmpty(selectedPlant))
+            {
+                DiagnosePlant(selectedPlant);
+            }
+            else
+            {
+                pnlResultCard.Visible = false;
+            }
+        }
+
+        /// <summary>
+        /// Diagnose Plant button handler
         /// </summary>
         protected void btnDiagnose_Click(object sender, EventArgs e)
         {
-            string plantInput = txtPlantName.Text.Trim();
-            if (string.IsNullOrEmpty(plantInput))
-            {
-                plantInput = ddlPlant.SelectedValue.Trim();
-            }
-
+            string selectedPlant = ddlPlant.SelectedValue.Trim();
             string uploadedImagePath = "";
 
-            // Handle file upload if present
+            // Handle file upload if user provided/dropped an image
             if (fileUploadPlant.HasFile)
             {
                 string ext = Path.GetExtension(fileUploadPlant.FileName).ToLower();
@@ -166,26 +178,15 @@ namespace Project
                 }
             }
 
-            // If user did not type or select a plant name, check if filename matches a plant
-            if (string.IsNullOrEmpty(plantInput) && !string.IsNullOrEmpty(uploadedImagePath))
-            {
-                string baseFn = Path.GetFileNameWithoutExtension(fileUploadPlant.FileName);
-                PlantDiseaseRecord guessed = FetchPlantDiseaseFromDb(baseFn);
-                if (guessed != null)
-                {
-                    plantInput = guessed.PlantName;
-                }
-            }
-
-            if (string.IsNullOrEmpty(plantInput))
+            if (string.IsNullOrEmpty(selectedPlant))
             {
                 lblError.Visible = true;
-                lblError.Text = "<div class='alert alert-warning py-2 mb-2'><strong>Please enter or select a plant name</strong> (e.g. Rose Plant, Tulsi Plant, Aloe Vera, Neem Plant) to diagnose.</div>";
+                lblError.Text = "<div class='alert alert-warning py-2 mb-2'><strong>Please select a plant from the dropdown</strong> to diagnose.</div>";
                 pnlResultCard.Visible = false;
                 return;
             }
 
-            DiagnosePlant(plantInput, uploadedImagePath);
+            DiagnosePlant(selectedPlant, uploadedImagePath);
         }
 
         /// <summary>
@@ -199,7 +200,6 @@ namespace Project
 
                 if (record == null)
                 {
-                    // If plant name does not exist in the database, show error & hide result card
                     pnlResultCard.Visible = false;
                     lblError.Visible = true;
 
@@ -228,7 +228,6 @@ namespace Project
 
                 // 1. Plant Name
                 lblPlantTitle.Text = record.PlantName;
-                txtPlantName.Text = record.PlantName;
 
                 // 2. Disease / Condition
                 lblDiseaseTitle.Text = record.DiseaseName;
@@ -248,14 +247,27 @@ namespace Project
 
                 string medImg = GetProductImage(record.MedicineName);
                 if (string.IsNullOrEmpty(medImg))
-                    medImg = !string.IsNullOrEmpty(record.ImageUrl) ? record.ImageUrl : "image/product-snake-plant.png";
+                    medImg = "image/product-snake-plant.png";
                 imgMedicine.ImageUrl = "~/" + medImg.TrimStart('/');
                 hfDiagnosedMedicineImage.Value = medImg;
 
-                // 6. Plant Image: If user uploaded a photo, display user's photo; otherwise display database photo
-                string plantImg = !string.IsNullOrEmpty(uploadedImagePath) ? uploadedImagePath : record.ImageUrl;
-                if (string.IsNullOrEmpty(plantImg))
+                // 6. Plant Image: Priority: (1) uploaded photo (2) exact DB image for this plant (3) placeholder
+                string plantImg;
+                if (!string.IsNullOrEmpty(uploadedImagePath))
+                {
+                    // User uploaded their own photo — use it
+                    plantImg = uploadedImagePath;
+                }
+                else if (!string.IsNullOrEmpty(record.ImageUrl))
+                {
+                    // Use the plant's own image stored in the database
+                    plantImg = record.ImageUrl;
+                }
+                else
+                {
+                    // No image available — use a neutral placeholder
                     plantImg = "image/ai-plant-doctor.png";
+                }
 
                 imgDiagnosed.ImageUrl = "~/" + plantImg.TrimStart('/');
                 imgDiagnosed.AlternateText = record.PlantName;
@@ -285,7 +297,6 @@ namespace Project
 
             string cleanInput = inputPlant.Trim();
 
-            // Reject overly generic single words like "plant", "tree", "crop", "flower", "leaf"
             HashSet<string> genericTerms = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
             {
                 "plant", "plants", "tree", "trees", "crop", "crops", "flower", "flowers", "herb", "herbs", "bush", "bushes", "leaf", "leaves"
@@ -349,7 +360,7 @@ namespace Project
                     }
                 }
 
-                // 3. Reverse match: If user entered a longer phrase like "My potted Tulsi Plant", check if PlantName is inside
+                // 3. Reverse match: If input phrase contains the database plant name
                 string sqlReverse = @"
                     SELECT TOP 1 DiseaseId, PlantName, DiseaseName, Symptoms, Treatment, MedicineName, MedicinePrice, ImageUrl
                     FROM PlantDiseases
