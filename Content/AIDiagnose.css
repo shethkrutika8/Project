@@ -8,14 +8,16 @@
     background: #f4f8f1;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     color: #1e3527;
-    padding-bottom: 50px;
-    font-size: 16px;
+    padding-bottom: 30px;
+    font-size: 15px;
     -webkit-font-smoothing: antialiased;
 }
 
 /* Page Container - Exactly aligned with Master Page */
 .diagnose-container {
     width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
     padding: 0 24px;
 }
 
@@ -52,173 +54,176 @@
 }
 
 /* =========================================================
-   1. HERO SECTION (AI PLANT DOCTOR) - Exact Figma Layout
+   1. HERO SECTION (AI PLANT DOCTOR) - Optimized Layout
    ========================================================= */
 
 .doc-hero-section {
     width: 100%;
-    padding: 24px 0 16px;
+    padding: 12px 0 8px;
 }
 
 .doc-hero-card {
     background: linear-gradient(135deg, #dcf0d9 0%, #cee7cb 100%);
     border-radius: 14px;
     border: 1px solid #bedfbd;
-    padding: 34px 38px 30px;
+    padding: 18px 24px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    gap: 28px;
+    gap: 24px;
     box-shadow: 0 4px 16px rgba(45, 80, 45, 0.06);
 }
 
 /* Left Column: Title, Description & Feature Points */
 .doc-hero-left {
-    flex: 0 0 32%;
-    max-width: 320px;
+    flex: 1 1 54%;
+    min-width: 0;
+    max-width: 620px;
 }
 
 .doc-title-row {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
+    gap: 8px;
+    margin-bottom: 6px;
 }
 
 .doc-title {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 800;
     color: #14321e;
     line-height: 1.2;
-    letter-spacing: -0.5px;
+    letter-spacing: -0.4px;
 }
 
 .badge-beta {
     background: #36a941;
     color: #ffffff;
-    font-size: 13px;
+    font-size: 11.5px;
     font-weight: 700;
-    padding: 4px 10px;
+    padding: 3px 8px;
     border-radius: 6px;
     display: inline-block;
     line-height: 1.2;
 }
 
 .doc-desc {
-    margin: 0 0 22px;
-    font-size: 17px;
+    margin: 0 0 12px;
+    font-size: 14px;
     color: #2e4438;
-    line-height: 1.75;
+    line-height: 1.55;
     font-family: 'Inter', sans-serif;
 }
 
 .doc-features-list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 7px;
 }
 
 .doc-feature-row {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
 }
 
 .doc-feat-icon {
-    width: 32px;
-    height: 32px;
-    min-width: 32px;
+    width: 26px;
+    height: 26px;
+    min-width: 26px;
     border-radius: 50%;
     background: #ffffff;
     color: #2fa13a;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 13px;
-    box-shadow: 0 2px 6px rgba(45, 80, 45, 0.08);
+    font-size: 11px;
+    box-shadow: 0 2px 5px rgba(45, 80, 45, 0.08);
 }
 
 .doc-feat-text {
-    font-size: 15.5px;
+    font-size: 13.5px;
     font-weight: 600;
     color: #1c3821;
     font-family: 'Inter', sans-serif;
 }
 
-/* Center Column: Upload Plant Image Card */
+/* Right/Center Column: Upload Plant Image Card */
 .doc-hero-center {
-    flex: 1 1 38%;
-    max-width: 410px;
+    flex: 0 0 420px;
+    max-width: 440px;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
 }
 
 .upload-card {
     width: 100%;
     background: #ffffff;
-    border-radius: 14px;
+    border-radius: 12px;
     border: 1.5px dashed #b6dab2;
-    padding: 24px 24px 20px;
+    padding: 12px 14px 10px;
     text-align: center;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
     transition: all 0.25s ease;
 }
 
 .upload-card:hover {
     border-color: #36a941;
-    box-shadow: 0 8px 24px rgba(54, 169, 65, 0.12);
+    box-shadow: 0 6px 18px rgba(54, 169, 65, 0.12);
 }
 
 .upload-icon-circle {
-    width: 50px;
-    height: 50px;
-    margin: 0 auto 10px;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 6px;
     border-radius: 50%;
     background: #eaf5e6;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #2fa13a;
-    font-size: 20px;
+    font-size: 17px;
 }
 
 .upload-title {
-    margin: 0 0 6px;
+    margin: 0 0 4px;
     font-family: 'Poppins', sans-serif;
-    font-size: 21px;
+    font-size: 18px;
     font-weight: 700;
     color: #14321e;
 }
 
 .upload-subtitle {
-    margin: 0 0 4px;
-    font-size: 16px;
+    margin: 0 0 3px;
+    font-size: 13.5px;
     color: #3d5045;
-    line-height: 1.55;
+    line-height: 1.45;
     font-family: 'Inter', sans-serif;
 }
 
 .upload-formats {
-    margin: 0 0 14px;
-    font-size: 14px;
+    margin: 0 0 10px;
+    font-size: 12px;
     color: #637667;
     font-weight: 500;
 }
 
 .upload-select-wrapper {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .diagnosis-select {
     width: 100%;
-    font-size: 16px;
+    font-size: 13px;
     border: 1px solid #c7dbc3;
     border-radius: 6px;
-    padding: 10px 12px;
+    padding: 5px 8px;
+    height: 35px;
     background: #fbfdfb;
     color: #203522;
     font-family: 'Inter', sans-serif;
@@ -231,15 +236,15 @@
 }
 
 .upload-input-wrapper {
-    margin-bottom: 14px;
+    margin-bottom: 10px;
 }
 
 .diagnosis-file-input {
     width: 100%;
-    font-size: 15px;
+    font-size: 13px;
     border: 1px solid #d4e5d1;
     border-radius: 6px;
-    padding: 8px 10px;
+    padding: 6px 8px;
     background: #f7faf5;
     font-family: 'Inter', sans-serif;
 }
@@ -249,8 +254,9 @@
     color: #ffffff;
     border: none;
     border-radius: 6px;
-    padding: 12px 24px;
-    font-size: 16px;
+    padding: 8px 16px;
+    height: 38px;
+    font-size: 14px;
     font-weight: 700;
     cursor: pointer;
     width: 100%;
@@ -271,47 +277,30 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 7px;
-    margin-top: 10px;
-    font-size: 13px;
+    gap: 6px;
+    margin-top: 5px;
+    font-size: 11px;
     color: #4f6852;
     font-weight: 500;
 }
 
-/* Right Column: Hero Plant Image */
-.doc-hero-right {
-    flex: 0 0 26%;
-    max-width: 260px;
-    height: 250px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.doc-plant-img {
-    width: 100%;
-    max-height: 245px;
-    object-fit: contain;
-    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.08));
-}
-
 /* =========================================================
-   2. HOW IT WORKS SECTION - Exact Figma Layout
+   2. HOW IT WORKS SECTION - Compact & Above-The-Fold
    ========================================================= */
 
 .how-section {
     width: 100%;
-    padding: 30px 0 16px;
+    padding: 8px 0 14px;
 }
 
 .how-title {
-    margin: 0 0 24px;
+    margin: 0 0 10px;
     font-family: 'Poppins', sans-serif;
-    font-size: 28px;
+    font-size: 20px;
     font-weight: 800;
     color: #15331e;
     text-align: center;
-    letter-spacing: -0.4px;
+    letter-spacing: -0.3px;
 }
 
 .how-grid {
@@ -319,17 +308,17 @@
     flex-direction: row;
     align-items: stretch;
     justify-content: space-between;
-    gap: 16px;
+    gap: 10px;
 }
 
 .how-card {
     flex: 1;
     background: #ffffff;
-    border-radius: 12px;
+    border-radius: 10px;
     border: 1px solid #e1eee0;
-    padding: 24px 18px 22px;
+    padding: 10px 10px 8px;
     text-align: center;
-    box-shadow: 0 2px 8px rgba(45, 80, 45, 0.04);
+    box-shadow: 0 2px 6px rgba(45, 80, 45, 0.04);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -337,39 +326,39 @@
 }
 
 .how-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 16px rgba(45, 80, 45, 0.08);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(45, 80, 45, 0.08);
     border-color: #cde4cb;
 }
 
 .how-icon-box {
-    width: 52px;
-    height: 52px;
-    border-radius: 10px;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
     background: #eaf5e6;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 14px;
+    margin-bottom: 6px;
     color: #2fa13a;
-    font-size: 22px;
+    font-size: 14px;
 }
 
 .how-step-header {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    margin-bottom: 8px;
+    gap: 6px;
+    margin-bottom: 3px;
 }
 
 .step-number {
-    width: 22px;
-    height: 22px;
+    width: 17px;
+    height: 17px;
     border-radius: 50%;
     background: #36a941;
     color: #ffffff;
-    font-size: 13px;
+    font-size: 10.5px;
     font-weight: 700;
     display: inline-flex;
     align-items: center;
@@ -380,16 +369,16 @@
 .step-title {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    font-size: 20px;
+    font-size: 14px;
     font-weight: 700;
     color: #14321e;
 }
 
 .step-desc {
     margin: 0;
-    font-size: 16px;
+    font-size: 11.5px;
     color: #3d5248;
-    line-height: 1.65;
+    line-height: 1.4;
     font-family: 'Inter', sans-serif;
 }
 
@@ -399,7 +388,7 @@
     justify-content: center;
     flex-shrink: 0;
     color: #8bbd8c;
-    font-size: 16px;
+    font-size: 13px;
 }
 
 /* =========================================================
@@ -408,45 +397,45 @@
 
 .tips-section {
     width: 100%;
-    padding: 8px 0 24px;
+    padding: 6px 0 18px;
 }
 
 .tips-card {
     background: #dfeeda;
     border: 1px solid #c9dec6;
     border-radius: 10px;
-    padding: 16px 26px;
+    padding: 10px 18px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
+    gap: 14px;
 }
 
 .tips-title-box {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
     flex-shrink: 0;
 }
 
 .tips-bulb-icon {
-    width: 38px;
-    height: 38px;
-    min-width: 38px;
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
     border-radius: 50%;
     background: #ffffff;
     color: #2fa13a;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 17px;
+    font-size: 14px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
 }
 
 .tips-heading {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    font-size: 19px;
+    font-size: 15px;
     font-weight: 800;
     color: #15331e;
     white-space: nowrap;
@@ -454,7 +443,7 @@
 
 .tips-divider {
     width: 1px;
-    height: 32px;
+    height: 24px;
     background: #bdd2ba;
     flex-shrink: 0;
 }
@@ -464,17 +453,17 @@
     align-items: center;
     justify-content: space-around;
     flex: 1;
-    gap: 14px;
+    gap: 12px;
 }
 
 .tip-item {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
 .tip-text {
-    font-size: 15.5px;
+    font-size: 13px;
     color: #203028;
     font-weight: 600;
     white-space: nowrap;
@@ -801,12 +790,12 @@
     .doc-hero-card {
         flex-direction: column;
         text-align: center;
-        padding: 26px 20px;
+        padding: 16px 14px;
+        gap: 16px;
     }
 
     .doc-hero-left,
-    .doc-hero-center,
-    .doc-hero-right {
+    .doc-hero-center {
         max-width: 100%;
         width: 100%;
         flex: 1 1 100%;
@@ -820,20 +809,13 @@
         align-items: center;
     }
 
-    .doc-hero-right {
-        height: auto;
-    }
-
-    .doc-plant-img {
-        max-height: 200px;
-    }
-
     .how-grid {
         flex-wrap: wrap;
+        gap: 10px;
     }
 
     .how-card {
-        flex: 1 1 45%;
+        flex: 1 1 calc(50% - 6px);
     }
 
     .how-arrow {
@@ -843,7 +825,7 @@
     .tips-card {
         flex-direction: column;
         align-items: flex-start;
-        gap: 12px;
+        gap: 10px;
     }
 
     .tips-divider {
@@ -854,11 +836,19 @@
         flex-wrap: wrap;
         width: 100%;
         justify-content: flex-start;
-        gap: 14px;
+        gap: 10px;
     }
 }
 
 @media (max-width: 576px) {
+    .diagnose-container {
+        padding: 0 12px;
+    }
+
+    .doc-title {
+        font-size: 24px;
+    }
+
     .how-card {
         flex: 1 1 100%;
     }

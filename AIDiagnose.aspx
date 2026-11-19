@@ -8,15 +8,15 @@
     <link href="Content/AIDiagnose.css" rel="stylesheet" />
     <style>
         /* =========================================================
-           CLEAN SINGLE PLANT PHOTO UPLOAD BOX
+           CLEAN SINGLE PLANT PHOTO UPLOAD BOX (COMPACT & BALANCED)
            ========================================================= */
         .plant-upload-box {
             width: 100%;
-            min-height: 145px;
+            min-height: 94px;
             background: #fbfdfb;
             border: 2px dashed #36a941;
-            border-radius: 12px;
-            padding: 18px 14px;
+            border-radius: 10px;
+            padding: 10px 12px;
             text-align: center;
             cursor: pointer;
             transition: all 0.25s ease;
@@ -24,7 +24,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin-bottom: 14px;
+            margin-bottom: 8px;
             position: relative;
             user-select: none;
         }
@@ -33,7 +33,7 @@
         .plant-upload-box.dragover {
             background: #edf7eb;
             border-color: #24702d;
-            box-shadow: 0 4px 14px rgba(54, 169, 65, 0.18);
+            box-shadow: 0 3px 12px rgba(54, 169, 65, 0.16);
             transform: translateY(-1px);
         }
 
@@ -42,21 +42,21 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 4px;
+            gap: 2px;
             width: 100%;
         }
 
         .upload-icon-circle-custom {
-            width: 46px;
-            height: 46px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             background: #eaf5e6;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #2fa13a;
-            font-size: 22px;
-            margin-bottom: 4px;
+            font-size: 15px;
+            margin-bottom: 2px;
             transition: transform 0.2s ease;
         }
 
@@ -65,27 +65,28 @@
         }
 
         .upload-btn-text {
-            font-size: 16.5px;
+            font-size: 14px;
             font-weight: 700;
             color: #1a4a22;
             letter-spacing: -0.2px;
+            line-height: 1.2;
         }
 
         .upload-subtext {
-            font-size: 13px;
+            font-size: 11.5px;
             color: #4f6852;
-            margin: 0;
+            margin: 1px 0 0;
         }
 
         .upload-formats-badge {
             display: inline-block;
-            margin-top: 4px;
-            font-size: 11px;
+            margin-top: 3px;
+            font-size: 10px;
             font-weight: 600;
             color: #2e7d32;
             background: #e8f5e9;
-            padding: 2px 8px;
-            border-radius: 10px;
+            padding: 1px 7px;
+            border-radius: 8px;
             border: 1px solid #c8e6c9;
         }
 
@@ -95,24 +96,24 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 4px;
             width: 100%;
         }
 
         .upload-preview-img {
-            max-width: 140px;
-            max-height: 115px;
+            max-width: 100px;
+            max-height: 70px;
             object-fit: cover;
-            border-radius: 8px;
+            border-radius: 6px;
             border: 2px solid #2fa13a;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         }
 
         .preview-filename {
-            font-size: 12.5px;
+            font-size: 11.5px;
             font-weight: 600;
             color: #1a3923;
-            max-width: 260px;
+            max-width: 240px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -120,7 +121,7 @@
         }
 
         .preview-filesize {
-            font-size: 11.5px;
+            font-size: 10.5px;
             color: #556b57;
             display: block;
         }
@@ -129,10 +130,10 @@
             background: #ffffff;
             border: 1px solid #36a941;
             color: #2fa13a;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
-            padding: 4px 12px;
-            border-radius: 6px;
+            padding: 2px 10px;
+            border-radius: 5px;
             cursor: pointer;
             transition: all 0.2s;
             margin-top: 2px;
@@ -242,8 +243,8 @@
                     </div>
 
                     <!-- Plant Selection from Database ONLY (no text input field) -->
-                    <div class="upload-select-wrapper mb-3 text-start">
-                        <label for="<%= ddlPlant.ClientID %>" class="form-label-custom mb-1 d-block text-start" style="font-weight: 600; font-size: 13.5px; color: #1e3a22;">
+                    <div class="upload-select-wrapper mb-2 text-start">
+                        <label for="<%= ddlPlant.ClientID %>" class="form-label-custom mb-1 d-block text-start" style="font-weight: 600; font-size: 12.5px; color: #1e3a22;">
                             <i class="fa-solid fa-leaf text-success me-1"></i>Select Plant from Database:
                         </label>
                         <asp:DropDownList ID="ddlPlant" runat="server"
