@@ -32,11 +32,6 @@ namespace Project
             lblError.Visible = false;
             pnlAlert.Visible = false;
 
-            if (Page.Form != null)
-            {
-                Page.Form.Enctype = "multipart/form-data";
-            }
-
             if (!IsPostBack)
             {
                 DbHelper.EnsureDatabaseTablesExist();
@@ -130,32 +125,26 @@ namespace Project
                 plantInput = ddlPlant.SelectedValue.Trim();
             }
 
-            if (string.IsNullOrEmpty(plantInput))
-            {
-                lblError.Visible = true;
-                lblError.Text = "<div class='alert alert-warning py-2 mb-2'><strong>Please enter or select a plant name</strong> (e.g. Rose Plant, Tulsi Plant, Aloe Vera, Neem Plant) to diagnose.</div>";
-                pnlResultCard.Visible = false;
-                return;
-            }
+            string uploadedImagePath = "";
 
-            string uploadedImagePath = null;
-
-            // Handle optional plant photo upload with validation
+            // Handle file upload if present
             if (fileUploadPlant.HasFile)
             {
                 string ext = Path.GetExtension(fileUploadPlant.FileName).ToLower();
-                if (ext != ".jpg" && ext != ".jpeg" && ext != ".png" && ext != ".webp")
+                string[] allowed = { ".jpg", ".jpeg", ".png", ".webp" };
+                if (Array.IndexOf(allowed, ext) < 0)
                 {
                     lblError.Visible = true;
-                    lblError.Text = "<div class='alert alert-danger py-2 mb-2'><i class='fa-solid fa-triangle-exclamation me-1'></i> Invalid image format. Only JPG, JPEG, PNG, and WEBP formats are allowed.</div>";
+                    lblError.Text = "<div class='alert alert-danger py-2 mb-2'>Invalid image format. Only JPG, JPEG, PNG, and WEBP formats are allowed.</div>";
                     pnlResultCard.Visible = false;
                     return;
                 }
 
+                // 10MB maximum file size check
                 if (fileUploadPlant.PostedFile.ContentLength > 10 * 1024 * 1024)
                 {
                     lblError.Visible = true;
-                    lblError.Text = "<div class='alert alert-danger py-2 mb-2'><i class='fa-solid fa-triangle-exclamation me-1'></i> Image size exceeds the 10MB limit. Please choose a smaller photo.</div>";
+                    lblError.Text = "<div class='alert alert-danger py-2 mb-2'>File size exceeds 10MB maximum limit.</div>";
                     pnlResultCard.Visible = false;
                     return;
                 }
@@ -173,8 +162,27 @@ namespace Project
                 }
                 catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine("Image save error: " + ex.Message);
+                    System.Diagnostics.Debug.WriteLine("File upload save error: " + ex.Message);
                 }
+            }
+
+            // If user did not type or select a plant name, check if filename matches a plant
+            if (string.IsNullOrEmpty(plantInput) && !string.IsNullOrEmpty(uploadedImagePath))
+            {
+                string baseFn = Path.GetFileNameWithoutExtension(fileUploadPlant.FileName);
+                PlantDiseaseRecord guessed = FetchPlantDiseaseFromDb(baseFn);
+                if (guessed != null)
+                {
+                    plantInput = guessed.PlantName;
+                }
+            }
+
+            if (string.IsNullOrEmpty(plantInput))
+            {
+                lblError.Visible = true;
+                lblError.Text = "<div class='alert alert-warning py-2 mb-2'><strong>Please enter or select a plant name</strong> (e.g. Rose Plant, Tulsi Plant, Aloe Vera, Neem Plant) to diagnose.</div>";
+                pnlResultCard.Visible = false;
+                return;
             }
 
             DiagnosePlant(plantInput, uploadedImagePath);
@@ -183,7 +191,7 @@ namespace Project
         /// <summary>
         /// Retrieves matched plant record from database and binds all fields to UI
         /// </summary>
-        private void DiagnosePlant(string inputPlant, string uploadedImagePath = null)
+        private void DiagnosePlant(string inputPlant, string uploadedImagePath = "")
         {
             try
             {
@@ -244,26 +252,16 @@ namespace Project
                 imgMedicine.ImageUrl = "~/" + medImg.TrimStart('/');
                 hfDiagnosedMedicineImage.Value = medImg;
 
-                // 6. Plant Image (Show user's uploaded photo if provided, else database record's image)
-                string plantImg = !string.IsNullOrEmpty(uploadedImagePath)
-                    ? uploadedImagePath
-                    : (!string.IsNullOrEmpty(record.ImageUrl) ? record.ImageUrl : "image/ai-plant-doctor.png");
+                // 6. Plant Image: If user uploaded a photo, display user's photo; otherwise display database photo
+                string plantImg = !string.IsNullOrEmpty(uploadedImagePath) ? uploadedImagePath : record.ImageUrl;
+                if (string.IsNullOrEmpty(plantImg))
+                    plantImg = "image/ai-plant-doctor.png";
+
                 imgDiagnosed.ImageUrl = "~/" + plantImg.TrimStart('/');
                 imgDiagnosed.AlternateText = record.PlantName;
 
                 // Display result card
                 pnlResultCard.Visible = true;
-
-                // Log diagnostic history securely
-                SaveToHistory(record.PlantName, record.DiseaseName, record.Treatment);
-            }
-            catch (Exception ex)
-            {
-                lblError.Visible = true;
-                lblError.Text = "<div class='alert alert-danger py-2 mb-2'>Error loading diagnosis: " + Server.HtmlEncode(ex.Message) + "</div>";
-                pnlResultCard.Visible = false;
-            }
-        }
 
                 // Log diagnostic history securely
                 SaveToHistory(record.PlantName, record.DiseaseName, record.Treatment);
