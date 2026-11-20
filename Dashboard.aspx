@@ -28,9 +28,9 @@
                         with Better Information
                     </h1>
 
-                    <p>Agriconnect brings crop information, government</p>
-                    <p>Schemes, market prices, weather, updates, and</p>
-                    <p class="hero-p-last">Farming resources together in one simple plateform.</p>
+                    <p class="hero-desc">
+                        AgriConnect brings crop information, government schemes, market prices, weather updates, and farming resources together in one simple platform.
+                    </p>
 
                     <a href="Dashboard.aspx" class="explore-btn">
                         Explore Dashboard
