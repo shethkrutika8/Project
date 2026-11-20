@@ -251,22 +251,17 @@ namespace Project
                 imgMedicine.ImageUrl = "~/" + medImg.TrimStart('/');
                 hfDiagnosedMedicineImage.Value = medImg;
 
-                // 6. Plant Image: Priority: (1) uploaded photo (2) exact DB image for this plant (3) placeholder
+                // 6. Plant Image: Priority: (1) uploaded photo (2) exact matching local image from image/ folder (3) exact DB image (4) placeholder
                 string plantImg;
                 if (!string.IsNullOrEmpty(uploadedImagePath))
                 {
                     // User uploaded their own photo — use it
                     plantImg = uploadedImagePath;
                 }
-                else if (!string.IsNullOrEmpty(record.ImageUrl))
-                {
-                    // Use the plant's own image stored in the database
-                    plantImg = record.ImageUrl;
-                }
                 else
                 {
-                    // No image available — use a neutral placeholder
-                    plantImg = "image/ai-plant-doctor.png";
+                    // Fetch exact plant image from database / local plant image folder
+                    plantImg = GetPlantImageFromLocalFolder(record.PlantName, record.ImageUrl);
                 }
 
                 imgDiagnosed.ImageUrl = "~/" + plantImg.TrimStart('/');
@@ -478,6 +473,52 @@ namespace Project
             if (string.IsNullOrWhiteSpace(step)) return "";
             string s = step.Trim();
             return Regex.Replace(s, @"^\d+[\.\)]\s*", "").Trim();
+        }
+
+        private string GetPlantImageFromLocalFolder(string plantName, string dbImage = "")
+        {
+            if (string.IsNullOrWhiteSpace(plantName))
+                return !string.IsNullOrEmpty(dbImage) ? dbImage : "image/ai-plant-doctor.png";
+
+            string name = plantName.ToLower();
+
+            // Direct specific mappings to the user's project image folder
+            if (name.Contains("curry")) return "image/curry.jfif";
+            if (name.Contains("rose")) return "image/rose.jfif";
+            if (name.Contains("neem")) return "image/neem.jfif";
+            if (name.Contains("mango")) return "image/mango.jfif";
+            if (name.Contains("banana")) return "image/Banana.jfif";
+            if (name.Contains("amla") || name.Contains("gooseberry")) return "image/Amla.jfif";
+            if (name.Contains("ashva") || name.Contains("ashwa")) return "image/Ashvagandha.jfif";
+            if (name.Contains("guava") || name.Contains("gauva")) return "image/Gauva.jfif";
+            if (name.Contains("chili") || name.Contains("chilli")) return "image/chili.jfif";
+            if (name.Contains("coconut")) return "image/coconut.jfif";
+            if (name.Contains("corien") || name.Contains("corian") || name.Contains("dhania")) return "image/coriender.jfif";
+            if (name.Contains("cotton")) return "image/cotton.jfif";
+            if (name.Contains("drumstick") || name.Contains("moringa")) return "image/drumstick.jfif";
+            if (name.Contains("fenugreek") || name.Contains("methi")) return "image/fenugreek.jfif";
+            if (name.Contains("hibisc") || name.Contains("hibsc")) return "image/hibscous.jfif";
+            if (name.Contains("jasmin")) return "image/jasmin.jfif";
+            if (name.Contains("lavender")) return "image/lavender.jfif";
+            if (name.Contains("lemon") || name.Contains("citrus")) return "image/lemon.jfif";
+            if (name.Contains("marigold")) return "image/marigold.jfif";
+            if (name.Contains("mint") || name.Contains("pudina")) return "image/mint.jfif";
+            if (name.Contains("money")) return "image/money_well.jfif";
+            if (name.Contains("papaya")) return "image/papaya.jfif";
+            if (name.Contains("perivinkle") || name.Contains("periwinkle")) return "image/perivinkle.jfif";
+            if (name.Contains("pomegran")) return "image/pomegranets.jfif";
+            if (name.Contains("rice") || name.Contains("paddy")) return "image/rice.jfif";
+            if (name.Contains("snake")) return "image/sanke.jfif";
+            if (name.Contains("sunflower")) return "image/sunflower.jfif";
+            if (name.Contains("tulsi") || name.Contains("basil")) return "image/tulsi.jfif";
+            if (name.Contains("succulent")) return "image/product-succulent.png";
+            if (name.Contains("bougainvillea") || name.Contains("broguieanvilla")) return "image/Broguieanvilla.jfif";
+
+            // If not found in mapping, check if dbImage is valid
+            if (!string.IsNullOrEmpty(dbImage))
+                return dbImage;
+
+            return "image/ai-plant-doctor.png";
         }
 
         private string GetProductImage(string productName)

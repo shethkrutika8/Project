@@ -4,9 +4,207 @@
     Inherits="Project.AIDiagnose" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <!-- Page Specific CSS matching Figma design pixel-perfectly -->
-    <link href="Content/AIDiagnose.css" rel="stylesheet" />
+    <!-- Page Specific CSS matching Figma design pixel-perfectly with cache buster -->
+    <link href="Content/AIDiagnose.css?v=20261120_fullwidth" rel="stylesheet" />
     <style>
+        /* =========================================================
+           100% FULL-WIDTH PAGE LAYOUT (EDGE-TO-EDGE, NO 1200px CAP)
+           ========================================================= */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        /* Ensure parent main-content wrapper takes 100% full screen width */
+        .main-content {
+            width: 100% !important;
+            max-width: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        /* Main AI Diagnose Page and Container: Edge-to-Edge */
+        .diagnose-page {
+            width: 100% !important;
+            max-width: none !important;
+            margin: 0 !important;
+            padding: 0 0 30px 0 !important;
+            box-sizing: border-box !important;
+        }
+
+        .diagnose-container {
+            width: 100% !important;
+            max-width: none !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+            box-sizing: border-box !important;
+        }
+
+        /* 1. AI Plant Doctor Main Hero Section: 100% Full Width */
+        .doc-hero-section {
+            width: 100% !important;
+            max-width: none !important;
+            margin: 0 !important;
+            padding: 10px 0 !important;
+            box-sizing: border-box !important;
+        }
+
+        .doc-hero-card {
+            width: 100% !important;
+            max-width: none !important;
+            margin: 0 !important;
+            display: grid !important;
+            grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr) !important;
+            align-items: center !important;
+            gap: 32px !important;
+            padding: 24px 28px !important;
+            border-radius: 14px !important;
+            box-sizing: border-box !important;
+        }
+
+        .doc-hero-left {
+            width: 100% !important;
+            max-width: none !important;
+            min-width: 0 !important;
+            box-sizing: border-box !important;
+        }
+
+        .doc-hero-center {
+            width: 100% !important;
+            max-width: none !important;
+            min-width: 0 !important;
+            box-sizing: border-box !important;
+        }
+
+        .upload-card {
+            width: 100% !important;
+            max-width: none !important;
+            box-sizing: border-box !important;
+            padding: 14px 18px !important;
+        }
+
+        /* 2. How It Works Section: 100% Full Width & 4 Expanded Cards */
+        .how-section {
+            width: 100% !important;
+            max-width: none !important;
+            margin: 0 !important;
+            padding: 12px 0 16px !important;
+            box-sizing: border-box !important;
+        }
+
+        .how-grid {
+            width: 100% !important;
+            max-width: none !important;
+            margin: 0 !important;
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: stretch !important;
+            justify-content: space-between !important;
+            gap: 16px !important;
+            box-sizing: border-box !important;
+        }
+
+        .how-card {
+            flex: 1 1 0 !important;
+            min-width: 0 !important;
+            width: 100% !important;
+            max-width: none !important;
+            padding: 14px 12px 10px !important;
+            box-sizing: border-box !important;
+        }
+
+        /* 3. Tips for Better Results Section: 100% Full Width Bar */
+        .tips-section {
+            width: 100% !important;
+            max-width: none !important;
+            margin: 0 !important;
+            padding: 6px 0 18px !important;
+            box-sizing: border-box !important;
+        }
+
+        .tips-card {
+            width: 100% !important;
+            max-width: none !important;
+            margin: 0 !important;
+            padding: 12px 24px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            gap: 20px !important;
+            box-sizing: border-box !important;
+        }
+
+        .tips-items-row {
+            width: 100% !important;
+            max-width: none !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-around !important;
+            flex: 1 !important;
+            gap: 16px !important;
+            box-sizing: border-box !important;
+        }
+
+        /* 4. Diagnosis Result Card & Admin Database Section */
+        .result-card-wrap,
+        .result-box,
+        .diag-alert-box,
+        .admin-mgmt-section,
+        .diag-card {
+            width: 100% !important;
+            max-width: none !important;
+            box-sizing: border-box !important;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 991px) {
+            .doc-hero-card {
+                grid-template-columns: 1fr !important;
+                gap: 18px !important;
+                padding: 18px 16px !important;
+            }
+
+            .how-grid {
+                flex-wrap: wrap !important;
+                gap: 12px !important;
+            }
+
+            .how-card {
+                flex: 1 1 calc(50% - 8px) !important;
+            }
+
+            .tips-card {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 12px !important;
+                padding: 14px 16px !important;
+            }
+
+            .tips-items-row {
+                flex-wrap: wrap !important;
+                justify-content: flex-start !important;
+                gap: 12px !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .diagnose-container {
+                padding-left: 10px !important;
+                padding-right: 10px !important;
+            }
+
+            .how-card {
+                flex: 1 1 100% !important;
+            }
+
+            .tips-items-row {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+            }
+        }
+
         /* =========================================================
            CLEAN SINGLE PLANT PHOTO UPLOAD BOX (COMPACT & BALANCED)
            ========================================================= */
@@ -212,7 +410,7 @@
                     <!-- Single Clean Plant Photo Upload Box with Drag-and-Drop & Preview -->
                     <div id="plantDropZone" class="plant-upload-box" onclick="triggerPhotoSelect()">
                         <!-- Hidden actual ASP.NET FileUpload (submits file with form postback) -->
-                        <asp:FileUpload ID="fileUploadPlant" runat="server" 
+                        <asp:FileUpload ID="fileUploadPlant" runat="server" ClientIDMode="Static"
                             style="display:none;" 
                             accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
                             onchange="handlePhotoSelected(this)" />
@@ -244,10 +442,10 @@
 
                     <!-- Plant Selection from Database ONLY (no text input field) -->
                     <div class="upload-select-wrapper mb-2 text-start">
-                        <label for="<%= ddlPlant.ClientID %>" class="form-label-custom mb-1 d-block text-start" style="font-weight: 600; font-size: 12.5px; color: #1e3a22;">
+                        <label class="form-label-custom mb-1 d-block text-start" style="font-weight: 600; font-size: 12.5px; color: #1e3a22;">
                             <i class="fa-solid fa-leaf text-success me-1"></i>Select Plant from Database:
                         </label>
-                        <asp:DropDownList ID="ddlPlant" runat="server"
+                        <asp:DropDownList ID="ddlPlant" runat="server" ClientIDMode="Static"
                             CssClass="form-select diagnosis-select"
                             aria-label="Select Plant"
                             AutoPostBack="true"
@@ -682,7 +880,7 @@
      ========================================================= -->
 <script type="text/javascript">
     function triggerPhotoSelect() {
-        var fileInput = document.getElementById('<%= fileUploadPlant.ClientID %>');
+        var fileInput = document.getElementById('fileUploadPlant');
         if (fileInput) {
             fileInput.click();
         }
@@ -747,7 +945,7 @@
     }
 
     function clearPhotoInput() {
-        var fileInput = document.getElementById('<%= fileUploadPlant.ClientID %>');
+        var fileInput = document.getElementById('fileUploadPlant');
         if (fileInput) fileInput.value = '';
         var uploadPrompt = document.getElementById('uploadPrompt');
         var uploadPreview = document.getElementById('uploadPreview');
@@ -758,7 +956,7 @@
     // Initialize Drag and Drop Event Listeners
     document.addEventListener("DOMContentLoaded", function () {
         var dropZone = document.getElementById('plantDropZone');
-        var fileInput = document.getElementById('<%= fileUploadPlant.ClientID %>');
+        var fileInput = document.getElementById('fileUploadPlant');
 
         if (!dropZone || !fileInput) return;
 

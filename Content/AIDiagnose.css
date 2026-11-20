@@ -4,21 +4,29 @@
    ========================================================= */
 
 .diagnose-page {
-    width: 100%;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 0 30px 0 !important;
     background: #f4f8f1;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     color: #1e3527;
-    padding-bottom: 30px;
     font-size: 15px;
     -webkit-font-smoothing: antialiased;
+    box-sizing: border-box !important;
 }
 
-/* Page Container - Exactly aligned with Master Page */
+/* Page Container - Occupies 100% of available screen width, aligned with Header & Footer */
 .diagnose-container {
-    width: 100%;
-    max-width: 1320px;
-    margin: 0 auto;
-    padding: 0 24px;
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    box-sizing: border-box !important;
 }
 
 /* Plant Image Preview */
@@ -59,24 +67,27 @@
 
 .doc-hero-section {
     width: 100%;
-    padding: 12px 0 8px;
+    padding: 14px 0 10px;
+    box-sizing: border-box;
 }
 
 .doc-hero-card {
     background: linear-gradient(135deg, #dcf0d9 0%, #cee7cb 100%);
     border-radius: 14px;
     border: 1px solid #bedfbd;
-    padding: 18px 24px;
-    display: flex;
-    flex-direction: row;
+    padding: 24px 28px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
     align-items: center;
-    gap: 28px;
+    gap: 36px;
+    width: 100%;
+    box-sizing: border-box;
     box-shadow: 0 4px 16px rgba(45, 80, 45, 0.06);
 }
 
 /* Left Column: Title, Description & Feature Points */
 .doc-hero-left {
-    flex: 1 1 0;
+    width: 100%;
     min-width: 0;
 }
 
@@ -151,9 +162,9 @@
 
 /* Right/Center Column: Upload Plant Image Card */
 .doc-hero-center {
-    flex: 0 1 420px;
-    max-width: 440px;
     width: 100%;
+    min-width: 0;
+    max-width: none;
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -161,13 +172,15 @@
 
 .upload-card {
     width: 100%;
+    max-width: none;
     background: #ffffff;
     border-radius: 12px;
     border: 1.5px dashed #b6dab2;
-    padding: 12px 14px 10px;
+    padding: 14px 18px 12px;
     text-align: center;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
     transition: all 0.25s ease;
+    box-sizing: border-box;
 }
 
 .upload-card:hover {
@@ -288,11 +301,12 @@
 
 .how-section {
     width: 100%;
-    padding: 8px 0 14px;
+    padding: 10px 0 16px;
+    box-sizing: border-box;
 }
 
 .how-title {
-    margin: 0 0 10px;
+    margin: 0 0 12px;
     font-family: 'Poppins', sans-serif;
     font-size: 20px;
     font-weight: 800;
@@ -306,21 +320,26 @@
     flex-direction: row;
     align-items: stretch;
     justify-content: space-between;
-    gap: 10px;
+    gap: 16px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .how-card {
-    flex: 1;
+    flex: 1 1 0;
+    min-width: 0;
     background: #ffffff;
     border-radius: 10px;
     border: 1px solid #e1eee0;
-    padding: 10px 10px 8px;
+    padding: 12px 12px 10px;
     text-align: center;
     box-shadow: 0 2px 6px rgba(45, 80, 45, 0.04);
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
 }
 
 .how-card:hover {
@@ -396,17 +415,20 @@
 .tips-section {
     width: 100%;
     padding: 6px 0 18px;
+    box-sizing: border-box;
 }
 
 .tips-card {
     background: #dfeeda;
     border: 1px solid #c9dec6;
     border-radius: 10px;
-    padding: 10px 18px;
+    padding: 12px 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 14px;
+    gap: 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .tips-title-box {
@@ -451,7 +473,9 @@
     align-items: center;
     justify-content: space-around;
     flex: 1;
-    gap: 12px;
+    gap: 16px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .tip-item {
@@ -473,15 +497,19 @@
    ========================================================= */
 
 .result-card-wrap {
+    width: 100%;
     margin: 16px 0 24px;
+    box-sizing: border-box;
 }
 
 .result-box {
+    width: 100%;
     background: #ffffff;
     border: 1px solid #cce5ca;
     border-radius: 12px;
-    padding: 24px;
+    padding: 24px 28px;
     box-shadow: 0 4px 16px rgba(45, 80, 45, 0.06);
+    box-sizing: border-box;
 }
 
 .result-header-bar {
@@ -786,10 +814,10 @@
 
 @media (max-width: 991px) {
     .doc-hero-card {
-        flex-direction: column;
+        grid-template-columns: 1fr;
         text-align: center;
-        padding: 16px 14px;
-        gap: 16px;
+        padding: 18px 16px;
+        gap: 20px;
     }
 
     .doc-hero-left,
@@ -809,7 +837,7 @@
 
     .how-grid {
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 12px;
     }
 
     .how-card {
@@ -823,7 +851,8 @@
     .tips-card {
         flex-direction: column;
         align-items: flex-start;
-        gap: 10px;
+        gap: 12px;
+        padding: 14px 18px;
     }
 
     .tips-divider {
@@ -834,7 +863,7 @@
         flex-wrap: wrap;
         width: 100%;
         justify-content: flex-start;
-        gap: 10px;
+        gap: 12px;
     }
 }
 

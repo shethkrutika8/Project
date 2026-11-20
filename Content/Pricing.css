@@ -32,14 +32,15 @@
     border: 1px solid rgba(44, 164, 66, 0.18);
     padding: 44px 50px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr minmax(420px, 480px);
     align-items: center;
-    gap: 48px;
+    gap: 32px;
     box-shadow: 0 10px 32px rgba(25, 60, 25, 0.08);
 }
 
 .pricing-hero-content {
     width: 100%;
+    max-width: none;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -89,7 +90,9 @@
 
 .pricing-hero-image-wrap {
     width: 100%;
+    max-width: 480px;
     height: 340px;
+    margin-left: auto;
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 10px 32px rgba(25, 60, 25, 0.12);
