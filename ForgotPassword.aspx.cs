@@ -22,28 +22,30 @@ namespace Project
 
             string email = Email_txt.Text.Trim();
 
-            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Krutika_24SOECE11036_.NET\\Project\\App_Data\\Database1.mdf;Integrated Security=True";
+            string connectionString = DbHelper.GetConnectionString();
 
-            SqlConnection con = new SqlConnection(connectionString);
-            string query = "select count(*) from Register where email = '" + email + "'";
-            SqlCommand cmd = new SqlCommand(query, con);
-            con.Open();
-
-            int count = Convert.ToInt32(cmd.ExecuteScalar());
-
-            if (count > 0)
+            using (SqlConnection con = new SqlConnection(connectionString))
             {
+                string query = "SELECT COUNT(*) FROM Register WHERE email = @Email";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@Email", email);
+                con.Open();
+
+                int count = Convert.ToInt32(cmd.ExecuteScalar());
                 con.Close();
-                pnlForgotAlert.Visible = true;
-                pnlForgotAlert.CssClass = "alert alert-success py-2 my-2";
-                litForgotAlert.Text = "Password reset link has been sent to your email address.";
-            }
-            else
-            {
-                con.Close();
-                pnlForgotAlert.Visible = true;
-                pnlForgotAlert.CssClass = "alert alert-danger py-2 my-2";
-                litForgotAlert.Text = "Email address not found in our records.";
+
+                if (count > 0)
+                {
+                    pnlForgotAlert.Visible = true;
+                    pnlForgotAlert.CssClass = "alert alert-success py-2 my-2";
+                    litForgotAlert.Text = "Password reset link has been sent to your email address.";
+                }
+                else
+                {
+                    pnlForgotAlert.Visible = true;
+                    pnlForgotAlert.CssClass = "alert alert-danger py-2 my-2";
+                    litForgotAlert.Text = "Email address not found in our records.";
+                }
             }
         }
     }

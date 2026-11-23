@@ -30,7 +30,8 @@ namespace Project
             {
                 SqlConnection con = new SqlConnection(connectionString);
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT WishlistId, UserEmail, ProductName, Price, ImageUrl, CreatedDate FROM Wishlist WHERE UserEmail = '" + email + "' ORDER BY WishlistId DESC", con);
+                SqlCommand cmd = new SqlCommand("SELECT WishlistId, UserEmail, ProductName, Price, ImageUrl, CreatedDate FROM Wishlist WHERE UserEmail = @Email ORDER BY WishlistId DESC", con);
+                cmd.Parameters.AddWithValue("@Email", email);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
                 con.Close();
@@ -74,7 +75,9 @@ namespace Project
 
                     SqlConnection con = new SqlConnection(connectionString);
                     con.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT ProductName, Price, ImageUrl FROM Wishlist WHERE WishlistId = " + wishlistId + " AND UserEmail = '" + email + "'", con);
+                    SqlCommand cmd = new SqlCommand("SELECT ProductName, Price, ImageUrl FROM Wishlist WHERE WishlistId = @Id AND UserEmail = @Email", con);
+                    cmd.Parameters.AddWithValue("@Id", wishlistId);
+                    cmd.Parameters.AddWithValue("@Email", email);
                     SqlDataReader r = cmd.ExecuteReader();
                     if (r.Read())
                     {
@@ -90,7 +93,9 @@ namespace Project
                         DbHelper.AddToCart(email, productName, price, 1, imageUrl);
 
                         // Remove from wishlist
-                        SqlCommand delCmd = new SqlCommand("DELETE FROM Wishlist WHERE WishlistId = " + wishlistId + " AND UserEmail = '" + email + "'", con);
+                        SqlCommand delCmd = new SqlCommand("DELETE FROM Wishlist WHERE WishlistId = @Id AND UserEmail = @Email", con);
+                        delCmd.Parameters.AddWithValue("@Id", wishlistId);
+                        delCmd.Parameters.AddWithValue("@Email", email);
                         delCmd.ExecuteNonQuery();
 
                         ShowAlert(productName + " moved to your shopping cart!", true);
@@ -101,7 +106,9 @@ namespace Project
                 {
                     SqlConnection con = new SqlConnection(connectionString);
                     con.Open();
-                    SqlCommand delCmd = new SqlCommand("DELETE FROM Wishlist WHERE WishlistId = " + wishlistId + " AND UserEmail = '" + email + "'", con);
+                    SqlCommand delCmd = new SqlCommand("DELETE FROM Wishlist WHERE WishlistId = @Id AND UserEmail = @Email", con);
+                    delCmd.Parameters.AddWithValue("@Id", wishlistId);
+                    delCmd.Parameters.AddWithValue("@Email", email);
                     delCmd.ExecuteNonQuery();
                     con.Close();
 

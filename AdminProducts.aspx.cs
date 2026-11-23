@@ -97,8 +97,15 @@ namespace Project
                 if (editId > 0)
                 {
                     // Update existing product
-                    string updateSql = "update Products set Name='" + name + "', Category='" + category + "', Price=" + price + ", Description='" + description + "', StockQuantity=" + stock + ", ImageUrl='" + imageUrl + "' where ProductId=" + editId;
+                    string updateSql = "update Products set Name=@Name, Category=@Category, Price=@Price, Description=@Description, StockQuantity=@Stock, ImageUrl=@ImageUrl where ProductId=@Id";
                     SqlCommand cmd = new SqlCommand(updateSql, con);
+                    cmd.Parameters.AddWithValue("@Name", name);
+                    cmd.Parameters.AddWithValue("@Category", category);
+                    cmd.Parameters.AddWithValue("@Price", price);
+                    cmd.Parameters.AddWithValue("@Description", description);
+                    cmd.Parameters.AddWithValue("@Stock", stock);
+                    cmd.Parameters.AddWithValue("@ImageUrl", imageUrl);
+                    cmd.Parameters.AddWithValue("@Id", editId);
                     cmd.ExecuteNonQuery();
                     con.Close();
                     ShowAlert("Product updated successfully!", "success");
@@ -106,8 +113,14 @@ namespace Project
                 else
                 {
                     // Insert new product
-                    string insertSql = "insert into Products (Name, Category, Price, Description, StockQuantity, ImageUrl, IsActive, CreatedDate) values ('" + name + "','" + category + "'," + price + ",'" + description + "'," + stock + ",'" + imageUrl + "', 1, GETDATE())";
+                    string insertSql = "insert into Products (Name, Category, Price, Description, StockQuantity, ImageUrl, IsActive, CreatedDate) values (@Name, @Category, @Price, @Description, @Stock, @ImageUrl, 1, GETDATE())";
                     SqlCommand cmd = new SqlCommand(insertSql, con);
+                    cmd.Parameters.AddWithValue("@Name", name);
+                    cmd.Parameters.AddWithValue("@Category", category);
+                    cmd.Parameters.AddWithValue("@Price", price);
+                    cmd.Parameters.AddWithValue("@Description", description);
+                    cmd.Parameters.AddWithValue("@Stock", stock);
+                    cmd.Parameters.AddWithValue("@ImageUrl", imageUrl);
                     cmd.ExecuteNonQuery();
                     con.Close();
                     ShowAlert("Product added successfully!", "success");
@@ -150,8 +163,9 @@ namespace Project
                 try
                 {
                     SqlConnection con = new SqlConnection(connectionString);
-                    string query = "delete from Products where ProductId=" + productId;
+                    string query = "delete from Products where ProductId=@Id";
                     SqlCommand cmd = new SqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@Id", productId);
                     con.Open();
                     cmd.ExecuteNonQuery();
                     con.Close();

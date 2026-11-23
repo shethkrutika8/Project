@@ -5,7 +5,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
-        .reports-wrapper { max-width: 1200px; margin: 35px auto 60px; padding: 0 15px; }
+        .reports-wrapper { width: 100%; max-width: 100%; margin: 24px 0 50px 0; padding: 0 24px; box-sizing: border-box; }
         .page-header-box { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; flex-wrap: wrap; gap: 15px; }
         .page-header-title { font-size: 26px; font-weight: 700; color: #1e3a1f; display: flex; align-items: center; gap: 12px; }
         .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 28px; }

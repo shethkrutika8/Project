@@ -35,16 +35,16 @@ namespace Project
                     SqlCommand cmdTotal = new SqlCommand("SELECT COUNT(*) FROM Products", con);
                     litTotalProducts.Text = cmdTotal.ExecuteScalar().ToString();
 
-                    // In Stock (Stock > 10)
-                    SqlCommand cmdInStock = new SqlCommand("SELECT COUNT(*) FROM Products WHERE Stock > 10", con);
+                    // In Stock (StockQuantity > 10)
+                    SqlCommand cmdInStock = new SqlCommand("SELECT COUNT(*) FROM Products WHERE StockQuantity > 10", con);
                     litInStock.Text = cmdInStock.ExecuteScalar().ToString();
 
-                    // Low Stock (Stock > 0 AND Stock <= 10)
-                    SqlCommand cmdLowStock = new SqlCommand("SELECT COUNT(*) FROM Products WHERE Stock > 0 AND Stock <= 10", con);
+                    // Low Stock (StockQuantity > 0 AND StockQuantity <= 10)
+                    SqlCommand cmdLowStock = new SqlCommand("SELECT COUNT(*) FROM Products WHERE StockQuantity > 0 AND StockQuantity <= 10", con);
                     litLowStock.Text = cmdLowStock.ExecuteScalar().ToString();
 
-                    // Out of Stock (Stock = 0)
-                    SqlCommand cmdOutOfStock = new SqlCommand("SELECT COUNT(*) FROM Products WHERE Stock = 0", con);
+                    // Out of Stock (StockQuantity = 0)
+                    SqlCommand cmdOutOfStock = new SqlCommand("SELECT COUNT(*) FROM Products WHERE StockQuantity = 0", con);
                     litOutOfStock.Text = cmdOutOfStock.ExecuteScalar().ToString();
                 }
             }
@@ -60,7 +60,7 @@ namespace Project
             {
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
-                    string query = "SELECT ProductId, ProductName, Description, Price, Stock, Category FROM Products";
+                    string query = "SELECT ProductId, Name AS ProductName, Description, Price, StockQuantity AS Stock, Category FROM Products";
                     
                     // Apply filters if selected
                     if (!string.IsNullOrEmpty(ddlCategory.SelectedValue))
@@ -81,15 +81,15 @@ namespace Project
 
                         if (ddlStatus.SelectedValue == "In Stock")
                         {
-                            query += " Stock > 10";
+                            query += " StockQuantity > 10";
                         }
                         else if (ddlStatus.SelectedValue == "Low Stock")
                         {
-                            query += " Stock > 0 AND Stock <= 10";
+                            query += " StockQuantity > 0 AND StockQuantity <= 10";
                         }
                         else if (ddlStatus.SelectedValue == "Out of Stock")
                         {
-                            query += " Stock = 0";
+                            query += " StockQuantity = 0";
                         }
                     }
 

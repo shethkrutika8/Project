@@ -58,8 +58,8 @@ namespace Project
             try
             {
                 string email = DbHelper.GetCurrentUserEmail(HttpContext.Current);
-                int cartCount = DbHelper.GetCartCount(email);
-                int wishCount = DbHelper.GetWishlistCount(email);
+                int cartCount, wishCount;
+                DbHelper.GetCartAndWishlistCounts(email, out cartCount, out wishCount);
 
                 litCartCount.Text = cartCount.ToString();
                 litWishlistCount.Text = wishCount.ToString();

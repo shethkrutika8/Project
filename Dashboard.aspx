@@ -11,7 +11,6 @@
 
     <!-- Dashboard Stylesheets -->
     <link href="Content/Dashboard.css" rel="stylesheet" />
-    <link href="Dashboard.css" rel="stylesheet" />
 
     <!-- Font Awesome -->
     <link rel="stylesheet"

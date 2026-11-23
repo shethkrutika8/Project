@@ -32,15 +32,16 @@ namespace Project
             string email = txtEmail.Text.Trim();
             string password = txtPassword.Text.Trim();
 
-            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Krutika_24SOECE11036_.NET\\Project\\App_Data\\Database1.mdf;Integrated Security=True";
+            string connectionString = DbHelper.GetConnectionString();
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 con.Open();
 
                 // First check if user exists
-                string checkUserQuery = "SELECT COUNT(*) FROM Register WHERE email = '" + email + "'";
+                string checkUserQuery = "SELECT COUNT(*) FROM Register WHERE email = @Email";
                 SqlCommand checkCmd = new SqlCommand(checkUserQuery, con);
+                checkCmd.Parameters.AddWithValue("@Email", email);
                 int userExists = Convert.ToInt32(checkCmd.ExecuteScalar());
 
                 if (userExists == 0)
@@ -52,8 +53,10 @@ namespace Project
                 }
 
                 // Now check password
-                string query = "SELECT role, name FROM Register WHERE email = '" + email + "' AND password = '" + password + "'";
+                string query = "SELECT role, name FROM Register WHERE email = @Email AND password = @Password";
                 SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@Password", password);
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 if (reader.Read())

@@ -30,7 +30,8 @@ namespace Project
             {
                 SqlConnection con = new SqlConnection(connectionString);
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT CartId, UserEmail, ProductName, Price, Quantity, ImageUrl, CreatedDate FROM Cart WHERE UserEmail = '" + email + "' ORDER BY CartId DESC", con);
+                SqlCommand cmd = new SqlCommand("SELECT CartId, UserEmail, ProductName, Price, Quantity, ImageUrl, CreatedDate FROM Cart WHERE UserEmail = @Email ORDER BY CartId DESC", con);
+                cmd.Parameters.AddWithValue("@Email", email);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
                 con.Close();
@@ -92,28 +93,38 @@ namespace Project
 
                 if (e.CommandName == "IncreaseQty")
                 {
-                    SqlCommand cmd = new SqlCommand("UPDATE Cart SET Quantity = Quantity + 1 WHERE CartId = " + cartId + " AND UserEmail = '" + email + "'", con);
+                    SqlCommand cmd = new SqlCommand("UPDATE Cart SET Quantity = Quantity + 1 WHERE CartId = @CartId AND UserEmail = @Email", con);
+                    cmd.Parameters.AddWithValue("@CartId", cartId);
+                    cmd.Parameters.AddWithValue("@Email", email);
                     cmd.ExecuteNonQuery();
                 }
                 else if (e.CommandName == "DecreaseQty")
                 {
-                    SqlCommand checkCmd = new SqlCommand("SELECT Quantity FROM Cart WHERE CartId = " + cartId + " AND UserEmail = '" + email + "'", con);
+                    SqlCommand checkCmd = new SqlCommand("SELECT Quantity FROM Cart WHERE CartId = @CartId AND UserEmail = @Email", con);
+                    checkCmd.Parameters.AddWithValue("@CartId", cartId);
+                    checkCmd.Parameters.AddWithValue("@Email", email);
                     int currentQty = Convert.ToInt32(checkCmd.ExecuteScalar());
 
                     if (currentQty > 1)
                     {
-                        SqlCommand updateCmd = new SqlCommand("UPDATE Cart SET Quantity = Quantity - 1 WHERE CartId = " + cartId + " AND UserEmail = '" + email + "'", con);
+                        SqlCommand updateCmd = new SqlCommand("UPDATE Cart SET Quantity = Quantity - 1 WHERE CartId = @CartId AND UserEmail = @Email", con);
+                        updateCmd.Parameters.AddWithValue("@CartId", cartId);
+                        updateCmd.Parameters.AddWithValue("@Email", email);
                         updateCmd.ExecuteNonQuery();
                     }
                     else
                     {
-                        SqlCommand delCmd = new SqlCommand("DELETE FROM Cart WHERE CartId = " + cartId + " AND UserEmail = '" + email + "'", con);
+                        SqlCommand delCmd = new SqlCommand("DELETE FROM Cart WHERE CartId = @CartId AND UserEmail = @Email", con);
+                        delCmd.Parameters.AddWithValue("@CartId", cartId);
+                        delCmd.Parameters.AddWithValue("@Email", email);
                         delCmd.ExecuteNonQuery();
                     }
                 }
                 else if (e.CommandName == "RemoveItem")
                 {
-                    SqlCommand delCmd = new SqlCommand("DELETE FROM Cart WHERE CartId = " + cartId + " AND UserEmail = '" + email + "'", con);
+                    SqlCommand delCmd = new SqlCommand("DELETE FROM Cart WHERE CartId = @CartId AND UserEmail = @Email", con);
+                    delCmd.Parameters.AddWithValue("@CartId", cartId);
+                    delCmd.Parameters.AddWithValue("@Email", email);
                     delCmd.ExecuteNonQuery();
                     ShowAlert("Item removed from your cart.", true);
                 }
@@ -134,7 +145,8 @@ namespace Project
             {
                 SqlConnection con = new SqlConnection(connectionString);
                 con.Open();
-                SqlCommand cmd = new SqlCommand("DELETE FROM Cart WHERE UserEmail = '" + email + "'", con);
+                SqlCommand cmd = new SqlCommand("DELETE FROM Cart WHERE UserEmail = @Email", con);
+                cmd.Parameters.AddWithValue("@Email", email);
                 cmd.ExecuteNonQuery();
                 con.Close();
 

@@ -72,8 +72,9 @@ namespace Project
             string password = txtAdminPassword.Text;
 
             SqlConnection con = new SqlConnection(connectionString);
-            string chkQuery = "select count(*) from Register where email = '" + email + "'";
+            string chkQuery = "select count(*) from Register where email = @Email";
             SqlCommand chkCmd = new SqlCommand(chkQuery, con);
+            chkCmd.Parameters.AddWithValue("@Email", email);
             con.Open();
 
             int count = Convert.ToInt32(chkCmd.ExecuteScalar());
@@ -84,8 +85,14 @@ namespace Project
                 return;
             }
 
-            string query = "insert into Register (name, email, password, gender, contact, city, role) values ('" + name + "','" + email + "','" + password + "','Other','" + contact + "','" + city + "','" + role + "')";
+            string query = "insert into Register (name, email, password, gender, contact, city, role) values (@Name, @Email, @Password, 'Other', @Contact, @City, @Role)";
             SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@Name", name);
+            cmd.Parameters.AddWithValue("@Email", email);
+            cmd.Parameters.AddWithValue("@Password", password);
+            cmd.Parameters.AddWithValue("@Contact", contact);
+            cmd.Parameters.AddWithValue("@City", city);
+            cmd.Parameters.AddWithValue("@Role", role);
             cmd.ExecuteNonQuery();
             con.Close();
             ShowAlert("User Account Created Successfully", "success");
@@ -105,8 +112,9 @@ namespace Project
                 int userId = Convert.ToInt32(e.CommandArgument);
 
                 SqlConnection con = new SqlConnection(connectionString);
-                string query = "delete from Register where Id = " + userId;
+                string query = "delete from Register where Id = @Id";
                 SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@Id", userId);
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();

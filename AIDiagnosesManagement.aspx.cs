@@ -39,7 +39,7 @@ namespace Project
                     }
 
                     // Query records
-                    string query = "SELECT DiseaseId, PlantName, DiseaseName, Symptoms, Treatment, MedicineName, MedicinePrice, MedicineImage FROM PlantDiseases WHERE 1=1";
+                    string query = "SELECT DiseaseId, PlantName, DiseaseName, Symptoms, Treatment, MedicineName, MedicinePrice, ImageUrl FROM PlantDiseases WHERE 1=1";
                     string searchTerm = txtSearch.Text.Trim();
                     if (!string.IsNullOrEmpty(searchTerm))
                     {

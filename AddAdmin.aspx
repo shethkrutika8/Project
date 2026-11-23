@@ -89,9 +89,11 @@
 
         /* Main Content */
         .main-content {
-            padding: 40px;
-            max-width: 900px;
-            margin: 0 auto;
+            padding: 24px;
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            box-sizing: border-box;
         }
 
         .page-header {

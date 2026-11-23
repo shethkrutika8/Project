@@ -41,28 +41,33 @@ namespace Project
             string contact  = Mobile_txt.Text.Trim();
             string city     = CityDRPD.SelectedItem != null ? CityDRPD.SelectedItem.ToString() : "";
 
-            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Krutika_24SOECE11036_.NET\\Project\\App_Data\\Database1.mdf;Integrated Security=True";
+            string connectionString = DbHelper.GetConnectionString();
 
-            SqlConnection con = new SqlConnection(connectionString);
-
-            // Check if user already exists
-            string checkQuery = "select count(*) from Register where email = '" + email + "'";
-            SqlCommand checkCmd = new SqlCommand(checkQuery, con);
-            con.Open();
-            int count = Convert.ToInt32(checkCmd.ExecuteScalar());
-            if (count > 0)
+            using (SqlConnection con = new SqlConnection(connectionString))
             {
-                con.Close();
-                pnlRegisterError.Visible = true;
-                litRegisterError.Text = "An account with this email already exists!";
-                return;
+                con.Open();
+
+                // Check if user already exists
+                SqlCommand checkCmd = new SqlCommand("SELECT COUNT(*) FROM Register WHERE email = @Email", con);
+                checkCmd.Parameters.AddWithValue("@Email", email);
+                int count = Convert.ToInt32(checkCmd.ExecuteScalar());
+                if (count > 0)
+                {
+                    pnlRegisterError.Visible = true;
+                    litRegisterError.Text = "An account with this email already exists!";
+                    return;
+                }
+
+                string query = "INSERT INTO Register (name, email, password, gender, contact, city, role) VALUES (@Name, @Email, @Password, @Gender, @Contact, @City, 'User')";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@Name", fullName);
+                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@Password", password);
+                cmd.Parameters.AddWithValue("@Gender", gender);
+                cmd.Parameters.AddWithValue("@Contact", contact);
+                cmd.Parameters.AddWithValue("@City", city);
+                cmd.ExecuteNonQuery();
             }
-
-            string query = "insert into Register (name, email, password, gender, contact, city, role) values('" + fullName + "','" + email + "','" + password + "','" + gender + "','" + contact + "','" + city + "','User')";
-            SqlCommand cmd = new SqlCommand(query, con);
-
-            cmd.ExecuteNonQuery();
-            con.Close();
 
             Response.Redirect("Login.aspx", false);
         }

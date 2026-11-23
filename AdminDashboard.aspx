@@ -6,9 +6,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         .admin-wrapper {
-            max-width: 1200px;
-            margin: 35px auto 60px;
-            padding: 0 15px;
+            width: 100%;
+            max-width: 100%;
+            margin: 24px 0 50px 0;
+            padding: 0 24px;
+            box-sizing: border-box;
         }
         .admin-header {
             display: flex;

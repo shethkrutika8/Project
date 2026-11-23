@@ -6,9 +6,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         .admin-orders-wrap {
-            max-width: 1200px;
-            margin: 28px auto 40px auto;
-            padding: 0 15px;
+            width: 100%;
+            max-width: 100%;
+            margin: 24px 0 40px 0;
+            padding: 0 24px;
+            box-sizing: border-box;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
         }
 
@@ -34,9 +36,11 @@
         /* Order Summary Stats */
         .order-stats-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 16px;
             margin-bottom: 24px;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .order-stat-card {
@@ -175,7 +179,7 @@
             text-transform: capitalize;
         }
 
-        .status-pending { background: #fff8e6; color: #b7791f; border: 1px solid #fbd38d; }
+        .status-pending, .status-placed, .status-confirmed { background: #fff8e6; color: #b7791f; border: 1px solid #fbd38d; }
         .status-processing { background: #ebf8ff; color: #2b6cb0; border: 1px solid #bee3f8; }
         .status-delivered, .status-deliverd { background: #f0fff4; color: #22543d; border: 1px solid #c6f6d5; }
         .status-cancelled { background: #fff5f5; color: #9b2c2c; border: 1px solid #fed7d7; }

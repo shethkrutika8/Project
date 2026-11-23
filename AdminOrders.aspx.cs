@@ -63,7 +63,7 @@ namespace Project
                     conn.Open();
                     string statsSql = @"SELECT 
                         COUNT(*) AS TotalOrders,
-                        ISNULL(SUM(CASE WHEN LOWER(OrderStatus) = 'pending' THEN 1 ELSE 0 END), 0) AS PendingOrders,
+                        ISNULL(SUM(CASE WHEN LOWER(OrderStatus) IN ('pending', 'placed', 'confirmed') THEN 1 ELSE 0 END), 0) AS PendingOrders,
                         ISNULL(SUM(CASE WHEN LOWER(OrderStatus) = 'processing' THEN 1 ELSE 0 END), 0) AS ProcessingOrders,
                         ISNULL(SUM(CASE WHEN LOWER(OrderStatus) IN ('delivered', 'deliverd') THEN 1 ELSE 0 END), 0) AS DeliveredOrders
                         FROM Orders";
@@ -110,7 +110,7 @@ namespace Project
 
                     if (filter.Equals("Pending", StringComparison.OrdinalIgnoreCase))
                     {
-                        query += " WHERE LOWER(OrderStatus) = 'pending' ";
+                        query += " WHERE LOWER(OrderStatus) IN ('pending', 'placed', 'confirmed') ";
                     }
                     else if (filter.Equals("Processing", StringComparison.OrdinalIgnoreCase))
                     {
@@ -304,8 +304,8 @@ namespace Project
         {
             if (string.IsNullOrEmpty(status)) return "fa-solid fa-clock";
             string lower = status.ToLower();
-            if (lower == "pending") return "fa-solid fa-clock";
-            if (lower == "processing") return "fa-solid fa-spinner fa-spin";
+            if (lower == "pending" || lower == "placed" || lower == "confirmed") return "fa-solid fa-clock";
+            if (lower == "processing") return "fa-solid fa-gears";
             if (lower == "delivered" || lower == "deliverd") return "fa-solid fa-circle-check";
             if (lower == "cancelled") return "fa-solid fa-circle-xmark";
             return "fa-solid fa-clock";

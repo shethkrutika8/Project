@@ -123,7 +123,8 @@ namespace Project
             string selectedPlant = ddlPlant.SelectedValue;
             if (!string.IsNullOrEmpty(selectedPlant))
             {
-                DiagnosePlant(selectedPlant);
+                // Preview only — do NOT write a history row for every dropdown selection
+                DiagnosePlant(selectedPlant, "", false);
             }
             else
             {
@@ -186,13 +187,13 @@ namespace Project
                 return;
             }
 
-            DiagnosePlant(selectedPlant, uploadedImagePath);
+            DiagnosePlant(selectedPlant, uploadedImagePath, true);
         }
 
         /// <summary>
         /// Retrieves matched plant record from database and binds all fields to UI
         /// </summary>
-        private void DiagnosePlant(string inputPlant, string uploadedImagePath = "")
+        private void DiagnosePlant(string inputPlant, string uploadedImagePath = "", bool saveHistory = true)
         {
             try
             {
@@ -270,8 +271,9 @@ namespace Project
                 // Display result card
                 pnlResultCard.Visible = true;
 
-                // Log diagnostic history securely
-                SaveToHistory(record.PlantName, record.DiseaseName, record.Treatment);
+                // Log diagnostic history securely (only on explicit Diagnose action, not dropdown previews)
+                if (saveHistory)
+                    SaveToHistory(record.PlantName, record.DiseaseName, record.Treatment);
             }
             catch (Exception ex)
             {

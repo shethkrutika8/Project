@@ -92,7 +92,10 @@
         .main-content {
             margin-left: 260px;
             flex: 1;
-            padding: 30px;
+            padding: 24px;
+            width: calc(100% - 260px);
+            max-width: calc(100% - 260px);
+            box-sizing: border-box;
         }
 
         .page-header {

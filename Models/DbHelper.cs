@@ -42,10 +42,30 @@ namespace Project.Models
             return new SqlConnection(GetConnectionString());
         }
 
+        private static readonly object _ensureTablesLock = new object();
+        private static bool _tablesEnsured = false;
+
         /// <summary>
-        /// Ensures all necessary application tables exist in SQL Server LocalDB via pure ADO.NET C#
+        /// Ensures all necessary application tables exist in SQL Server LocalDB via pure ADO.NET C#.
+        /// Runs only once per application lifetime to avoid re-executing ~30 DDL batches
+        /// on every page load / postback (major source of slow loads and UI flicker).
         /// </summary>
         public static void EnsureDatabaseTablesExist()
+        {
+            if (_tablesEnsured)
+                return;
+
+            lock (_ensureTablesLock)
+            {
+                if (_tablesEnsured)
+                    return;
+
+                EnsureDatabaseTablesExistCore();
+                _tablesEnsured = true;
+            }
+        }
+
+        private static void EnsureDatabaseTablesExistCore()
         {
             try
             {
@@ -394,6 +414,37 @@ namespace Project.Models
                 }
             }
             catch { return 0; }
+        }
+
+        /// <summary>
+        /// Fetches cart item count and wishlist count in a single DB round-trip.
+        /// Used by the master page header badges on every request.
+        /// </summary>
+        public static void GetCartAndWishlistCounts(string userEmail, out int cartCount, out int wishCount)
+        {
+            cartCount = 0;
+            wishCount = 0;
+            try
+            {
+                using (var con = GetConnection())
+                {
+                    con.Open();
+                    using (var cmd = new SqlCommand(
+                        "SELECT ISNULL(SUM(Quantity),0) FROM Cart WHERE UserEmail = @Email; " +
+                        "SELECT COUNT(*) FROM Wishlist WHERE UserEmail = @Email", con))
+                    {
+                        cmd.Parameters.AddWithValue("@Email", userEmail);
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                                cartCount = Convert.ToInt32(reader[0]);
+                            if (reader.NextResult() && reader.Read())
+                                wishCount = Convert.ToInt32(reader[0]);
+                        }
+                    }
+                }
+            }
+            catch { }
         }
 
         public static bool AddToCart(string userEmail, string productName, decimal price, int quantity, string imageUrl)

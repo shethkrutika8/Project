@@ -5,7 +5,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
-        .admin-wrapper { max-width: 1200px; margin: 35px auto 60px; padding: 0 15px; }
+        .admin-wrapper { width: 100%; max-width: 100%; margin: 24px 0 50px 0; padding: 0 24px; box-sizing: border-box; }
         .admin-title { font-size: 28px; font-weight: 800; color: #14321a; display: flex; align-items: center; gap: 12px; margin-bottom: 24px; font-family: 'Poppins', sans-serif; }
         .admin-card { background: #fff; border: 1px solid #dce8db; border-radius: 12px; box-shadow: 0 3px 14px rgba(0,0,0,0.05); margin-bottom: 28px; overflow: hidden; }
         .admin-card-header { background: #f5faf4; padding: 16px 22px; border-bottom: 1px solid #e2ebe0; font-size: 18px; font-weight: 700; color: #14321a; display: flex; align-items: center; gap: 10px; font-family: 'Poppins', sans-serif; }
